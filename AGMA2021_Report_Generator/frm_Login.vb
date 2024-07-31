@@ -152,7 +152,7 @@ Public Class frm_Login
         ElseIf e.Result = "Goods" Then
 
             DevComponents.DotNetBar.MessageBoxEx.Show("Logged in as: " + User_Curr_Logged, "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            frm_Main.Text = "AGMA 2021 Report Generator | Logged in as: " + User_Curr_Logged
+            frm_Main.Text = "AGMA 2024 Report Generator | Logged in as: " + User_Curr_Logged
             Me.Close()
 
         ElseIf e.Result = "Bads" Then
