@@ -9572,36 +9572,41 @@ Public Class SMSCOMMS
 
                     last_displayed_no_p = False
 
-                ElseIf indata_rcv(0) = "Message Sending Failed" Then                    'Retry_Send_Count = Retry_Send_Count + 1
+                ElseIf indata_rcv(0) = "Message Sending Failed" Then
+
+
+                    Retry_Send_Count = Retry_Send_Count + 1
 
 
 
-                    'If Retry_Send_Count > 2 Then
-                    '    frm_SMS_Console_View.Rchtxt_Message_Stats.Text = frm_SMS_Console_View.Rchtxt_Message_Stats.Text + indata_rcv(0) + vbNewLine + vbNewLine
+                    If Retry_Send_Count > 5 Then
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.Text = frm_SMS_Console_View.Rchtxt_Message_Stats.Text + indata_rcv(0) + vbNewLine + vbNewLine
 
-                    '    db_id.RemoveAt(0)
-                    '    Mobile_Number_Queue.RemoveAt(0)
-                    '    Account_Number_Name_Texted.RemoveAt(0)
-                    '    Message_Notif.RemoveAt(0)
-                    '    Response_Flag = False
-                    '    Retry_Send_Count = 0
-                    'Else
-                    '    Response_Flag = False
-                    '    frm_SMS_Console_View.Rchtxt_Message_Stats.Text = frm_SMS_Console_View.Rchtxt_Message_Stats.Text + indata_rcv(0) + ". Re-Sending Notification (Retry # " + Retry_Send_Count.ToString + ")" + vbNewLine + vbNewLine
-                    '    frm_SMS_Console_View.Rchtxt_Message_Stats.SelectionStart = frm_SMS_Console_View.Rchtxt_Message_Stats.Text.Length
-                    '    frm_SMS_Console_View.Rchtxt_Message_Stats.ScrollToCaret()
-                    'End If
-
-                    'last_displayed_no_p = False
+                        db_id.RemoveAt(0)
+                        Mobile_Number_Queue.RemoveAt(0)
+                        Account_Number_Name_Texted.RemoveAt(0)
+                        Message_Notif.RemoveAt(0)
+                        Response_Flag = False
+                        Retry_Send_Count = 0
+                    Else
+                        Response_Flag = False
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.Text = frm_SMS_Console_View.Rchtxt_Message_Stats.Text + indata_rcv(0) + ". Re-Sending Notification (Retry # " + Retry_Send_Count.ToString + ")" + vbNewLine + vbNewLine
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.SelectionStart = frm_SMS_Console_View.Rchtxt_Message_Stats.Text.Length
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.ScrollToCaret()
+                    End If
 
 
-
-                    Response_Flag = False
-                    frm_SMS_Console_View.Rchtxt_Message_Stats.Text = frm_SMS_Console_View.Rchtxt_Message_Stats.Text + indata_rcv(0) + ". Re-Sending Notification (Retry # " + Retry_Send_Count.ToString + ")" + vbNewLine + vbNewLine
-                    frm_SMS_Console_View.Rchtxt_Message_Stats.SelectionStart = frm_SMS_Console_View.Rchtxt_Message_Stats.Text.Length
-                    frm_SMS_Console_View.Rchtxt_Message_Stats.ScrollToCaret()
 
                     last_displayed_no_p = False
+
+
+
+                    'Response_Flag = False
+                    'frm_SMS_Console_View.Rchtxt_Message_Stats.Text = frm_SMS_Console_View.Rchtxt_Message_Stats.Text + indata_rcv(0) + ". Re-Sending Notification (Retry # " + Retry_Send_Count.ToString + ")" + vbNewLine + vbNewLine
+                    'frm_SMS_Console_View.Rchtxt_Message_Stats.SelectionStart = frm_SMS_Console_View.Rchtxt_Message_Stats.Text.Length
+                    'frm_SMS_Console_View.Rchtxt_Message_Stats.ScrollToCaret()
+
+                    'last_displayed_no_p = False
 
                 End If
 

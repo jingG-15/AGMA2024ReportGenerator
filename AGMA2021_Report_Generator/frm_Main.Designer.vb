@@ -62,6 +62,10 @@ Partial Class frm_Main
         Me.lbl_Time_Label_Onsite = New DevComponents.DotNetBar.LabelX()
         Me.sidenavpan_masterlist = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.ContextMenuBar1 = New DevComponents.DotNetBar.ContextMenuBar()
+        Me.Del_Logs = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_View_Del_Prof = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Export_Del_Logs = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Send_Sanitation_SMS = New DevComponents.DotNetBar.ButtonItem()
         Me.cntx_Masterlist = New DevComponents.DotNetBar.ButtonItem()
         Me.btn_Mstr_View_Details = New DevComponents.DotNetBar.ButtonItem()
         Me.btn_Mstr_Delete = New DevComponents.DotNetBar.ButtonItem()
@@ -87,10 +91,6 @@ Partial Class frm_Main
         Me.btn_QR_View_Profile = New DevComponents.DotNetBar.ButtonItem()
         Me.btn_QR_Export_to_Excel = New DevComponents.DotNetBar.ButtonItem()
         Me.btn_QR_Export_to_PDF = New DevComponents.DotNetBar.ButtonItem()
-        Me.Del_Logs = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_View_Del_Prof = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Export_Del_Logs = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Send_Sanitation_SMS = New DevComponents.DotNetBar.ButtonItem()
         Me.lst_QR_Attendees = New DevComponents.DotNetBar.Controls.ListViewEx()
         Me.lst_users = New DevComponents.DotNetBar.Controls.ListViewEx()
         Me.lst_Self_Reg = New DevComponents.DotNetBar.Controls.ListViewEx()
@@ -219,11 +219,11 @@ Partial Class frm_Main
         '
         'SideNav1
         '
+        Me.SideNav1.Controls.Add(Me.sidenavpan_masterlist)
         Me.SideNav1.Controls.Add(Me.SideNavPanel1)
         Me.SideNav1.Controls.Add(Me.sidenavpan_LiveTotalReg)
         Me.SideNav1.Controls.Add(Me.sidenavpan_livetotals_per_district)
         Me.SideNav1.Controls.Add(Me.sidenavpan_livetotals_onsite)
-        Me.SideNav1.Controls.Add(Me.sidenavpan_masterlist)
         Me.SideNav1.Controls.Add(Me.sidenavpan_QR_Attendance)
         Me.SideNav1.Controls.Add(Me.sidenavpan_Officer_List)
         Me.SideNav1.Controls.Add(Me.sidenavpan_self_reg)
@@ -250,6 +250,7 @@ Partial Class frm_Main
         Me.SideNavPanel1.Name = "SideNavPanel1"
         Me.SideNavPanel1.Size = New System.Drawing.Size(767, 529)
         Me.SideNavPanel1.TabIndex = 48
+        Me.SideNavPanel1.Visible = False
         '
         'circ_del_prog
         '
@@ -788,7 +789,6 @@ Partial Class frm_Main
         Me.sidenavpan_masterlist.Name = "sidenavpan_masterlist"
         Me.sidenavpan_masterlist.Size = New System.Drawing.Size(767, 529)
         Me.sidenavpan_masterlist.TabIndex = 2
-        Me.sidenavpan_masterlist.Visible = False
         '
         'ContextMenuBar1
         '
@@ -805,6 +805,28 @@ Partial Class frm_Main
         Me.ContextMenuBar1.TabIndex = 28
         Me.ContextMenuBar1.TabStop = False
         Me.ContextMenuBar1.Text = "ContextMenuBar1"
+        '
+        'Del_Logs
+        '
+        Me.Del_Logs.AutoExpandOnClick = True
+        Me.Del_Logs.Name = "Del_Logs"
+        Me.Del_Logs.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_View_Del_Prof, Me.btn_Export_Del_Logs, Me.btn_Send_Sanitation_SMS})
+        Me.Del_Logs.Text = "Del_Logs"
+        '
+        'btn_View_Del_Prof
+        '
+        Me.btn_View_Del_Prof.Name = "btn_View_Del_Prof"
+        Me.btn_View_Del_Prof.Text = "View Details"
+        '
+        'btn_Export_Del_Logs
+        '
+        Me.btn_Export_Del_Logs.Name = "btn_Export_Del_Logs"
+        Me.btn_Export_Del_Logs.Text = "Export Logs to Excel"
+        '
+        'btn_Send_Sanitation_SMS
+        '
+        Me.btn_Send_Sanitation_SMS.Name = "btn_Send_Sanitation_SMS"
+        Me.btn_Send_Sanitation_SMS.Text = "Send SMS to New Delete Logs"
         '
         'cntx_Masterlist
         '
@@ -940,28 +962,6 @@ Partial Class frm_Main
         '
         Me.btn_QR_Export_to_PDF.Name = "btn_QR_Export_to_PDF"
         Me.btn_QR_Export_to_PDF.Text = "Export Attendance to PDF Per District"
-        '
-        'Del_Logs
-        '
-        Me.Del_Logs.AutoExpandOnClick = True
-        Me.Del_Logs.Name = "Del_Logs"
-        Me.Del_Logs.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_View_Del_Prof, Me.btn_Export_Del_Logs, Me.btn_Send_Sanitation_SMS})
-        Me.Del_Logs.Text = "Del_Logs"
-        '
-        'btn_View_Del_Prof
-        '
-        Me.btn_View_Del_Prof.Name = "btn_View_Del_Prof"
-        Me.btn_View_Del_Prof.Text = "View Details"
-        '
-        'btn_Export_Del_Logs
-        '
-        Me.btn_Export_Del_Logs.Name = "btn_Export_Del_Logs"
-        Me.btn_Export_Del_Logs.Text = "Export Logs to Excel"
-        '
-        'btn_Send_Sanitation_SMS
-        '
-        Me.btn_Send_Sanitation_SMS.Name = "btn_Send_Sanitation_SMS"
-        Me.btn_Send_Sanitation_SMS.Text = "Send SMS to New Delete Logs"
         '
         'lst_QR_Attendees
         '
@@ -1713,6 +1713,7 @@ Partial Class frm_Main
         '
         'SideNavItem2
         '
+        Me.SideNavItem2.Checked = True
         Me.SideNavItem2.Name = "SideNavItem2"
         Me.SideNavItem2.Panel = Me.sidenavpan_masterlist
         Me.SideNavItem2.Symbol = ""
@@ -1748,7 +1749,6 @@ Partial Class frm_Main
         '
         'SideNavItem10
         '
-        Me.SideNavItem10.Checked = True
         Me.SideNavItem10.Name = "SideNavItem10"
         Me.SideNavItem10.Panel = Me.SideNavPanel1
         Me.SideNavItem10.Symbol = ""
@@ -1995,6 +1995,7 @@ Partial Class frm_Main
         Me.Controls.Add(Me.SideNav1)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ForeColor = System.Drawing.Color.Black
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MinimumSize = New System.Drawing.Size(1000, 600)
         Me.Name = "frm_Main"
