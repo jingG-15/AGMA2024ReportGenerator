@@ -11,6 +11,7 @@ Public Class frm_SMS_Console_View
     Private Sub frm_SMS_Console_View_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         frm_Main.tmr_Entries_Loader.Enabled = True
 
+
         With Rchtxt_Message_Stats
             .BackColorRichTextBox = Color.Black
             .ForeColor = Color.FromArgb(231, 193, 184)
@@ -24,5 +25,9 @@ Public Class frm_SMS_Console_View
 
     Private Sub btn_Connect_Click(sender As Object, e As EventArgs) Handles btn_Connect.Click
         frm_Main.Change_SMS_Port_Baud(GSM_Port, GSM_Baud)
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        lbl_Remaining_SMS.Text = "Total SMS to send: " & total_sms_count.ToString
     End Sub
 End Class

@@ -7820,11 +7820,58 @@ Public Class frm_Main
 
     End Sub
 
+
+    Private Sub BW_SMS_Updater_Overall_DoWork(sender As Object, e As DoWorkEventArgs) Handles BW_SMS_Updater_Overall.DoWork
+
+        Dim cmd1 As New MySqlCommand
+        Dim MysqlConn As MySqlConnection
+        Dim sql As String
+        'Dim cmd As MySqlCommand
+        'Dim drSQL As MySqlDataReader
+        'Dim da As New MySqlDataAdapter
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString = "server=" + Server_IP + "; userid=jingG_15;password=haPPymeals;database=agma_2024;Convert Zero Datetime=True"
+        Try
+
+            MysqlConn.Open()
+            sql = "UPDATE overall_reg SET SMS_Mark = 1 Where ID = '" & Update_SMS_Marker_Overall_tb(0) & "'"
+            cmd1.Connection = MysqlConn
+            cmd1.CommandText = sql
+            cmd1.ExecuteNonQuery()
+            Update_SMS_Marker_Overall_tb.RemoveAt(0)
+        Catch ex As Exception
+
+            MysqlConn.Close()
+            Exit Sub
+        Finally
+            MysqlConn.Close()
+        End Try
+
+
+    End Sub
+
+
+    Private Sub BW_SMS_Updater_Overall_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles BW_SMS_Updater_Overall.ProgressChanged
+
+    End Sub
+
+    Private Sub BW_SMS_Updater_Overall_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BW_SMS_Updater_Overall.RunWorkerCompleted
+
+    End Sub
+
     Private Sub tmr_SMS_Done_Updater_Tick(sender As Object, e As EventArgs) Handles tmr_SMS_Done_Updater.Tick
         If BW_SMS_Marker_Updater.IsBusy = False And Update_SMS_Marker.Count > 0 Then
 
 
             BW_SMS_Marker_Updater.RunWorkerAsync()
+
+        End If
+
+
+        If BW_SMS_Updater_Overall.IsBusy = False And Update_SMS_Marker_Overall_tb.Count > 0 Then
+
+
+            BW_SMS_Updater_Overall.RunWorkerAsync()
 
         End If
     End Sub
@@ -7835,6 +7882,7 @@ Public Class frm_Main
             BW_del_logs_laoder.RunWorkerAsync()
 
         End If
+
     End Sub
 
     Private Sub BW_del_logs_laoder_DoWork(sender As Object, e As DoWorkEventArgs) Handles BW_del_logs_laoder.DoWork
@@ -7877,11 +7925,11 @@ Public Class frm_Main
             Do While drSQL.Read = True
                 If Not (BW_del_logs_laoder.CancellationPending) Then
                     Dim db_id As Integer = drSQL("ID").ToString
-                    Dim resss = drSQL("Reason").ToString
-                    Dim stub = drSQL("Entry_Del_Stub_Number").ToString
-                    Dim account_num = drSQL("Entry_Del_Account_Num").ToString
-                    Dim account_name = drSQL("Entry_Del_Account_Name").ToString
-                    Dim cell_num = drSQL("Entry_Del_Contact_Number").ToString
+                    Dim resss As String = drSQL("Reason").ToString
+                    Dim stub As String = drSQL("Entry_Del_Stub_Number").ToString
+                    Dim account_num As String = drSQL("Entry_Del_Account_Num").ToString
+                    Dim account_name As String = drSQL("Entry_Del_Account_Name").ToString
+                    Dim cell_num As String = drSQL("Entry_Del_Contact_Number").ToString
 
 
 
@@ -7901,7 +7949,7 @@ Public Class frm_Main
                             Notif_Message = "Hello. Your BILECO AGMA registration is INVALID for the Account " & account_num &
                                              " with Stub " & stub & ". Reason: INVALID Signature & ID. Please try again. TY."
 
-                            SMSEngine.Add_Queue(db_id, cell_num, account_num + " : " + account_name, Notif_Message)
+                            SMSEngine.Add_Queue(db_id + 89123, cell_num, account_num + " : " + account_name, Notif_Message)
 
 
                         ElseIf resss = "Invalid photo of ID Provided" Then
@@ -7911,7 +7959,7 @@ Public Class frm_Main
                                              " with Stub " & stub & ". Reason: INVALID ID Provided. Please try again. TY."
 
 
-                            SMSEngine.Add_Queue(db_id, cell_num, account_num + " : " + account_name, Notif_Message)
+                            SMSEngine.Add_Queue(db_id + 89123, cell_num, account_num + " : " + account_name, Notif_Message)
 
 
                         ElseIf resss = "Invalid Signature upon visual verification" Then
@@ -7920,9 +7968,13 @@ Public Class frm_Main
                             Notif_Message = "Hello. Your BILECO AGMA registration is INVALID for the Account " & account_num &
                                              " with Stub " & stub & ". Reason: INVALID Signature Provided. Please try again. TY."
 
+                            SMSEngine.Add_Queue(db_id + 89123, cell_num, account_num + " : " + account_name, Notif_Message)
 
-                            SMSEngine.Add_Queue(db_id, cell_num, account_num + " : " + account_name, Notif_Message)
 
+                            Notif_Message = "Please ensure to have a white background for the signature. If not, please clear the signature pad first until a white background appears. Thank you."
+
+
+                            SMSEngine.Add_Queue(db_id + 189123, cell_num, account_num + " : " + account_name, Notif_Message)
 
                         End If
 
@@ -7948,7 +8000,107 @@ Public Class frm_Main
         Finally
             MysqlConn.Close()
 
+        End Try
+
+
+
+
+
+
+
+
+        'Overll Registration Section for Congrats Message
+
+
+
+        Try
+            MysqlConn.Open()
+            sql = "SELECT COUNT(ID) AS rollcount FROM overall_reg WHERE SMS_Mark = 0 AND Sanitize_Mark = 1"
+            cmd = New MySqlCommand(sql, MysqlConn)
+            Dim count As Int32 = Convert.ToInt32(cmd.ExecuteScalar())
+            max = count
+
+        Catch ex As Exception
+            'MysqlConn.Close()
+
+            DevComponents.DotNetBar.MessageBoxEx.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            MysqlConn.Close()
+
+        End Try
+
+
+        Try
+
+            MysqlConn = New MySqlConnection
+            MysqlConn.ConnectionString = "server=" + Server_IP + "; userid=jingG_15;password=haPPymeals;database=agma_2024;Convert Zero Datetime=True"
+            MysqlConn.Open()
+            sql = "SELECT ID, Stub_Number, Bil_Account_Number, Bil_Account_Name, Contact_Number " _
+                & " FROM overall_reg WHERE SMS_Mark = 0 AND Sanitize_Mark = 1 ORDER BY Date_Registered ASC"
+            cmd = New MySqlCommand(sql, MysqlConn)
+            drSQL = cmd.ExecuteReader()
+
+            ItemNumber = 1
+
+            Do While drSQL.Read = True
+                If Not (BW_del_logs_laoder.CancellationPending) Then
+                    Dim db_id As Integer = drSQL("ID").ToString
+                    'Dim resss = drSQL("Reason").ToString
+                    Dim stub As String = drSQL("Stub_Number").ToString
+                    Dim account_num As String = drSQL("Bil_Account_Number").ToString
+                    Dim account_name As String = drSQL("Bil_Account_Name").ToString
+                    Dim cell_num As String = drSQL("Contact_Number").ToString
+
+
+
+                    If cell_num <> "NONE" And cell_num.Length = 11 And cell_num.Contains(" ") = False Then
+
+                        If cell_num.Substring(0, 2) = "09" Or cell_num.Substring(0, 4) = "+639" Then
+
+                            If cell_num.Substring(0, 2) = "09" Then
+
+
+                                cell_num = "+63" + cell_num.Substring(1, 10)
+
+
+                            End If
+
+
+                            Notif_Message = "Congrats! You are successfully pre-registered for 36th AGMA with Stub# " _
+                                               & stub & ". Please bring your registered QR on Aug. 24, 2024 @ BIPSU GYM for attendance."
+
+                            SMSEngine.Add_Queue(db_id, cell_num, account_num + " : " + account_name, Notif_Message)
+
+
+
+                        End If
+
+
+                    End If
+
+
+
+                    BW_del_logs_laoder.ReportProgress((ItemNumber / max) * 100)
+                    ItemNumber += 1
+
+
+                ElseIf (BW_del_logs_laoder.CancellationPending) Then
+                    e.Cancel = True
+                    Exit Do
+                End If
+
+
+            Loop
+        Catch ex As Exception
+            ' MessageBox.Show(ex.Message)
+
+            DevComponents.DotNetBar.MessageBoxEx.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            MysqlConn.Close()
+
         End Try 'Give the thread a very..very short break...
+
+
 
 
     End Sub
@@ -9367,6 +9519,12 @@ Public Class frm_Main
         circ_prog_QR.Visible = False
         tmr_Circ_QR_anim.Enabled = False
     End Sub
+
+
+
+
+
+
 End Class
 
 
@@ -9554,23 +9712,49 @@ Public Class SMSCOMMS
                 'frm_ControlPanel.Rchtxt_Message_Stats.Text =frm_SMS_Console_View.Rchtxt_Message_Stats.Text + indata_rcv + vbNewLine
                 If indata_rcv(0) = "Message Sent" Then
 
+                    If Message_Notif(0).ToString.Substring(0, 6) = "Please" Or Message_Notif(0).ToString.Substring(0, 6) = "Hello." Then
 
-                    Update_SMS_Marker.Add(db_id(0))
+                        Update_SMS_Marker.Add(CInt(db_id(0)) - 89123)
 
-                    db_id.RemoveAt(0)
-                    Mobile_Number_Queue.RemoveAt(0)
-                    Account_Number_Name_Texted.RemoveAt(0)
-                    Message_Notif.RemoveAt(0)
+                        db_id.RemoveAt(0)
+                        Mobile_Number_Queue.RemoveAt(0)
+                        Account_Number_Name_Texted.RemoveAt(0)
+                        Message_Notif.RemoveAt(0)
 
-                    Response_Flag = False
-                    Retry_Send_Count = 0
+                        Response_Flag = False
+                        Retry_Send_Count = 0
 
-                    frm_SMS_Console_View.Rchtxt_Message_Stats.Text = frm_SMS_Console_View.Rchtxt_Message_Stats.Text + indata_rcv(0) + vbNewLine + vbNewLine
-                    frm_SMS_Console_View.Rchtxt_Message_Stats.SelectionStart = frm_SMS_Console_View.Rchtxt_Message_Stats.Text.Length
-                    frm_SMS_Console_View.Rchtxt_Message_Stats.ScrollToCaret()
-                    Signal_Checker.Start()
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.Text = frm_SMS_Console_View.Rchtxt_Message_Stats.Text + indata_rcv(0) + vbNewLine + vbNewLine
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.SelectionStart = frm_SMS_Console_View.Rchtxt_Message_Stats.Text.Length
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.ScrollToCaret()
+                        Signal_Checker.Start()
 
-                    last_displayed_no_p = False
+                        last_displayed_no_p = False
+
+                    ElseIf Message_Notif(0).ToString.Substring(0, 9) = "Congrats!" Then
+
+                        Update_SMS_Marker_Overall_tb.Add(db_id(0))
+
+                        db_id.RemoveAt(0)
+                        Mobile_Number_Queue.RemoveAt(0)
+                        Account_Number_Name_Texted.RemoveAt(0)
+                        Message_Notif.RemoveAt(0)
+
+                        Response_Flag = False
+                        Retry_Send_Count = 0
+
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.Text = frm_SMS_Console_View.Rchtxt_Message_Stats.Text + indata_rcv(0) + vbNewLine + vbNewLine
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.SelectionStart = frm_SMS_Console_View.Rchtxt_Message_Stats.Text.Length
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.ScrollToCaret()
+                        Signal_Checker.Start()
+
+                        last_displayed_no_p = False
+
+
+                    End If
+
+                    total_sms_count = db_id.Count
+
 
                 ElseIf indata_rcv(0) = "Message Sending Failed" Then
 
@@ -9693,17 +9877,41 @@ Public Class SMSCOMMS
 
                 If Mobile_Number_Queue.Count > 0 And Response_Flag = False Then
 
-                    SendSMS(Mobile_Number_Queue(0), Message_Notif(0))
-                    frm_SMS_Console_View.Rchtxt_Message_Stats.Text = frm_SMS_Console_View.Rchtxt_Message_Stats.Text + "Sending SMS to: " + Mobile_Number_Queue(0) + " | Account # " + Account_Number_Name_Texted(0) + vbNewLine + vbNewLine
-                    'indata_rcv = ""
-                    frm_SMS_Console_View.Rchtxt_Message_Stats.SelectionStart = frm_SMS_Console_View.Rchtxt_Message_Stats.Text.Length
-                    frm_SMS_Console_View.Rchtxt_Message_Stats.ScrollToCaret()
+
+                    If Message_Notif(0).ToString.Substring(0, 6) = "Please" Or Message_Notif(0).ToString.Substring(0, 6) = "Hello." Then
+
+                        SendSMS(Mobile_Number_Queue(0), Message_Notif(0))
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.Text = frm_SMS_Console_View.Rchtxt_Message_Stats.Text + "Sending Warning SMS to: " + Mobile_Number_Queue(0) + " | Account # " + Account_Number_Name_Texted(0) + vbNewLine + vbNewLine
+                        'indata_rcv = ""
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.SelectionStart = frm_SMS_Console_View.Rchtxt_Message_Stats.Text.Length
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.ScrollToCaret()
 
 
 
-                    Response_Flag = True
+                        Response_Flag = True
 
-                    last_displayed_no_p = False
+                        last_displayed_no_p = False
+
+                    ElseIf Message_Notif(0).ToString.Substring(0, 9) = "Congrats!" Then
+
+                        SendSMS(Mobile_Number_Queue(0), Message_Notif(0))
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.Text = frm_SMS_Console_View.Rchtxt_Message_Stats.Text + "Sending Congrats SMS to: " + Mobile_Number_Queue(0) + " | Account # " + Account_Number_Name_Texted(0) + vbNewLine + vbNewLine
+                        'indata_rcv = ""
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.SelectionStart = frm_SMS_Console_View.Rchtxt_Message_Stats.Text.Length
+                        frm_SMS_Console_View.Rchtxt_Message_Stats.ScrollToCaret()
+
+
+
+                        Response_Flag = True
+
+                        last_displayed_no_p = False
+
+
+                    End If
+
+
+
+
 
 
                 End If
@@ -9986,6 +10194,8 @@ Public Class SMSCOMMS
 
 
         End If
+
+        total_sms_count = db_id.Count
 
 
     End Sub

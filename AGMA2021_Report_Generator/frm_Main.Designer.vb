@@ -26,9 +26,55 @@ Partial Class frm_Main
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Main))
         Me.StyleManager1 = New DevComponents.DotNetBar.StyleManager(Me.components)
         Me.SideNav1 = New DevComponents.DotNetBar.Controls.SideNav()
+        Me.sidenavpan_masterlist = New DevComponents.DotNetBar.Controls.SideNavPanel()
+        Me.ContextMenuBar1 = New DevComponents.DotNetBar.ContextMenuBar()
+        Me.cntx_Masterlist = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Mstr_View_Details = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Mstr_Delete = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_mstr_export_PDF = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_mstr_export_Excel = New DevComponents.DotNetBar.ButtonItem()
+        Me.ButtonItem9 = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_mstr_export_district_PDF = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_mstr_export_district_Excel = New DevComponents.DotNetBar.ButtonItem()
+        Me.btnitm_Export_Audit_Report = New DevComponents.DotNetBar.ButtonItem()
+        Me.cntx_Self_Reg = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Self_View_Details = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Self_Delete_Entry = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Self_Export_Reg_PDF = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Self_Export_Reg_Excel = New DevComponents.DotNetBar.ButtonItem()
+        Me.cntx_MCO_Officers = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Prof_View_Details = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Prof_View_Reg_by_User = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Add_New_User = New DevComponents.DotNetBar.ButtonItem()
+        Me.ButtonItem6 = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Prof_Export_Reg_by_User_PDF = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Prof_Export_Reg_by_User_Excel = New DevComponents.DotNetBar.ButtonItem()
+        Me.QR_Attendance = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_QR_View_Profile = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_QR_Export_to_Excel = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_QR_Export_to_PDF = New DevComponents.DotNetBar.ButtonItem()
+        Me.Del_Logs = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_View_Del_Prof = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Export_Del_Logs = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Send_Sanitation_SMS = New DevComponents.DotNetBar.ButtonItem()
+        Me.lst_del_logs = New DevComponents.DotNetBar.Controls.ListViewEx()
+        Me.lst_QR_Attendees = New DevComponents.DotNetBar.Controls.ListViewEx()
+        Me.lst_users = New DevComponents.DotNetBar.Controls.ListViewEx()
+        Me.lst_Self_Reg = New DevComponents.DotNetBar.Controls.ListViewEx()
+        Me.lst_Masterlist = New DevComponents.DotNetBar.Controls.ListViewEx()
+        Me.circ_prog_masterlist = New DevComponents.DotNetBar.Controls.CircularProgress()
+        Me.pan_masterlist_controls = New DevComponents.DotNetBar.PanelEx()
+        Me.chk_Mark_Sanitation_Only = New System.Windows.Forms.CheckBox()
+        Me.rdo_Mstr_AccountNumberSearch = New System.Windows.Forms.RadioButton()
+        Me.rdo_Mstr_Registrant_Search = New System.Windows.Forms.RadioButton()
+        Me.rdo_Mstr_Address_Search = New System.Windows.Forms.RadioButton()
+        Me.rdo_Mstr_NameSearch = New System.Windows.Forms.RadioButton()
+        Me.btn_Refresh_Masterlist = New DevComponents.DotNetBar.ButtonX()
+        Me.btn_Masterlist_Search = New DevComponents.DotNetBar.ButtonX()
+        Me.txt_Mstr_Search_Term = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.lbl_Main = New DevComponents.DotNetBar.LabelX()
         Me.SideNavPanel1 = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.circ_del_prog = New DevComponents.DotNetBar.Controls.CircularProgress()
-        Me.lst_del_logs = New DevComponents.DotNetBar.Controls.ListViewEx()
         Me.pan_del_logs_control = New DevComponents.DotNetBar.PanelEx()
         Me.rdo_del_Search_by_Account_Name = New System.Windows.Forms.RadioButton()
         Me.rdo_del_Search_by_Del_Username = New System.Windows.Forms.RadioButton()
@@ -60,52 +106,6 @@ Partial Class frm_Main
         Me.lbl_Time_Colon_Onsite = New DevComponents.DotNetBar.LabelX()
         Me.lbl_Time_Hour_Onsite = New DevComponents.DotNetBar.LabelX()
         Me.lbl_Time_Label_Onsite = New DevComponents.DotNetBar.LabelX()
-        Me.sidenavpan_masterlist = New DevComponents.DotNetBar.Controls.SideNavPanel()
-        Me.ContextMenuBar1 = New DevComponents.DotNetBar.ContextMenuBar()
-        Me.Del_Logs = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_View_Del_Prof = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Export_Del_Logs = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Send_Sanitation_SMS = New DevComponents.DotNetBar.ButtonItem()
-        Me.cntx_Masterlist = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Mstr_View_Details = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Mstr_Delete = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_mstr_export_PDF = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_mstr_export_Excel = New DevComponents.DotNetBar.ButtonItem()
-        Me.ButtonItem9 = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_mstr_export_district_PDF = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_mstr_export_district_Excel = New DevComponents.DotNetBar.ButtonItem()
-        Me.btnitm_Export_Audit_Report = New DevComponents.DotNetBar.ButtonItem()
-        Me.cntx_Self_Reg = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Self_View_Details = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Self_Delete_Entry = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Self_Export_Reg_PDF = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Self_Export_Reg_Excel = New DevComponents.DotNetBar.ButtonItem()
-        Me.cntx_MCO_Officers = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Prof_View_Details = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Prof_View_Reg_by_User = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Add_New_User = New DevComponents.DotNetBar.ButtonItem()
-        Me.ButtonItem6 = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Prof_Export_Reg_by_User_PDF = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_Prof_Export_Reg_by_User_Excel = New DevComponents.DotNetBar.ButtonItem()
-        Me.QR_Attendance = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_QR_View_Profile = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_QR_Export_to_Excel = New DevComponents.DotNetBar.ButtonItem()
-        Me.btn_QR_Export_to_PDF = New DevComponents.DotNetBar.ButtonItem()
-        Me.lst_QR_Attendees = New DevComponents.DotNetBar.Controls.ListViewEx()
-        Me.lst_users = New DevComponents.DotNetBar.Controls.ListViewEx()
-        Me.lst_Self_Reg = New DevComponents.DotNetBar.Controls.ListViewEx()
-        Me.lst_Masterlist = New DevComponents.DotNetBar.Controls.ListViewEx()
-        Me.circ_prog_masterlist = New DevComponents.DotNetBar.Controls.CircularProgress()
-        Me.pan_masterlist_controls = New DevComponents.DotNetBar.PanelEx()
-        Me.chk_Mark_Sanitation_Only = New System.Windows.Forms.CheckBox()
-        Me.rdo_Mstr_AccountNumberSearch = New System.Windows.Forms.RadioButton()
-        Me.rdo_Mstr_Registrant_Search = New System.Windows.Forms.RadioButton()
-        Me.rdo_Mstr_Address_Search = New System.Windows.Forms.RadioButton()
-        Me.rdo_Mstr_NameSearch = New System.Windows.Forms.RadioButton()
-        Me.btn_Refresh_Masterlist = New DevComponents.DotNetBar.ButtonX()
-        Me.btn_Masterlist_Search = New DevComponents.DotNetBar.ButtonX()
-        Me.txt_Mstr_Search_Term = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.lbl_Main = New DevComponents.DotNetBar.LabelX()
         Me.sidenavpan_QR_Attendance = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.circ_prog_QR = New DevComponents.DotNetBar.Controls.CircularProgress()
         Me.pan_QR_control = New DevComponents.DotNetBar.PanelEx()
@@ -195,15 +195,17 @@ Partial Class frm_Main
         Me.BW_Get_Onsite_Total_Count = New System.ComponentModel.BackgroundWorker()
         Me.tmr_Totals_Updater_Onsite = New System.Windows.Forms.Timer(Me.components)
         Me.BW_PDF_Exporter_Onsite_Dist = New System.ComponentModel.BackgroundWorker()
+        Me.BW_Valid_Entries_Notifier = New System.ComponentModel.BackgroundWorker()
+        Me.BW_SMS_Updater_Overall = New System.ComponentModel.BackgroundWorker()
         Me.SideNav1.SuspendLayout()
+        Me.sidenavpan_masterlist.SuspendLayout()
+        CType(Me.ContextMenuBar1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pan_masterlist_controls.SuspendLayout()
         Me.SideNavPanel1.SuspendLayout()
         Me.pan_del_logs_control.SuspendLayout()
         Me.sidenavpan_LiveTotalReg.SuspendLayout()
         Me.sidenavpan_livetotals_per_district.SuspendLayout()
         Me.sidenavpan_livetotals_onsite.SuspendLayout()
-        Me.sidenavpan_masterlist.SuspendLayout()
-        CType(Me.ContextMenuBar1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pan_masterlist_controls.SuspendLayout()
         Me.sidenavpan_QR_Attendance.SuspendLayout()
         Me.pan_QR_control.SuspendLayout()
         Me.sidenavpan_Officer_List.SuspendLayout()
@@ -238,6 +240,473 @@ Partial Class frm_Main
         Me.SideNav1.TabIndex = 1
         Me.SideNav1.Text = "SideNav1"
         '
+        'sidenavpan_masterlist
+        '
+        Me.sidenavpan_masterlist.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.sidenavpan_masterlist.Controls.Add(Me.ContextMenuBar1)
+        Me.sidenavpan_masterlist.Controls.Add(Me.circ_prog_masterlist)
+        Me.sidenavpan_masterlist.Controls.Add(Me.lst_Masterlist)
+        Me.sidenavpan_masterlist.Controls.Add(Me.pan_masterlist_controls)
+        Me.sidenavpan_masterlist.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.sidenavpan_masterlist.ForeColor = System.Drawing.Color.Black
+        Me.sidenavpan_masterlist.Location = New System.Drawing.Point(212, 31)
+        Me.sidenavpan_masterlist.Name = "sidenavpan_masterlist"
+        Me.sidenavpan_masterlist.Size = New System.Drawing.Size(767, 529)
+        Me.sidenavpan_masterlist.TabIndex = 2
+        '
+        'ContextMenuBar1
+        '
+        Me.ContextMenuBar1.AntiAlias = True
+        Me.ContextMenuBar1.DockSide = DevComponents.DotNetBar.eDockSide.Document
+        Me.ContextMenuBar1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.ContextMenuBar1.IsMaximized = False
+        Me.ContextMenuBar1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cntx_Masterlist, Me.cntx_Self_Reg, Me.cntx_MCO_Officers, Me.QR_Attendance, Me.Del_Logs})
+        Me.ContextMenuBar1.Location = New System.Drawing.Point(73, 187)
+        Me.ContextMenuBar1.Name = "ContextMenuBar1"
+        Me.ContextMenuBar1.Size = New System.Drawing.Size(138, 123)
+        Me.ContextMenuBar1.Stretch = True
+        Me.ContextMenuBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.ContextMenuBar1.TabIndex = 28
+        Me.ContextMenuBar1.TabStop = False
+        Me.ContextMenuBar1.Text = "ContextMenuBar1"
+        '
+        'cntx_Masterlist
+        '
+        Me.cntx_Masterlist.AutoExpandOnClick = True
+        Me.cntx_Masterlist.Name = "cntx_Masterlist"
+        Me.cntx_Masterlist.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_Mstr_View_Details, Me.btn_Mstr_Delete, Me.btn_mstr_export_PDF, Me.btn_mstr_export_Excel, Me.ButtonItem9, Me.btnitm_Export_Audit_Report})
+        Me.cntx_Masterlist.Text = "Masterlist"
+        '
+        'btn_Mstr_View_Details
+        '
+        Me.btn_Mstr_View_Details.Name = "btn_Mstr_View_Details"
+        Me.btn_Mstr_View_Details.Text = "View Details"
+        '
+        'btn_Mstr_Delete
+        '
+        Me.btn_Mstr_Delete.Name = "btn_Mstr_Delete"
+        Me.btn_Mstr_Delete.Text = "Delete Selected Entry"
+        '
+        'btn_mstr_export_PDF
+        '
+        Me.btn_mstr_export_PDF.Name = "btn_mstr_export_PDF"
+        Me.btn_mstr_export_PDF.Text = "Export Masterlist to PDF"
+        '
+        'btn_mstr_export_Excel
+        '
+        Me.btn_mstr_export_Excel.Name = "btn_mstr_export_Excel"
+        Me.btn_mstr_export_Excel.Text = "Export Masterlist to Excel"
+        '
+        'ButtonItem9
+        '
+        Me.ButtonItem9.Name = "ButtonItem9"
+        Me.ButtonItem9.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_mstr_export_district_PDF, Me.btn_mstr_export_district_Excel})
+        Me.ButtonItem9.Text = "Export Masterlist Per District"
+        '
+        'btn_mstr_export_district_PDF
+        '
+        Me.btn_mstr_export_district_PDF.Name = "btn_mstr_export_district_PDF"
+        Me.btn_mstr_export_district_PDF.Text = "PDF Format"
+        '
+        'btn_mstr_export_district_Excel
+        '
+        Me.btn_mstr_export_district_Excel.Name = "btn_mstr_export_district_Excel"
+        Me.btn_mstr_export_district_Excel.Text = "Excel Format"
+        '
+        'btnitm_Export_Audit_Report
+        '
+        Me.btnitm_Export_Audit_Report.Name = "btnitm_Export_Audit_Report"
+        Me.btnitm_Export_Audit_Report.Text = "Export Audit Report"
+        '
+        'cntx_Self_Reg
+        '
+        Me.cntx_Self_Reg.AutoExpandOnClick = True
+        Me.cntx_Self_Reg.Name = "cntx_Self_Reg"
+        Me.cntx_Self_Reg.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_Self_View_Details, Me.btn_Self_Delete_Entry, Me.btn_Self_Export_Reg_PDF, Me.btn_Self_Export_Reg_Excel})
+        Me.cntx_Self_Reg.Text = "Self Registrants"
+        '
+        'btn_Self_View_Details
+        '
+        Me.btn_Self_View_Details.Name = "btn_Self_View_Details"
+        Me.btn_Self_View_Details.Text = "View Details"
+        '
+        'btn_Self_Delete_Entry
+        '
+        Me.btn_Self_Delete_Entry.Name = "btn_Self_Delete_Entry"
+        Me.btn_Self_Delete_Entry.Text = "Delete Selected Entry"
+        '
+        'btn_Self_Export_Reg_PDF
+        '
+        Me.btn_Self_Export_Reg_PDF.Name = "btn_Self_Export_Reg_PDF"
+        Me.btn_Self_Export_Reg_PDF.Text = "Export to PDF"
+        '
+        'btn_Self_Export_Reg_Excel
+        '
+        Me.btn_Self_Export_Reg_Excel.Name = "btn_Self_Export_Reg_Excel"
+        Me.btn_Self_Export_Reg_Excel.Text = "EXport to Excel"
+        '
+        'cntx_MCO_Officers
+        '
+        Me.cntx_MCO_Officers.AutoExpandOnClick = True
+        Me.cntx_MCO_Officers.Name = "cntx_MCO_Officers"
+        Me.cntx_MCO_Officers.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_Prof_View_Details, Me.btn_Prof_View_Reg_by_User, Me.btn_Add_New_User, Me.ButtonItem6})
+        Me.cntx_MCO_Officers.Text = "MCO Officers"
+        '
+        'btn_Prof_View_Details
+        '
+        Me.btn_Prof_View_Details.Name = "btn_Prof_View_Details"
+        Me.btn_Prof_View_Details.Text = "Profile Details"
+        '
+        'btn_Prof_View_Reg_by_User
+        '
+        Me.btn_Prof_View_Reg_by_User.Name = "btn_Prof_View_Reg_by_User"
+        Me.btn_Prof_View_Reg_by_User.Text = "View MCOs Registered"
+        '
+        'btn_Add_New_User
+        '
+        Me.btn_Add_New_User.Name = "btn_Add_New_User"
+        Me.btn_Add_New_User.Text = "Add New User Account"
+        '
+        'ButtonItem6
+        '
+        Me.ButtonItem6.Name = "ButtonItem6"
+        Me.ButtonItem6.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_Prof_Export_Reg_by_User_PDF, Me.btn_Prof_Export_Reg_by_User_Excel})
+        Me.ButtonItem6.Text = "Export Users' Registration"
+        '
+        'btn_Prof_Export_Reg_by_User_PDF
+        '
+        Me.btn_Prof_Export_Reg_by_User_PDF.Name = "btn_Prof_Export_Reg_by_User_PDF"
+        Me.btn_Prof_Export_Reg_by_User_PDF.Text = "PDF"
+        '
+        'btn_Prof_Export_Reg_by_User_Excel
+        '
+        Me.btn_Prof_Export_Reg_by_User_Excel.Name = "btn_Prof_Export_Reg_by_User_Excel"
+        Me.btn_Prof_Export_Reg_by_User_Excel.Text = "Excel"
+        '
+        'QR_Attendance
+        '
+        Me.QR_Attendance.AutoExpandOnClick = True
+        Me.QR_Attendance.Name = "QR_Attendance"
+        Me.QR_Attendance.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_QR_View_Profile, Me.btn_QR_Export_to_Excel, Me.btn_QR_Export_to_PDF})
+        Me.QR_Attendance.Text = "QR_Attendance"
+        '
+        'btn_QR_View_Profile
+        '
+        Me.btn_QR_View_Profile.Name = "btn_QR_View_Profile"
+        Me.btn_QR_View_Profile.Text = "View Profile"
+        '
+        'btn_QR_Export_to_Excel
+        '
+        Me.btn_QR_Export_to_Excel.Name = "btn_QR_Export_to_Excel"
+        Me.btn_QR_Export_to_Excel.Text = "Export Attendance to Excel"
+        '
+        'btn_QR_Export_to_PDF
+        '
+        Me.btn_QR_Export_to_PDF.Name = "btn_QR_Export_to_PDF"
+        Me.btn_QR_Export_to_PDF.Text = "Export Attendance to PDF Per District"
+        '
+        'Del_Logs
+        '
+        Me.Del_Logs.AutoExpandOnClick = True
+        Me.Del_Logs.Name = "Del_Logs"
+        Me.Del_Logs.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_View_Del_Prof, Me.btn_Export_Del_Logs, Me.btn_Send_Sanitation_SMS})
+        Me.Del_Logs.Text = "Del_Logs"
+        '
+        'btn_View_Del_Prof
+        '
+        Me.btn_View_Del_Prof.Name = "btn_View_Del_Prof"
+        Me.btn_View_Del_Prof.Text = "View Details"
+        '
+        'btn_Export_Del_Logs
+        '
+        Me.btn_Export_Del_Logs.Name = "btn_Export_Del_Logs"
+        Me.btn_Export_Del_Logs.Text = "Export Logs to Excel"
+        '
+        'btn_Send_Sanitation_SMS
+        '
+        Me.btn_Send_Sanitation_SMS.Name = "btn_Send_Sanitation_SMS"
+        Me.btn_Send_Sanitation_SMS.Text = "Send SMS to New Delete Logs"
+        '
+        'lst_del_logs
+        '
+        Me.lst_del_logs.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.lst_del_logs.Border.Class = "ListViewBorder"
+        Me.lst_del_logs.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.ContextMenuBar1.SetContextMenuEx(Me.lst_del_logs, Me.Del_Logs)
+        Me.lst_del_logs.DisabledBackColor = System.Drawing.Color.Empty
+        Me.lst_del_logs.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lst_del_logs.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lst_del_logs.ForeColor = System.Drawing.Color.Black
+        Me.lst_del_logs.FullRowSelect = True
+        Me.lst_del_logs.GridLines = True
+        Me.lst_del_logs.HideSelection = False
+        Me.lst_del_logs.Location = New System.Drawing.Point(0, 109)
+        Me.lst_del_logs.MultiSelect = False
+        Me.lst_del_logs.Name = "lst_del_logs"
+        Me.lst_del_logs.Size = New System.Drawing.Size(767, 420)
+        Me.lst_del_logs.TabIndex = 39
+        Me.lst_del_logs.UseCompatibleStateImageBehavior = False
+        Me.lst_del_logs.View = System.Windows.Forms.View.Details
+        '
+        'lst_QR_Attendees
+        '
+        Me.lst_QR_Attendees.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.lst_QR_Attendees.Border.Class = "ListViewBorder"
+        Me.lst_QR_Attendees.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.ContextMenuBar1.SetContextMenuEx(Me.lst_QR_Attendees, Me.QR_Attendance)
+        Me.lst_QR_Attendees.DisabledBackColor = System.Drawing.Color.Empty
+        Me.lst_QR_Attendees.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lst_QR_Attendees.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lst_QR_Attendees.ForeColor = System.Drawing.Color.Black
+        Me.lst_QR_Attendees.FullRowSelect = True
+        Me.lst_QR_Attendees.GridLines = True
+        Me.lst_QR_Attendees.HideSelection = False
+        Me.lst_QR_Attendees.Location = New System.Drawing.Point(0, 109)
+        Me.lst_QR_Attendees.MultiSelect = False
+        Me.lst_QR_Attendees.Name = "lst_QR_Attendees"
+        Me.lst_QR_Attendees.Size = New System.Drawing.Size(767, 420)
+        Me.lst_QR_Attendees.TabIndex = 40
+        Me.lst_QR_Attendees.UseCompatibleStateImageBehavior = False
+        Me.lst_QR_Attendees.View = System.Windows.Forms.View.Details
+        '
+        'lst_users
+        '
+        Me.lst_users.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.lst_users.Border.Class = "ListViewBorder"
+        Me.lst_users.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.ContextMenuBar1.SetContextMenuEx(Me.lst_users, Me.cntx_MCO_Officers)
+        Me.lst_users.DisabledBackColor = System.Drawing.Color.Empty
+        Me.lst_users.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lst_users.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lst_users.ForeColor = System.Drawing.Color.Black
+        Me.lst_users.FullRowSelect = True
+        Me.lst_users.GridLines = True
+        Me.lst_users.HideSelection = False
+        Me.lst_users.Location = New System.Drawing.Point(0, 109)
+        Me.lst_users.MultiSelect = False
+        Me.lst_users.Name = "lst_users"
+        Me.lst_users.Size = New System.Drawing.Size(767, 420)
+        Me.lst_users.TabIndex = 34
+        Me.lst_users.UseCompatibleStateImageBehavior = False
+        Me.lst_users.View = System.Windows.Forms.View.Details
+        '
+        'lst_Self_Reg
+        '
+        Me.lst_Self_Reg.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.lst_Self_Reg.Border.Class = "ListViewBorder"
+        Me.lst_Self_Reg.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.ContextMenuBar1.SetContextMenuEx(Me.lst_Self_Reg, Me.cntx_Self_Reg)
+        Me.lst_Self_Reg.DisabledBackColor = System.Drawing.Color.Empty
+        Me.lst_Self_Reg.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lst_Self_Reg.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lst_Self_Reg.ForeColor = System.Drawing.Color.Black
+        Me.lst_Self_Reg.FullRowSelect = True
+        Me.lst_Self_Reg.GridLines = True
+        Me.lst_Self_Reg.HideSelection = False
+        Me.lst_Self_Reg.Location = New System.Drawing.Point(0, 132)
+        Me.lst_Self_Reg.MultiSelect = False
+        Me.lst_Self_Reg.Name = "lst_Self_Reg"
+        Me.lst_Self_Reg.Size = New System.Drawing.Size(767, 397)
+        Me.lst_Self_Reg.TabIndex = 28
+        Me.lst_Self_Reg.UseCompatibleStateImageBehavior = False
+        Me.lst_Self_Reg.View = System.Windows.Forms.View.Details
+        '
+        'lst_Masterlist
+        '
+        Me.lst_Masterlist.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.lst_Masterlist.Border.Class = "ListViewBorder"
+        Me.lst_Masterlist.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.ContextMenuBar1.SetContextMenuEx(Me.lst_Masterlist, Me.cntx_Masterlist)
+        Me.lst_Masterlist.DisabledBackColor = System.Drawing.Color.Empty
+        Me.lst_Masterlist.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lst_Masterlist.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lst_Masterlist.ForeColor = System.Drawing.Color.Black
+        Me.lst_Masterlist.FullRowSelect = True
+        Me.lst_Masterlist.GridLines = True
+        Me.lst_Masterlist.HideSelection = False
+        Me.lst_Masterlist.Location = New System.Drawing.Point(0, 132)
+        Me.lst_Masterlist.MultiSelect = False
+        Me.lst_Masterlist.Name = "lst_Masterlist"
+        Me.lst_Masterlist.Size = New System.Drawing.Size(767, 397)
+        Me.lst_Masterlist.TabIndex = 7
+        Me.lst_Masterlist.UseCompatibleStateImageBehavior = False
+        Me.lst_Masterlist.View = System.Windows.Forms.View.Details
+        '
+        'circ_prog_masterlist
+        '
+        Me.circ_prog_masterlist.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        '
+        '
+        '
+        Me.circ_prog_masterlist.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.circ_prog_masterlist.Location = New System.Drawing.Point(326, 210)
+        Me.circ_prog_masterlist.Name = "circ_prog_masterlist"
+        Me.circ_prog_masterlist.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot
+        Me.circ_prog_masterlist.ProgressColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(92, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.circ_prog_masterlist.ProgressTextFormat = ""
+        Me.circ_prog_masterlist.ProgressTextVisible = True
+        Me.circ_prog_masterlist.Size = New System.Drawing.Size(100, 100)
+        Me.circ_prog_masterlist.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP
+        Me.circ_prog_masterlist.TabIndex = 24
+        Me.circ_prog_masterlist.Visible = False
+        '
+        'pan_masterlist_controls
+        '
+        Me.pan_masterlist_controls.CanvasColor = System.Drawing.SystemColors.Control
+        Me.pan_masterlist_controls.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.pan_masterlist_controls.Controls.Add(Me.chk_Mark_Sanitation_Only)
+        Me.pan_masterlist_controls.Controls.Add(Me.rdo_Mstr_AccountNumberSearch)
+        Me.pan_masterlist_controls.Controls.Add(Me.rdo_Mstr_Registrant_Search)
+        Me.pan_masterlist_controls.Controls.Add(Me.rdo_Mstr_Address_Search)
+        Me.pan_masterlist_controls.Controls.Add(Me.rdo_Mstr_NameSearch)
+        Me.pan_masterlist_controls.Controls.Add(Me.btn_Refresh_Masterlist)
+        Me.pan_masterlist_controls.Controls.Add(Me.btn_Masterlist_Search)
+        Me.pan_masterlist_controls.Controls.Add(Me.txt_Mstr_Search_Term)
+        Me.pan_masterlist_controls.Controls.Add(Me.lbl_Main)
+        Me.pan_masterlist_controls.DisabledBackColor = System.Drawing.Color.Empty
+        Me.pan_masterlist_controls.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pan_masterlist_controls.Location = New System.Drawing.Point(0, 0)
+        Me.pan_masterlist_controls.Name = "pan_masterlist_controls"
+        Me.pan_masterlist_controls.Size = New System.Drawing.Size(767, 132)
+        Me.pan_masterlist_controls.Style.Alignment = System.Drawing.StringAlignment.Center
+        Me.pan_masterlist_controls.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.pan_masterlist_controls.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
+        Me.pan_masterlist_controls.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
+        Me.pan_masterlist_controls.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.pan_masterlist_controls.Style.GradientAngle = 90
+        Me.pan_masterlist_controls.TabIndex = 20
+        '
+        'chk_Mark_Sanitation_Only
+        '
+        Me.chk_Mark_Sanitation_Only.AutoSize = True
+        Me.chk_Mark_Sanitation_Only.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.chk_Mark_Sanitation_Only.Checked = True
+        Me.chk_Mark_Sanitation_Only.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chk_Mark_Sanitation_Only.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.chk_Mark_Sanitation_Only.ForeColor = System.Drawing.Color.Black
+        Me.chk_Mark_Sanitation_Only.Location = New System.Drawing.Point(84, 102)
+        Me.chk_Mark_Sanitation_Only.Name = "chk_Mark_Sanitation_Only"
+        Me.chk_Mark_Sanitation_Only.Size = New System.Drawing.Size(214, 23)
+        Me.chk_Mark_Sanitation_Only.TabIndex = 9
+        Me.chk_Mark_Sanitation_Only.Text = "Pending Sanitation Data Only"
+        Me.chk_Mark_Sanitation_Only.UseVisualStyleBackColor = False
+        '
+        'rdo_Mstr_AccountNumberSearch
+        '
+        Me.rdo_Mstr_AccountNumberSearch.AutoSize = True
+        Me.rdo_Mstr_AccountNumberSearch.ForeColor = System.Drawing.Color.Black
+        Me.rdo_Mstr_AccountNumberSearch.Location = New System.Drawing.Point(84, 79)
+        Me.rdo_Mstr_AccountNumberSearch.Name = "rdo_Mstr_AccountNumberSearch"
+        Me.rdo_Mstr_AccountNumberSearch.Size = New System.Drawing.Size(163, 17)
+        Me.rdo_Mstr_AccountNumberSearch.TabIndex = 4
+        Me.rdo_Mstr_AccountNumberSearch.Text = "Search by Account Number"
+        Me.rdo_Mstr_AccountNumberSearch.UseVisualStyleBackColor = True
+        '
+        'rdo_Mstr_Registrant_Search
+        '
+        Me.rdo_Mstr_Registrant_Search.AutoSize = True
+        Me.rdo_Mstr_Registrant_Search.ForeColor = System.Drawing.Color.Black
+        Me.rdo_Mstr_Registrant_Search.Location = New System.Drawing.Point(258, 56)
+        Me.rdo_Mstr_Registrant_Search.Name = "rdo_Mstr_Registrant_Search"
+        Me.rdo_Mstr_Registrant_Search.Size = New System.Drawing.Size(159, 17)
+        Me.rdo_Mstr_Registrant_Search.TabIndex = 5
+        Me.rdo_Mstr_Registrant_Search.Text = "Search by MCO Registrant"
+        Me.rdo_Mstr_Registrant_Search.UseVisualStyleBackColor = True
+        '
+        'rdo_Mstr_Address_Search
+        '
+        Me.rdo_Mstr_Address_Search.AutoSize = True
+        Me.rdo_Mstr_Address_Search.ForeColor = System.Drawing.Color.Black
+        Me.rdo_Mstr_Address_Search.Location = New System.Drawing.Point(258, 79)
+        Me.rdo_Mstr_Address_Search.Name = "rdo_Mstr_Address_Search"
+        Me.rdo_Mstr_Address_Search.Size = New System.Drawing.Size(118, 17)
+        Me.rdo_Mstr_Address_Search.TabIndex = 6
+        Me.rdo_Mstr_Address_Search.Text = "Search by Address"
+        Me.rdo_Mstr_Address_Search.UseVisualStyleBackColor = True
+        '
+        'rdo_Mstr_NameSearch
+        '
+        Me.rdo_Mstr_NameSearch.AutoSize = True
+        Me.rdo_Mstr_NameSearch.Checked = True
+        Me.rdo_Mstr_NameSearch.ForeColor = System.Drawing.Color.Black
+        Me.rdo_Mstr_NameSearch.Location = New System.Drawing.Point(84, 56)
+        Me.rdo_Mstr_NameSearch.Name = "rdo_Mstr_NameSearch"
+        Me.rdo_Mstr_NameSearch.Size = New System.Drawing.Size(106, 17)
+        Me.rdo_Mstr_NameSearch.TabIndex = 3
+        Me.rdo_Mstr_NameSearch.TabStop = True
+        Me.rdo_Mstr_NameSearch.Text = "Search by Name"
+        Me.rdo_Mstr_NameSearch.UseVisualStyleBackColor = True
+        '
+        'btn_Refresh_Masterlist
+        '
+        Me.btn_Refresh_Masterlist.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn_Refresh_Masterlist.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
+        Me.btn_Refresh_Masterlist.Location = New System.Drawing.Point(524, 56)
+        Me.btn_Refresh_Masterlist.Name = "btn_Refresh_Masterlist"
+        Me.btn_Refresh_Masterlist.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
+        Me.btn_Refresh_Masterlist.Size = New System.Drawing.Size(134, 35)
+        Me.btn_Refresh_Masterlist.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btn_Refresh_Masterlist.TabIndex = 2
+        Me.btn_Refresh_Masterlist.Text = "Refresh List"
+        '
+        'btn_Masterlist_Search
+        '
+        Me.btn_Masterlist_Search.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn_Masterlist_Search.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
+        Me.btn_Masterlist_Search.Location = New System.Drawing.Point(524, 15)
+        Me.btn_Masterlist_Search.Name = "btn_Masterlist_Search"
+        Me.btn_Masterlist_Search.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
+        Me.btn_Masterlist_Search.Size = New System.Drawing.Size(134, 35)
+        Me.btn_Masterlist_Search.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btn_Masterlist_Search.TabIndex = 1
+        Me.btn_Masterlist_Search.Text = "Search"
+        '
+        'txt_Mstr_Search_Term
+        '
+        Me.txt_Mstr_Search_Term.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.txt_Mstr_Search_Term.Border.Class = "TextBoxBorder"
+        Me.txt_Mstr_Search_Term.Border.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
+        Me.txt_Mstr_Search_Term.DisabledBackColor = System.Drawing.Color.White
+        Me.txt_Mstr_Search_Term.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.txt_Mstr_Search_Term.ForeColor = System.Drawing.Color.Black
+        Me.txt_Mstr_Search_Term.Location = New System.Drawing.Point(84, 17)
+        Me.txt_Mstr_Search_Term.Name = "txt_Mstr_Search_Term"
+        Me.txt_Mstr_Search_Term.PreventEnterBeep = True
+        Me.txt_Mstr_Search_Term.Size = New System.Drawing.Size(434, 33)
+        Me.txt_Mstr_Search_Term.TabIndex = 0
+        '
+        'lbl_Main
+        '
+        '
+        '
+        '
+        Me.lbl_Main.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Main.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Main.Location = New System.Drawing.Point(3, 15)
+        Me.lbl_Main.Name = "lbl_Main"
+        Me.lbl_Main.Size = New System.Drawing.Size(75, 23)
+        Me.lbl_Main.TabIndex = 0
+        Me.lbl_Main.Text = "Search Term:"
+        Me.lbl_Main.TextAlignment = System.Drawing.StringAlignment.Far
+        '
         'SideNavPanel1
         '
         Me.SideNavPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
@@ -269,30 +738,6 @@ Partial Class frm_Main
         Me.circ_del_prog.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP
         Me.circ_del_prog.TabIndex = 41
         Me.circ_del_prog.Visible = False
-        '
-        'lst_del_logs
-        '
-        Me.lst_del_logs.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.lst_del_logs.Border.Class = "ListViewBorder"
-        Me.lst_del_logs.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.ContextMenuBar1.SetContextMenuEx(Me.lst_del_logs, Me.Del_Logs)
-        Me.lst_del_logs.DisabledBackColor = System.Drawing.Color.Empty
-        Me.lst_del_logs.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lst_del_logs.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.lst_del_logs.ForeColor = System.Drawing.Color.Black
-        Me.lst_del_logs.FullRowSelect = True
-        Me.lst_del_logs.GridLines = True
-        Me.lst_del_logs.HideSelection = False
-        Me.lst_del_logs.Location = New System.Drawing.Point(0, 109)
-        Me.lst_del_logs.MultiSelect = False
-        Me.lst_del_logs.Name = "lst_del_logs"
-        Me.lst_del_logs.Size = New System.Drawing.Size(767, 420)
-        Me.lst_del_logs.TabIndex = 39
-        Me.lst_del_logs.UseCompatibleStateImageBehavior = False
-        Me.lst_del_logs.View = System.Windows.Forms.View.Details
         '
         'pan_del_logs_control
         '
@@ -775,449 +1220,6 @@ Partial Class frm_Main
         Me.lbl_Time_Label_Onsite.TabIndex = 14
         Me.lbl_Time_Label_Onsite.Text = "Time: "
         Me.lbl_Time_Label_Onsite.TextAlignment = System.Drawing.StringAlignment.Far
-        '
-        'sidenavpan_masterlist
-        '
-        Me.sidenavpan_masterlist.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.sidenavpan_masterlist.Controls.Add(Me.ContextMenuBar1)
-        Me.sidenavpan_masterlist.Controls.Add(Me.circ_prog_masterlist)
-        Me.sidenavpan_masterlist.Controls.Add(Me.lst_Masterlist)
-        Me.sidenavpan_masterlist.Controls.Add(Me.pan_masterlist_controls)
-        Me.sidenavpan_masterlist.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.sidenavpan_masterlist.ForeColor = System.Drawing.Color.Black
-        Me.sidenavpan_masterlist.Location = New System.Drawing.Point(212, 31)
-        Me.sidenavpan_masterlist.Name = "sidenavpan_masterlist"
-        Me.sidenavpan_masterlist.Size = New System.Drawing.Size(767, 529)
-        Me.sidenavpan_masterlist.TabIndex = 2
-        '
-        'ContextMenuBar1
-        '
-        Me.ContextMenuBar1.AntiAlias = True
-        Me.ContextMenuBar1.DockSide = DevComponents.DotNetBar.eDockSide.Document
-        Me.ContextMenuBar1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.ContextMenuBar1.IsMaximized = False
-        Me.ContextMenuBar1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.cntx_Masterlist, Me.cntx_Self_Reg, Me.cntx_MCO_Officers, Me.QR_Attendance, Me.Del_Logs})
-        Me.ContextMenuBar1.Location = New System.Drawing.Point(73, 187)
-        Me.ContextMenuBar1.Name = "ContextMenuBar1"
-        Me.ContextMenuBar1.Size = New System.Drawing.Size(138, 123)
-        Me.ContextMenuBar1.Stretch = True
-        Me.ContextMenuBar1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.ContextMenuBar1.TabIndex = 28
-        Me.ContextMenuBar1.TabStop = False
-        Me.ContextMenuBar1.Text = "ContextMenuBar1"
-        '
-        'Del_Logs
-        '
-        Me.Del_Logs.AutoExpandOnClick = True
-        Me.Del_Logs.Name = "Del_Logs"
-        Me.Del_Logs.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_View_Del_Prof, Me.btn_Export_Del_Logs, Me.btn_Send_Sanitation_SMS})
-        Me.Del_Logs.Text = "Del_Logs"
-        '
-        'btn_View_Del_Prof
-        '
-        Me.btn_View_Del_Prof.Name = "btn_View_Del_Prof"
-        Me.btn_View_Del_Prof.Text = "View Details"
-        '
-        'btn_Export_Del_Logs
-        '
-        Me.btn_Export_Del_Logs.Name = "btn_Export_Del_Logs"
-        Me.btn_Export_Del_Logs.Text = "Export Logs to Excel"
-        '
-        'btn_Send_Sanitation_SMS
-        '
-        Me.btn_Send_Sanitation_SMS.Name = "btn_Send_Sanitation_SMS"
-        Me.btn_Send_Sanitation_SMS.Text = "Send SMS to New Delete Logs"
-        '
-        'cntx_Masterlist
-        '
-        Me.cntx_Masterlist.AutoExpandOnClick = True
-        Me.cntx_Masterlist.Name = "cntx_Masterlist"
-        Me.cntx_Masterlist.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_Mstr_View_Details, Me.btn_Mstr_Delete, Me.btn_mstr_export_PDF, Me.btn_mstr_export_Excel, Me.ButtonItem9, Me.btnitm_Export_Audit_Report})
-        Me.cntx_Masterlist.Text = "Masterlist"
-        '
-        'btn_Mstr_View_Details
-        '
-        Me.btn_Mstr_View_Details.Name = "btn_Mstr_View_Details"
-        Me.btn_Mstr_View_Details.Text = "View Details"
-        '
-        'btn_Mstr_Delete
-        '
-        Me.btn_Mstr_Delete.Name = "btn_Mstr_Delete"
-        Me.btn_Mstr_Delete.Text = "Delete Selected Entry"
-        '
-        'btn_mstr_export_PDF
-        '
-        Me.btn_mstr_export_PDF.Name = "btn_mstr_export_PDF"
-        Me.btn_mstr_export_PDF.Text = "Export Masterlist to PDF"
-        '
-        'btn_mstr_export_Excel
-        '
-        Me.btn_mstr_export_Excel.Name = "btn_mstr_export_Excel"
-        Me.btn_mstr_export_Excel.Text = "Export Masterlist to Excel"
-        '
-        'ButtonItem9
-        '
-        Me.ButtonItem9.Name = "ButtonItem9"
-        Me.ButtonItem9.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_mstr_export_district_PDF, Me.btn_mstr_export_district_Excel})
-        Me.ButtonItem9.Text = "Export Masterlist Per District"
-        '
-        'btn_mstr_export_district_PDF
-        '
-        Me.btn_mstr_export_district_PDF.Name = "btn_mstr_export_district_PDF"
-        Me.btn_mstr_export_district_PDF.Text = "PDF Format"
-        '
-        'btn_mstr_export_district_Excel
-        '
-        Me.btn_mstr_export_district_Excel.Name = "btn_mstr_export_district_Excel"
-        Me.btn_mstr_export_district_Excel.Text = "Excel Format"
-        '
-        'btnitm_Export_Audit_Report
-        '
-        Me.btnitm_Export_Audit_Report.Name = "btnitm_Export_Audit_Report"
-        Me.btnitm_Export_Audit_Report.Text = "Export Audit Report"
-        '
-        'cntx_Self_Reg
-        '
-        Me.cntx_Self_Reg.AutoExpandOnClick = True
-        Me.cntx_Self_Reg.Name = "cntx_Self_Reg"
-        Me.cntx_Self_Reg.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_Self_View_Details, Me.btn_Self_Delete_Entry, Me.btn_Self_Export_Reg_PDF, Me.btn_Self_Export_Reg_Excel})
-        Me.cntx_Self_Reg.Text = "Self Registrants"
-        '
-        'btn_Self_View_Details
-        '
-        Me.btn_Self_View_Details.Name = "btn_Self_View_Details"
-        Me.btn_Self_View_Details.Text = "View Details"
-        '
-        'btn_Self_Delete_Entry
-        '
-        Me.btn_Self_Delete_Entry.Name = "btn_Self_Delete_Entry"
-        Me.btn_Self_Delete_Entry.Text = "Delete Selected Entry"
-        '
-        'btn_Self_Export_Reg_PDF
-        '
-        Me.btn_Self_Export_Reg_PDF.Name = "btn_Self_Export_Reg_PDF"
-        Me.btn_Self_Export_Reg_PDF.Text = "Export to PDF"
-        '
-        'btn_Self_Export_Reg_Excel
-        '
-        Me.btn_Self_Export_Reg_Excel.Name = "btn_Self_Export_Reg_Excel"
-        Me.btn_Self_Export_Reg_Excel.Text = "EXport to Excel"
-        '
-        'cntx_MCO_Officers
-        '
-        Me.cntx_MCO_Officers.AutoExpandOnClick = True
-        Me.cntx_MCO_Officers.Name = "cntx_MCO_Officers"
-        Me.cntx_MCO_Officers.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_Prof_View_Details, Me.btn_Prof_View_Reg_by_User, Me.btn_Add_New_User, Me.ButtonItem6})
-        Me.cntx_MCO_Officers.Text = "MCO Officers"
-        '
-        'btn_Prof_View_Details
-        '
-        Me.btn_Prof_View_Details.Name = "btn_Prof_View_Details"
-        Me.btn_Prof_View_Details.Text = "Profile Details"
-        '
-        'btn_Prof_View_Reg_by_User
-        '
-        Me.btn_Prof_View_Reg_by_User.Name = "btn_Prof_View_Reg_by_User"
-        Me.btn_Prof_View_Reg_by_User.Text = "View MCOs Registered"
-        '
-        'btn_Add_New_User
-        '
-        Me.btn_Add_New_User.Name = "btn_Add_New_User"
-        Me.btn_Add_New_User.Text = "Add New User Account"
-        '
-        'ButtonItem6
-        '
-        Me.ButtonItem6.Name = "ButtonItem6"
-        Me.ButtonItem6.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_Prof_Export_Reg_by_User_PDF, Me.btn_Prof_Export_Reg_by_User_Excel})
-        Me.ButtonItem6.Text = "Export Users' Registration"
-        '
-        'btn_Prof_Export_Reg_by_User_PDF
-        '
-        Me.btn_Prof_Export_Reg_by_User_PDF.Name = "btn_Prof_Export_Reg_by_User_PDF"
-        Me.btn_Prof_Export_Reg_by_User_PDF.Text = "PDF"
-        '
-        'btn_Prof_Export_Reg_by_User_Excel
-        '
-        Me.btn_Prof_Export_Reg_by_User_Excel.Name = "btn_Prof_Export_Reg_by_User_Excel"
-        Me.btn_Prof_Export_Reg_by_User_Excel.Text = "Excel"
-        '
-        'QR_Attendance
-        '
-        Me.QR_Attendance.AutoExpandOnClick = True
-        Me.QR_Attendance.Name = "QR_Attendance"
-        Me.QR_Attendance.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_QR_View_Profile, Me.btn_QR_Export_to_Excel, Me.btn_QR_Export_to_PDF})
-        Me.QR_Attendance.Text = "QR_Attendance"
-        '
-        'btn_QR_View_Profile
-        '
-        Me.btn_QR_View_Profile.Name = "btn_QR_View_Profile"
-        Me.btn_QR_View_Profile.Text = "View Profile"
-        '
-        'btn_QR_Export_to_Excel
-        '
-        Me.btn_QR_Export_to_Excel.Name = "btn_QR_Export_to_Excel"
-        Me.btn_QR_Export_to_Excel.Text = "Export Attendance to Excel"
-        '
-        'btn_QR_Export_to_PDF
-        '
-        Me.btn_QR_Export_to_PDF.Name = "btn_QR_Export_to_PDF"
-        Me.btn_QR_Export_to_PDF.Text = "Export Attendance to PDF Per District"
-        '
-        'lst_QR_Attendees
-        '
-        Me.lst_QR_Attendees.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.lst_QR_Attendees.Border.Class = "ListViewBorder"
-        Me.lst_QR_Attendees.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.ContextMenuBar1.SetContextMenuEx(Me.lst_QR_Attendees, Me.QR_Attendance)
-        Me.lst_QR_Attendees.DisabledBackColor = System.Drawing.Color.Empty
-        Me.lst_QR_Attendees.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lst_QR_Attendees.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.lst_QR_Attendees.ForeColor = System.Drawing.Color.Black
-        Me.lst_QR_Attendees.FullRowSelect = True
-        Me.lst_QR_Attendees.GridLines = True
-        Me.lst_QR_Attendees.HideSelection = False
-        Me.lst_QR_Attendees.Location = New System.Drawing.Point(0, 109)
-        Me.lst_QR_Attendees.MultiSelect = False
-        Me.lst_QR_Attendees.Name = "lst_QR_Attendees"
-        Me.lst_QR_Attendees.Size = New System.Drawing.Size(767, 420)
-        Me.lst_QR_Attendees.TabIndex = 40
-        Me.lst_QR_Attendees.UseCompatibleStateImageBehavior = False
-        Me.lst_QR_Attendees.View = System.Windows.Forms.View.Details
-        '
-        'lst_users
-        '
-        Me.lst_users.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.lst_users.Border.Class = "ListViewBorder"
-        Me.lst_users.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.ContextMenuBar1.SetContextMenuEx(Me.lst_users, Me.cntx_MCO_Officers)
-        Me.lst_users.DisabledBackColor = System.Drawing.Color.Empty
-        Me.lst_users.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lst_users.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.lst_users.ForeColor = System.Drawing.Color.Black
-        Me.lst_users.FullRowSelect = True
-        Me.lst_users.GridLines = True
-        Me.lst_users.HideSelection = False
-        Me.lst_users.Location = New System.Drawing.Point(0, 109)
-        Me.lst_users.MultiSelect = False
-        Me.lst_users.Name = "lst_users"
-        Me.lst_users.Size = New System.Drawing.Size(767, 420)
-        Me.lst_users.TabIndex = 34
-        Me.lst_users.UseCompatibleStateImageBehavior = False
-        Me.lst_users.View = System.Windows.Forms.View.Details
-        '
-        'lst_Self_Reg
-        '
-        Me.lst_Self_Reg.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.lst_Self_Reg.Border.Class = "ListViewBorder"
-        Me.lst_Self_Reg.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.ContextMenuBar1.SetContextMenuEx(Me.lst_Self_Reg, Me.cntx_Self_Reg)
-        Me.lst_Self_Reg.DisabledBackColor = System.Drawing.Color.Empty
-        Me.lst_Self_Reg.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lst_Self_Reg.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.lst_Self_Reg.ForeColor = System.Drawing.Color.Black
-        Me.lst_Self_Reg.FullRowSelect = True
-        Me.lst_Self_Reg.GridLines = True
-        Me.lst_Self_Reg.HideSelection = False
-        Me.lst_Self_Reg.Location = New System.Drawing.Point(0, 132)
-        Me.lst_Self_Reg.MultiSelect = False
-        Me.lst_Self_Reg.Name = "lst_Self_Reg"
-        Me.lst_Self_Reg.Size = New System.Drawing.Size(767, 397)
-        Me.lst_Self_Reg.TabIndex = 28
-        Me.lst_Self_Reg.UseCompatibleStateImageBehavior = False
-        Me.lst_Self_Reg.View = System.Windows.Forms.View.Details
-        '
-        'lst_Masterlist
-        '
-        Me.lst_Masterlist.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.lst_Masterlist.Border.Class = "ListViewBorder"
-        Me.lst_Masterlist.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.ContextMenuBar1.SetContextMenuEx(Me.lst_Masterlist, Me.cntx_Masterlist)
-        Me.lst_Masterlist.DisabledBackColor = System.Drawing.Color.Empty
-        Me.lst_Masterlist.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lst_Masterlist.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.lst_Masterlist.ForeColor = System.Drawing.Color.Black
-        Me.lst_Masterlist.FullRowSelect = True
-        Me.lst_Masterlist.GridLines = True
-        Me.lst_Masterlist.HideSelection = False
-        Me.lst_Masterlist.Location = New System.Drawing.Point(0, 132)
-        Me.lst_Masterlist.MultiSelect = False
-        Me.lst_Masterlist.Name = "lst_Masterlist"
-        Me.lst_Masterlist.Size = New System.Drawing.Size(767, 397)
-        Me.lst_Masterlist.TabIndex = 7
-        Me.lst_Masterlist.UseCompatibleStateImageBehavior = False
-        Me.lst_Masterlist.View = System.Windows.Forms.View.Details
-        '
-        'circ_prog_masterlist
-        '
-        Me.circ_prog_masterlist.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        '
-        '
-        '
-        Me.circ_prog_masterlist.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.circ_prog_masterlist.Location = New System.Drawing.Point(326, 210)
-        Me.circ_prog_masterlist.Name = "circ_prog_masterlist"
-        Me.circ_prog_masterlist.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot
-        Me.circ_prog_masterlist.ProgressColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(92, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.circ_prog_masterlist.ProgressTextFormat = ""
-        Me.circ_prog_masterlist.ProgressTextVisible = True
-        Me.circ_prog_masterlist.Size = New System.Drawing.Size(100, 100)
-        Me.circ_prog_masterlist.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP
-        Me.circ_prog_masterlist.TabIndex = 24
-        Me.circ_prog_masterlist.Visible = False
-        '
-        'pan_masterlist_controls
-        '
-        Me.pan_masterlist_controls.CanvasColor = System.Drawing.SystemColors.Control
-        Me.pan_masterlist_controls.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.pan_masterlist_controls.Controls.Add(Me.chk_Mark_Sanitation_Only)
-        Me.pan_masterlist_controls.Controls.Add(Me.rdo_Mstr_AccountNumberSearch)
-        Me.pan_masterlist_controls.Controls.Add(Me.rdo_Mstr_Registrant_Search)
-        Me.pan_masterlist_controls.Controls.Add(Me.rdo_Mstr_Address_Search)
-        Me.pan_masterlist_controls.Controls.Add(Me.rdo_Mstr_NameSearch)
-        Me.pan_masterlist_controls.Controls.Add(Me.btn_Refresh_Masterlist)
-        Me.pan_masterlist_controls.Controls.Add(Me.btn_Masterlist_Search)
-        Me.pan_masterlist_controls.Controls.Add(Me.txt_Mstr_Search_Term)
-        Me.pan_masterlist_controls.Controls.Add(Me.lbl_Main)
-        Me.pan_masterlist_controls.DisabledBackColor = System.Drawing.Color.Empty
-        Me.pan_masterlist_controls.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pan_masterlist_controls.Location = New System.Drawing.Point(0, 0)
-        Me.pan_masterlist_controls.Name = "pan_masterlist_controls"
-        Me.pan_masterlist_controls.Size = New System.Drawing.Size(767, 132)
-        Me.pan_masterlist_controls.Style.Alignment = System.Drawing.StringAlignment.Center
-        Me.pan_masterlist_controls.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
-        Me.pan_masterlist_controls.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
-        Me.pan_masterlist_controls.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
-        Me.pan_masterlist_controls.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
-        Me.pan_masterlist_controls.Style.GradientAngle = 90
-        Me.pan_masterlist_controls.TabIndex = 20
-        '
-        'chk_Mark_Sanitation_Only
-        '
-        Me.chk_Mark_Sanitation_Only.AutoSize = True
-        Me.chk_Mark_Sanitation_Only.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.chk_Mark_Sanitation_Only.Checked = True
-        Me.chk_Mark_Sanitation_Only.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chk_Mark_Sanitation_Only.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.chk_Mark_Sanitation_Only.ForeColor = System.Drawing.Color.Black
-        Me.chk_Mark_Sanitation_Only.Location = New System.Drawing.Point(84, 102)
-        Me.chk_Mark_Sanitation_Only.Name = "chk_Mark_Sanitation_Only"
-        Me.chk_Mark_Sanitation_Only.Size = New System.Drawing.Size(214, 23)
-        Me.chk_Mark_Sanitation_Only.TabIndex = 9
-        Me.chk_Mark_Sanitation_Only.Text = "Pending Sanitation Data Only"
-        Me.chk_Mark_Sanitation_Only.UseVisualStyleBackColor = False
-        '
-        'rdo_Mstr_AccountNumberSearch
-        '
-        Me.rdo_Mstr_AccountNumberSearch.AutoSize = True
-        Me.rdo_Mstr_AccountNumberSearch.ForeColor = System.Drawing.Color.Black
-        Me.rdo_Mstr_AccountNumberSearch.Location = New System.Drawing.Point(84, 79)
-        Me.rdo_Mstr_AccountNumberSearch.Name = "rdo_Mstr_AccountNumberSearch"
-        Me.rdo_Mstr_AccountNumberSearch.Size = New System.Drawing.Size(163, 17)
-        Me.rdo_Mstr_AccountNumberSearch.TabIndex = 4
-        Me.rdo_Mstr_AccountNumberSearch.Text = "Search by Account Number"
-        Me.rdo_Mstr_AccountNumberSearch.UseVisualStyleBackColor = True
-        '
-        'rdo_Mstr_Registrant_Search
-        '
-        Me.rdo_Mstr_Registrant_Search.AutoSize = True
-        Me.rdo_Mstr_Registrant_Search.ForeColor = System.Drawing.Color.Black
-        Me.rdo_Mstr_Registrant_Search.Location = New System.Drawing.Point(258, 56)
-        Me.rdo_Mstr_Registrant_Search.Name = "rdo_Mstr_Registrant_Search"
-        Me.rdo_Mstr_Registrant_Search.Size = New System.Drawing.Size(159, 17)
-        Me.rdo_Mstr_Registrant_Search.TabIndex = 5
-        Me.rdo_Mstr_Registrant_Search.Text = "Search by MCO Registrant"
-        Me.rdo_Mstr_Registrant_Search.UseVisualStyleBackColor = True
-        '
-        'rdo_Mstr_Address_Search
-        '
-        Me.rdo_Mstr_Address_Search.AutoSize = True
-        Me.rdo_Mstr_Address_Search.ForeColor = System.Drawing.Color.Black
-        Me.rdo_Mstr_Address_Search.Location = New System.Drawing.Point(258, 79)
-        Me.rdo_Mstr_Address_Search.Name = "rdo_Mstr_Address_Search"
-        Me.rdo_Mstr_Address_Search.Size = New System.Drawing.Size(118, 17)
-        Me.rdo_Mstr_Address_Search.TabIndex = 6
-        Me.rdo_Mstr_Address_Search.Text = "Search by Address"
-        Me.rdo_Mstr_Address_Search.UseVisualStyleBackColor = True
-        '
-        'rdo_Mstr_NameSearch
-        '
-        Me.rdo_Mstr_NameSearch.AutoSize = True
-        Me.rdo_Mstr_NameSearch.Checked = True
-        Me.rdo_Mstr_NameSearch.ForeColor = System.Drawing.Color.Black
-        Me.rdo_Mstr_NameSearch.Location = New System.Drawing.Point(84, 56)
-        Me.rdo_Mstr_NameSearch.Name = "rdo_Mstr_NameSearch"
-        Me.rdo_Mstr_NameSearch.Size = New System.Drawing.Size(106, 17)
-        Me.rdo_Mstr_NameSearch.TabIndex = 3
-        Me.rdo_Mstr_NameSearch.TabStop = True
-        Me.rdo_Mstr_NameSearch.Text = "Search by Name"
-        Me.rdo_Mstr_NameSearch.UseVisualStyleBackColor = True
-        '
-        'btn_Refresh_Masterlist
-        '
-        Me.btn_Refresh_Masterlist.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btn_Refresh_Masterlist.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
-        Me.btn_Refresh_Masterlist.Location = New System.Drawing.Point(524, 56)
-        Me.btn_Refresh_Masterlist.Name = "btn_Refresh_Masterlist"
-        Me.btn_Refresh_Masterlist.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
-        Me.btn_Refresh_Masterlist.Size = New System.Drawing.Size(134, 35)
-        Me.btn_Refresh_Masterlist.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btn_Refresh_Masterlist.TabIndex = 2
-        Me.btn_Refresh_Masterlist.Text = "Refresh List"
-        '
-        'btn_Masterlist_Search
-        '
-        Me.btn_Masterlist_Search.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btn_Masterlist_Search.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
-        Me.btn_Masterlist_Search.Location = New System.Drawing.Point(524, 15)
-        Me.btn_Masterlist_Search.Name = "btn_Masterlist_Search"
-        Me.btn_Masterlist_Search.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
-        Me.btn_Masterlist_Search.Size = New System.Drawing.Size(134, 35)
-        Me.btn_Masterlist_Search.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btn_Masterlist_Search.TabIndex = 1
-        Me.btn_Masterlist_Search.Text = "Search"
-        '
-        'txt_Mstr_Search_Term
-        '
-        Me.txt_Mstr_Search_Term.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.txt_Mstr_Search_Term.Border.Class = "TextBoxBorder"
-        Me.txt_Mstr_Search_Term.Border.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
-        Me.txt_Mstr_Search_Term.DisabledBackColor = System.Drawing.Color.White
-        Me.txt_Mstr_Search_Term.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txt_Mstr_Search_Term.ForeColor = System.Drawing.Color.Black
-        Me.txt_Mstr_Search_Term.Location = New System.Drawing.Point(84, 17)
-        Me.txt_Mstr_Search_Term.Name = "txt_Mstr_Search_Term"
-        Me.txt_Mstr_Search_Term.PreventEnterBeep = True
-        Me.txt_Mstr_Search_Term.Size = New System.Drawing.Size(434, 33)
-        Me.txt_Mstr_Search_Term.TabIndex = 0
-        '
-        'lbl_Main
-        '
-        '
-        '
-        '
-        Me.lbl_Main.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Main.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Main.Location = New System.Drawing.Point(3, 15)
-        Me.lbl_Main.Name = "lbl_Main"
-        Me.lbl_Main.Size = New System.Drawing.Size(75, 23)
-        Me.lbl_Main.TabIndex = 0
-        Me.lbl_Main.Text = "Search Term:"
-        Me.lbl_Main.TextAlignment = System.Drawing.StringAlignment.Far
         '
         'sidenavpan_QR_Attendance
         '
@@ -1984,6 +1986,16 @@ Partial Class frm_Main
         Me.BW_PDF_Exporter_Onsite_Dist.WorkerReportsProgress = True
         Me.BW_PDF_Exporter_Onsite_Dist.WorkerSupportsCancellation = True
         '
+        'BW_Valid_Entries_Notifier
+        '
+        Me.BW_Valid_Entries_Notifier.WorkerReportsProgress = True
+        Me.BW_Valid_Entries_Notifier.WorkerSupportsCancellation = True
+        '
+        'BW_SMS_Updater_Overall
+        '
+        Me.BW_SMS_Updater_Overall.WorkerReportsProgress = True
+        Me.BW_SMS_Updater_Overall.WorkerSupportsCancellation = True
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1995,7 +2007,6 @@ Partial Class frm_Main
         Me.Controls.Add(Me.SideNav1)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ForeColor = System.Drawing.Color.Black
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MinimumSize = New System.Drawing.Size(1000, 600)
         Me.Name = "frm_Main"
@@ -2003,16 +2014,16 @@ Partial Class frm_Main
         Me.Text = "AGMA 2024 Report Generator"
         Me.SideNav1.ResumeLayout(False)
         Me.SideNav1.PerformLayout()
+        Me.sidenavpan_masterlist.ResumeLayout(False)
+        CType(Me.ContextMenuBar1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pan_masterlist_controls.ResumeLayout(False)
+        Me.pan_masterlist_controls.PerformLayout()
         Me.SideNavPanel1.ResumeLayout(False)
         Me.pan_del_logs_control.ResumeLayout(False)
         Me.pan_del_logs_control.PerformLayout()
         Me.sidenavpan_LiveTotalReg.ResumeLayout(False)
         Me.sidenavpan_livetotals_per_district.ResumeLayout(False)
         Me.sidenavpan_livetotals_onsite.ResumeLayout(False)
-        Me.sidenavpan_masterlist.ResumeLayout(False)
-        CType(Me.ContextMenuBar1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pan_masterlist_controls.ResumeLayout(False)
-        Me.pan_masterlist_controls.PerformLayout()
         Me.sidenavpan_QR_Attendance.ResumeLayout(False)
         Me.pan_QR_control.ResumeLayout(False)
         Me.pan_QR_control.PerformLayout()
@@ -2197,4 +2208,6 @@ Partial Class frm_Main
     Friend WithEvents tmr_Totals_Updater_Onsite As Timer
     Friend WithEvents btn_QR_Export_to_PDF As ButtonItem
     Friend WithEvents BW_PDF_Exporter_Onsite_Dist As System.ComponentModel.BackgroundWorker
+    Friend WithEvents BW_Valid_Entries_Notifier As System.ComponentModel.BackgroundWorker
+    Friend WithEvents BW_SMS_Updater_Overall As System.ComponentModel.BackgroundWorker
 End Class

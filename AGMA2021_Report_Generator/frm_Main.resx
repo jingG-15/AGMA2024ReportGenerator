@@ -258,6 +258,12 @@
   <metadata name="BW_PDF_Exporter_Onsite_Dist.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>740, 196</value>
   </metadata>
+  <metadata name="BW_Valid_Entries_Notifier.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>942, 194</value>
+  </metadata>
+  <metadata name="BW_SMS_Updater_Overall.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1210, 137</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>179</value>
   </metadata>
@@ -309,7 +315,7 @@
         JO4FoGMzAMoPvmsoQuc/877tP/3l3wB/z0OU0GGDSg3ftcx6AFgzqF6Ww0/+pnmFRzB+6AMznJfEE/IE
         6FGj+Lw8viAZPb+AyxfxMwUMvoDxtzb9c37tu2cW8fJF3+rMzFop5CeniBgBAhFPKGBLK2Knf7sdobTG
         nEyhiC/OMGNYW1o6ApCTZGM93ykK6p2xf8zNvTEAAF8BwJfSubnZurm5L2gvkBEAesT/Bgo/2fY0ummK
-        AAAACXBIWXMAAAsSAAALEgHS3X78AABikklEQVR4Xu19BXhVV7ftJrhDgrsWdy0tFAqlUJwWSltKoUKx
+        AAAACXBIWXMAAAsOAAALDgFAvuFBAABikklEQVR4Xu19BXhVV7ftJrhDgrsWdy0tFAqlUJwWSltKoUKx
         4q4Dl+Du7u7uFCvFJQmBBBIgkASiR/aR5I259jkRpPD/977v3fvu5fsmJ3ttX2PNOcdca661tfj4+P+V
         /+bi+uPlvyGv1G9c/B3NafPV4uMCtTjnMS02dKRms93ULLF7NXPUCs3p9NUclnOa1XRUM0Wu0nTTRv4u
         1qz6RU2P3qk5WB79crBmjVmlOczcNh/WbJYNms5tW/QxzRa1VNMtx7XY+DgtxnpF061/apaI8ZotYrrm

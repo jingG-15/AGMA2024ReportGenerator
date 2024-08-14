@@ -22,9 +22,10 @@ Partial Class frm_SMS_Console_View
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_SMS_Console_View))
         Me.Rchtxt_Message_Stats = New DevComponents.DotNetBar.Controls.RichTextBoxEx()
-        Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Remaining_SMS = New DevComponents.DotNetBar.LabelX()
         Me.MetroStatusBar1 = New DevComponents.DotNetBar.Metro.MetroStatusBar()
         Me.Label_X = New DevComponents.DotNetBar.LabelItem()
         Me.Prog_Sig_1 = New DevComponents.DotNetBar.ProgressBarItem()
@@ -34,6 +35,7 @@ Partial Class frm_SMS_Console_View
         Me.btn_Start_Send = New DevComponents.DotNetBar.ButtonX()
         Me.btn_Stop_Send = New DevComponents.DotNetBar.ButtonX()
         Me.btn_Connect = New DevComponents.DotNetBar.ButtonX()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'Rchtxt_Message_Stats
@@ -56,21 +58,20 @@ Partial Class frm_SMS_Console_View
         Me.Rchtxt_Message_Stats.Size = New System.Drawing.Size(486, 459)
         Me.Rchtxt_Message_Stats.TabIndex = 7
         '
-        'LabelX4
+        'lbl_Remaining_SMS
         '
-        Me.LabelX4.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.lbl_Remaining_SMS.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         '
         '
         '
-        Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX4.Font = New System.Drawing.Font("Bahnschrift", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX4.ForeColor = System.Drawing.Color.Black
-        Me.LabelX4.Location = New System.Drawing.Point(12, 12)
-        Me.LabelX4.Name = "LabelX4"
-        Me.LabelX4.Size = New System.Drawing.Size(486, 15)
-        Me.LabelX4.TabIndex = 6
-        Me.LabelX4.Text = "Status Info:"
-        Me.LabelX4.TextAlignment = System.Drawing.StringAlignment.Center
+        Me.lbl_Remaining_SMS.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Remaining_SMS.Font = New System.Drawing.Font("Bahnschrift", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Remaining_SMS.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Remaining_SMS.Location = New System.Drawing.Point(12, 12)
+        Me.lbl_Remaining_SMS.Name = "lbl_Remaining_SMS"
+        Me.lbl_Remaining_SMS.Size = New System.Drawing.Size(486, 15)
+        Me.lbl_Remaining_SMS.TabIndex = 6
+        Me.lbl_Remaining_SMS.Text = "Total SMS to send: "
         '
         'MetroStatusBar1
         '
@@ -204,6 +205,10 @@ Partial Class frm_SMS_Console_View
         Me.btn_Connect.TabIndex = 9
         Me.btn_Connect.Text = "Connect to Modem"
         '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        '
         'frm_SMS_Console_View
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -214,7 +219,7 @@ Partial Class frm_SMS_Console_View
         Me.Controls.Add(Me.btn_Start_Send)
         Me.Controls.Add(Me.MetroStatusBar1)
         Me.Controls.Add(Me.Rchtxt_Message_Stats)
-        Me.Controls.Add(Me.LabelX4)
+        Me.Controls.Add(Me.lbl_Remaining_SMS)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -227,7 +232,7 @@ Partial Class frm_SMS_Console_View
     End Sub
 
     Friend WithEvents Rchtxt_Message_Stats As DevComponents.DotNetBar.Controls.RichTextBoxEx
-    Friend WithEvents LabelX4 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents lbl_Remaining_SMS As DevComponents.DotNetBar.LabelX
     Friend WithEvents MetroStatusBar1 As DevComponents.DotNetBar.Metro.MetroStatusBar
     Friend WithEvents Label_X As DevComponents.DotNetBar.LabelItem
     Friend WithEvents Prog_Sig_1 As DevComponents.DotNetBar.ProgressBarItem
@@ -237,4 +242,5 @@ Partial Class frm_SMS_Console_View
     Friend WithEvents btn_Start_Send As ButtonX
     Friend WithEvents btn_Stop_Send As ButtonX
     Friend WithEvents btn_Connect As ButtonX
+    Friend WithEvents Timer1 As Timer
 End Class

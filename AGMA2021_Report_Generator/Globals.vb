@@ -18,6 +18,8 @@ Module Globals
 
     Public Update_SMS_Marker As New ArrayList()
 
+    Public Update_SMS_Marker_Overall_tb As New ArrayList()
+
     Public Username_For_Password_Change As String
 
     Public Username_For_Reg_View As String
@@ -40,6 +42,8 @@ Module Globals
     Public Notif_Message As String
 
     Public Start_Send As Boolean = False
+
+    Public total_sms_count As Integer = 0
 
 
     Public Function Get_Server_IP() As String
