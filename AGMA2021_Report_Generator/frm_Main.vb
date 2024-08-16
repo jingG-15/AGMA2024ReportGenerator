@@ -8812,29 +8812,72 @@ Public Class frm_Main
 
 
     Private Sub BW_Get_Onsite_Total_Count_DoWork(sender As Object, e As DoWorkEventArgs) Handles BW_Get_Onsite_Total_Count.DoWork
+        'Dim MysqlConn As MySqlConnection
+        'Dim sql As String
+        'Dim cmd As New MySqlCommand
+        'Dim ItemNumber As Integer = 1
+        'Dim max As Integer
+        'Dim Age As Integer = 0
+        'MysqlConn = New MySqlConnection
+        'MysqlConn.ConnectionString = "server=" + Server_IP + "; userid=jingG_15;password=haPPymeals;database=agma_2024"
+        'Try
+        '    MysqlConn.Open()
+        '    sql = "SELECT COUNT(ID) AS rollcount FROM onsite_attendance"
+        '    cmd = New MySqlCommand(sql, MysqlConn)
+        '    Dim count As Int32 = Convert.ToInt32(cmd.ExecuteScalar())
+        '    max = count
+        '    e.Result = max.ToString
+        'Catch ex As Exception
+        '    e.Result = "- - - -"
+        '    'MysqlConn.Close()
+
+        'Finally
+        '    MysqlConn.Close()
+
+        'End Try
+
+
         Dim MysqlConn As MySqlConnection
         Dim sql As String
         Dim cmd As New MySqlCommand
-        Dim ItemNumber As Integer = 1
-        Dim max As Integer
-        Dim Age As Integer = 0
+
+        Dim drSQL As MySqlDataReader
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString = "server=" + Server_IP + "; userid=jingG_15;password=haPPymeals;database=agma_2024"
-        Try
-            MysqlConn.Open()
-            sql = "SELECT COUNT(ID) AS rollcount FROM onsite_attendance"
-            cmd = New MySqlCommand(sql, MysqlConn)
-            Dim count As Int32 = Convert.ToInt32(cmd.ExecuteScalar())
-            max = count
-            e.Result = max.ToString
-        Catch ex As Exception
-            e.Result = "- - - -"
-            'MysqlConn.Close()
 
+        Dim Total_Onsite_Reg As Integer = 0
+
+        Try
+
+
+            MysqlConn.Open()
+            sql = "SELECT (SELECT Town FROM overall_reg WHERE overall_reg.Bil_Account_Number = onsite_attendance.Bil_Account_Number) AS G_Town, COUNT(ID) as TotalRegs " _
+                    & "FROM onsite_attendance GROUP BY G_Town ORDER BY TotalRegs DESC"
+            cmd = New MySqlCommand(sql, MysqlConn)
+            drSQL = cmd.ExecuteReader()
+
+
+            Do While drSQL.Read = True
+
+
+                e.Result = e.Result + drSQL("G_Town").ToString + "   |   " + drSQL("TotalRegs").ToString + vbNewLine
+                Total_Onsite_Reg = Total_Onsite_Reg + CInt(drSQL("TotalRegs").ToString)
+            Loop
+
+
+            e.Result = e.Result + "Total Onsite: " + "   |   " + Total_Onsite_Reg.ToString
+
+
+        Catch ex As Exception
+            ' MessageBox.Show(ex.Message)
+            e.Result = "- - - -"
+            'DevComponents.DotNetBar.MessageBoxEx.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             MysqlConn.Close()
 
         End Try
+
+
     End Sub
 
     Private Sub BW_Get_Onsite_Total_Count_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles BW_Get_Onsite_Total_Count.ProgressChanged
@@ -9519,10 +9562,6 @@ Public Class frm_Main
         circ_prog_QR.Visible = False
         tmr_Circ_QR_anim.Enabled = False
     End Sub
-
-
-
-
 
 
 End Class

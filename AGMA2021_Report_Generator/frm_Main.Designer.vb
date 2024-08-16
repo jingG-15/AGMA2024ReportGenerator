@@ -26,6 +26,14 @@ Partial Class frm_Main
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Main))
         Me.StyleManager1 = New DevComponents.DotNetBar.StyleManager(Me.components)
         Me.SideNav1 = New DevComponents.DotNetBar.Controls.SideNav()
+        Me.sidenavpan_LiveTotalReg = New DevComponents.DotNetBar.Controls.SideNavPanel()
+        Me.lbl_Time_AMPM = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Minute = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Colon = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Total_reg_Label = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Total_Regs = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Hour = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Label = New DevComponents.DotNetBar.LabelX()
         Me.sidenavpan_masterlist = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.ContextMenuBar1 = New DevComponents.DotNetBar.ContextMenuBar()
         Me.cntx_Masterlist = New DevComponents.DotNetBar.ButtonItem()
@@ -73,6 +81,20 @@ Partial Class frm_Main
         Me.btn_Masterlist_Search = New DevComponents.DotNetBar.ButtonX()
         Me.txt_Mstr_Search_Term = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.lbl_Main = New DevComponents.DotNetBar.LabelX()
+        Me.sidenavpan_livetotals_onsite = New DevComponents.DotNetBar.Controls.SideNavPanel()
+        Me.lbl_Total_Regs_Onsite = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_AMPM_Onsite = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Minute_Onsite = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Colon_Onsite = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Hour_Onsite = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Label_Onsite = New DevComponents.DotNetBar.LabelX()
+        Me.sidenavpan_livetotals_per_district = New DevComponents.DotNetBar.Controls.SideNavPanel()
+        Me.lbl_Time_AMPM_Area = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Minute_Area = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Colon_Area = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Total_Regs_Area = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Hour_Area = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Label_Area = New DevComponents.DotNetBar.LabelX()
         Me.SideNavPanel1 = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.circ_del_prog = New DevComponents.DotNetBar.Controls.CircularProgress()
         Me.pan_del_logs_control = New DevComponents.DotNetBar.PanelEx()
@@ -84,28 +106,6 @@ Partial Class frm_Main
         Me.btn_del_Search = New DevComponents.DotNetBar.ButtonX()
         Me.txt_del_Search_Term = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
-        Me.sidenavpan_LiveTotalReg = New DevComponents.DotNetBar.Controls.SideNavPanel()
-        Me.lbl_Time_AMPM = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Minute = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Colon = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Total_reg_Label = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Total_Regs = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Hour = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Label = New DevComponents.DotNetBar.LabelX()
-        Me.sidenavpan_livetotals_per_district = New DevComponents.DotNetBar.Controls.SideNavPanel()
-        Me.lbl_Time_AMPM_Area = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Minute_Area = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Colon_Area = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Total_Regs_Area = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Hour_Area = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Label_Area = New DevComponents.DotNetBar.LabelX()
-        Me.sidenavpan_livetotals_onsite = New DevComponents.DotNetBar.Controls.SideNavPanel()
-        Me.lbl_Total_Regs_Onsite = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_AMPM_Onsite = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Minute_Onsite = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Colon_Onsite = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Hour_Onsite = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Label_Onsite = New DevComponents.DotNetBar.LabelX()
         Me.sidenavpan_QR_Attendance = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.circ_prog_QR = New DevComponents.DotNetBar.Controls.CircularProgress()
         Me.pan_QR_control = New DevComponents.DotNetBar.PanelEx()
@@ -198,14 +198,14 @@ Partial Class frm_Main
         Me.BW_Valid_Entries_Notifier = New System.ComponentModel.BackgroundWorker()
         Me.BW_SMS_Updater_Overall = New System.ComponentModel.BackgroundWorker()
         Me.SideNav1.SuspendLayout()
+        Me.sidenavpan_LiveTotalReg.SuspendLayout()
         Me.sidenavpan_masterlist.SuspendLayout()
         CType(Me.ContextMenuBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pan_masterlist_controls.SuspendLayout()
+        Me.sidenavpan_livetotals_onsite.SuspendLayout()
+        Me.sidenavpan_livetotals_per_district.SuspendLayout()
         Me.SideNavPanel1.SuspendLayout()
         Me.pan_del_logs_control.SuspendLayout()
-        Me.sidenavpan_LiveTotalReg.SuspendLayout()
-        Me.sidenavpan_livetotals_per_district.SuspendLayout()
-        Me.sidenavpan_livetotals_onsite.SuspendLayout()
         Me.sidenavpan_QR_Attendance.SuspendLayout()
         Me.pan_QR_control.SuspendLayout()
         Me.sidenavpan_Officer_List.SuspendLayout()
@@ -221,11 +221,11 @@ Partial Class frm_Main
         '
         'SideNav1
         '
+        Me.SideNav1.Controls.Add(Me.sidenavpan_livetotals_onsite)
+        Me.SideNav1.Controls.Add(Me.sidenavpan_livetotals_per_district)
+        Me.SideNav1.Controls.Add(Me.sidenavpan_LiveTotalReg)
         Me.SideNav1.Controls.Add(Me.sidenavpan_masterlist)
         Me.SideNav1.Controls.Add(Me.SideNavPanel1)
-        Me.SideNav1.Controls.Add(Me.sidenavpan_LiveTotalReg)
-        Me.SideNav1.Controls.Add(Me.sidenavpan_livetotals_per_district)
-        Me.SideNav1.Controls.Add(Me.sidenavpan_livetotals_onsite)
         Me.SideNav1.Controls.Add(Me.sidenavpan_QR_Attendance)
         Me.SideNav1.Controls.Add(Me.sidenavpan_Officer_List)
         Me.SideNav1.Controls.Add(Me.sidenavpan_self_reg)
@@ -240,6 +240,136 @@ Partial Class frm_Main
         Me.SideNav1.TabIndex = 1
         Me.SideNav1.Text = "SideNav1"
         '
+        'sidenavpan_LiveTotalReg
+        '
+        Me.sidenavpan_LiveTotalReg.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Time_AMPM)
+        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Time_Minute)
+        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Time_Colon)
+        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Total_reg_Label)
+        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Total_Regs)
+        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Time_Hour)
+        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Time_Label)
+        Me.sidenavpan_LiveTotalReg.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.sidenavpan_LiveTotalReg.ForeColor = System.Drawing.Color.Black
+        Me.sidenavpan_LiveTotalReg.Location = New System.Drawing.Point(212, 31)
+        Me.sidenavpan_LiveTotalReg.Name = "sidenavpan_LiveTotalReg"
+        Me.sidenavpan_LiveTotalReg.Size = New System.Drawing.Size(767, 529)
+        Me.sidenavpan_LiveTotalReg.TabIndex = 14
+        Me.sidenavpan_LiveTotalReg.Visible = False
+        '
+        'lbl_Time_AMPM
+        '
+        Me.lbl_Time_AMPM.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_AMPM.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_AMPM.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_AMPM.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_AMPM.Location = New System.Drawing.Point(340, 7)
+        Me.lbl_Time_AMPM.Name = "lbl_Time_AMPM"
+        Me.lbl_Time_AMPM.Size = New System.Drawing.Size(78, 57)
+        Me.lbl_Time_AMPM.TabIndex = 5
+        Me.lbl_Time_AMPM.Text = "PM"
+        Me.lbl_Time_AMPM.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Minute
+        '
+        Me.lbl_Time_Minute.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Minute.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Minute.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Minute.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Minute.Location = New System.Drawing.Point(274, 7)
+        Me.lbl_Time_Minute.Name = "lbl_Time_Minute"
+        Me.lbl_Time_Minute.Size = New System.Drawing.Size(60, 57)
+        Me.lbl_Time_Minute.TabIndex = 4
+        Me.lbl_Time_Minute.Text = "69"
+        Me.lbl_Time_Minute.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Colon
+        '
+        Me.lbl_Time_Colon.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Colon.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Colon.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Colon.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Colon.Location = New System.Drawing.Point(245, 7)
+        Me.lbl_Time_Colon.Name = "lbl_Time_Colon"
+        Me.lbl_Time_Colon.Size = New System.Drawing.Size(23, 57)
+        Me.lbl_Time_Colon.TabIndex = 3
+        Me.lbl_Time_Colon.Text = ":"
+        Me.lbl_Time_Colon.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Total_reg_Label
+        '
+        Me.lbl_Total_reg_Label.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Total_reg_Label.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Total_reg_Label.Font = New System.Drawing.Font("Bahnschrift Condensed", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Total_reg_Label.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Total_reg_Label.Location = New System.Drawing.Point(181, 346)
+        Me.lbl_Total_reg_Label.Name = "lbl_Total_reg_Label"
+        Me.lbl_Total_reg_Label.Size = New System.Drawing.Size(460, 113)
+        Me.lbl_Total_reg_Label.TabIndex = 2
+        Me.lbl_Total_reg_Label.Text = "Total Registered"
+        Me.lbl_Total_reg_Label.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Total_Regs
+        '
+        Me.lbl_Total_Regs.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Total_Regs.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Total_Regs.Font = New System.Drawing.Font("Bahnschrift Condensed", 80.0!, System.Drawing.FontStyle.Bold)
+        Me.lbl_Total_Regs.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Total_Regs.Location = New System.Drawing.Point(0, 170)
+        Me.lbl_Total_Regs.Name = "lbl_Total_Regs"
+        Me.lbl_Total_Regs.Size = New System.Drawing.Size(768, 168)
+        Me.lbl_Total_Regs.TabIndex = 1
+        Me.lbl_Total_Regs.Text = "10,000"
+        Me.lbl_Total_Regs.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Hour
+        '
+        Me.lbl_Time_Hour.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Hour.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Hour.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Hour.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Hour.Location = New System.Drawing.Point(181, 7)
+        Me.lbl_Time_Hour.Name = "lbl_Time_Hour"
+        Me.lbl_Time_Hour.Size = New System.Drawing.Size(58, 57)
+        Me.lbl_Time_Hour.TabIndex = 0
+        Me.lbl_Time_Hour.Text = "12"
+        Me.lbl_Time_Hour.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Label
+        '
+        Me.lbl_Time_Label.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Label.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Label.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Label.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Label.Location = New System.Drawing.Point(3, 4)
+        Me.lbl_Time_Label.Name = "lbl_Time_Label"
+        Me.lbl_Time_Label.Size = New System.Drawing.Size(145, 63)
+        Me.lbl_Time_Label.TabIndex = 0
+        Me.lbl_Time_Label.Text = "Time: "
+        Me.lbl_Time_Label.TextAlignment = System.Drawing.StringAlignment.Far
+        '
         'sidenavpan_masterlist
         '
         Me.sidenavpan_masterlist.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
@@ -253,6 +383,7 @@ Partial Class frm_Main
         Me.sidenavpan_masterlist.Name = "sidenavpan_masterlist"
         Me.sidenavpan_masterlist.Size = New System.Drawing.Size(767, 529)
         Me.sidenavpan_masterlist.TabIndex = 2
+        Me.sidenavpan_masterlist.Visible = False
         '
         'ContextMenuBar1
         '
@@ -707,6 +838,231 @@ Partial Class frm_Main
         Me.lbl_Main.Text = "Search Term:"
         Me.lbl_Main.TextAlignment = System.Drawing.StringAlignment.Far
         '
+        'sidenavpan_livetotals_onsite
+        '
+        Me.sidenavpan_livetotals_onsite.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Total_Regs_Onsite)
+        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_AMPM_Onsite)
+        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Minute_Onsite)
+        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Colon_Onsite)
+        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Hour_Onsite)
+        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Label_Onsite)
+        Me.sidenavpan_livetotals_onsite.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.sidenavpan_livetotals_onsite.ForeColor = System.Drawing.Color.Black
+        Me.sidenavpan_livetotals_onsite.Location = New System.Drawing.Point(212, 31)
+        Me.sidenavpan_livetotals_onsite.Name = "sidenavpan_livetotals_onsite"
+        Me.sidenavpan_livetotals_onsite.Size = New System.Drawing.Size(767, 529)
+        Me.sidenavpan_livetotals_onsite.TabIndex = 61
+        '
+        'lbl_Total_Regs_Onsite
+        '
+        Me.lbl_Total_Regs_Onsite.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Total_Regs_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Total_Regs_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 80.0!, System.Drawing.FontStyle.Bold)
+        Me.lbl_Total_Regs_Onsite.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Total_Regs_Onsite.Location = New System.Drawing.Point(4, 87)
+        Me.lbl_Total_Regs_Onsite.Name = "lbl_Total_Regs_Onsite"
+        Me.lbl_Total_Regs_Onsite.Size = New System.Drawing.Size(768, 396)
+        Me.lbl_Total_Regs_Onsite.TabIndex = 18
+        Me.lbl_Total_Regs_Onsite.Text = "10,000"
+        Me.lbl_Total_Regs_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_AMPM_Onsite
+        '
+        Me.lbl_Time_AMPM_Onsite.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_AMPM_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_AMPM_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_AMPM_Onsite.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_AMPM_Onsite.Location = New System.Drawing.Point(340, 6)
+        Me.lbl_Time_AMPM_Onsite.Name = "lbl_Time_AMPM_Onsite"
+        Me.lbl_Time_AMPM_Onsite.Size = New System.Drawing.Size(78, 57)
+        Me.lbl_Time_AMPM_Onsite.TabIndex = 17
+        Me.lbl_Time_AMPM_Onsite.Text = "PM"
+        Me.lbl_Time_AMPM_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Minute_Onsite
+        '
+        Me.lbl_Time_Minute_Onsite.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Minute_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Minute_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Minute_Onsite.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Minute_Onsite.Location = New System.Drawing.Point(274, 6)
+        Me.lbl_Time_Minute_Onsite.Name = "lbl_Time_Minute_Onsite"
+        Me.lbl_Time_Minute_Onsite.Size = New System.Drawing.Size(60, 57)
+        Me.lbl_Time_Minute_Onsite.TabIndex = 16
+        Me.lbl_Time_Minute_Onsite.Text = "69"
+        Me.lbl_Time_Minute_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Colon_Onsite
+        '
+        Me.lbl_Time_Colon_Onsite.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Colon_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Colon_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Colon_Onsite.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Colon_Onsite.Location = New System.Drawing.Point(245, 6)
+        Me.lbl_Time_Colon_Onsite.Name = "lbl_Time_Colon_Onsite"
+        Me.lbl_Time_Colon_Onsite.Size = New System.Drawing.Size(23, 57)
+        Me.lbl_Time_Colon_Onsite.TabIndex = 15
+        Me.lbl_Time_Colon_Onsite.Text = ":"
+        Me.lbl_Time_Colon_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Hour_Onsite
+        '
+        Me.lbl_Time_Hour_Onsite.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Hour_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Hour_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Hour_Onsite.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Hour_Onsite.Location = New System.Drawing.Point(181, 6)
+        Me.lbl_Time_Hour_Onsite.Name = "lbl_Time_Hour_Onsite"
+        Me.lbl_Time_Hour_Onsite.Size = New System.Drawing.Size(58, 57)
+        Me.lbl_Time_Hour_Onsite.TabIndex = 13
+        Me.lbl_Time_Hour_Onsite.Text = "12"
+        Me.lbl_Time_Hour_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Label_Onsite
+        '
+        Me.lbl_Time_Label_Onsite.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Label_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Label_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Label_Onsite.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Label_Onsite.Location = New System.Drawing.Point(3, 3)
+        Me.lbl_Time_Label_Onsite.Name = "lbl_Time_Label_Onsite"
+        Me.lbl_Time_Label_Onsite.Size = New System.Drawing.Size(145, 63)
+        Me.lbl_Time_Label_Onsite.TabIndex = 14
+        Me.lbl_Time_Label_Onsite.Text = "Time: "
+        Me.lbl_Time_Label_Onsite.TextAlignment = System.Drawing.StringAlignment.Far
+        '
+        'sidenavpan_livetotals_per_district
+        '
+        Me.sidenavpan_livetotals_per_district.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_AMPM_Area)
+        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Minute_Area)
+        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Colon_Area)
+        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Total_Regs_Area)
+        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Hour_Area)
+        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Label_Area)
+        Me.sidenavpan_livetotals_per_district.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.sidenavpan_livetotals_per_district.ForeColor = System.Drawing.Color.Black
+        Me.sidenavpan_livetotals_per_district.Location = New System.Drawing.Point(212, 31)
+        Me.sidenavpan_livetotals_per_district.Name = "sidenavpan_livetotals_per_district"
+        Me.sidenavpan_livetotals_per_district.Size = New System.Drawing.Size(767, 529)
+        Me.sidenavpan_livetotals_per_district.TabIndex = 25
+        Me.sidenavpan_livetotals_per_district.Visible = False
+        '
+        'lbl_Time_AMPM_Area
+        '
+        Me.lbl_Time_AMPM_Area.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_AMPM_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_AMPM_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_AMPM_Area.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_AMPM_Area.Location = New System.Drawing.Point(340, 7)
+        Me.lbl_Time_AMPM_Area.Name = "lbl_Time_AMPM_Area"
+        Me.lbl_Time_AMPM_Area.Size = New System.Drawing.Size(78, 57)
+        Me.lbl_Time_AMPM_Area.TabIndex = 12
+        Me.lbl_Time_AMPM_Area.Text = "PM"
+        Me.lbl_Time_AMPM_Area.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Minute_Area
+        '
+        Me.lbl_Time_Minute_Area.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Minute_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Minute_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Minute_Area.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Minute_Area.Location = New System.Drawing.Point(274, 7)
+        Me.lbl_Time_Minute_Area.Name = "lbl_Time_Minute_Area"
+        Me.lbl_Time_Minute_Area.Size = New System.Drawing.Size(60, 57)
+        Me.lbl_Time_Minute_Area.TabIndex = 11
+        Me.lbl_Time_Minute_Area.Text = "69"
+        Me.lbl_Time_Minute_Area.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Colon_Area
+        '
+        Me.lbl_Time_Colon_Area.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Colon_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Colon_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Colon_Area.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Colon_Area.Location = New System.Drawing.Point(245, 7)
+        Me.lbl_Time_Colon_Area.Name = "lbl_Time_Colon_Area"
+        Me.lbl_Time_Colon_Area.Size = New System.Drawing.Size(23, 57)
+        Me.lbl_Time_Colon_Area.TabIndex = 10
+        Me.lbl_Time_Colon_Area.Text = ":"
+        Me.lbl_Time_Colon_Area.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Total_Regs_Area
+        '
+        Me.lbl_Total_Regs_Area.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Total_Regs_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Total_Regs_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 80.0!, System.Drawing.FontStyle.Bold)
+        Me.lbl_Total_Regs_Area.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Total_Regs_Area.Location = New System.Drawing.Point(-1, 87)
+        Me.lbl_Total_Regs_Area.Name = "lbl_Total_Regs_Area"
+        Me.lbl_Total_Regs_Area.Size = New System.Drawing.Size(768, 396)
+        Me.lbl_Total_Regs_Area.TabIndex = 8
+        Me.lbl_Total_Regs_Area.Text = "10,000"
+        Me.lbl_Total_Regs_Area.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Hour_Area
+        '
+        Me.lbl_Time_Hour_Area.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Hour_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Hour_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Hour_Area.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Hour_Area.Location = New System.Drawing.Point(181, 7)
+        Me.lbl_Time_Hour_Area.Name = "lbl_Time_Hour_Area"
+        Me.lbl_Time_Hour_Area.Size = New System.Drawing.Size(58, 57)
+        Me.lbl_Time_Hour_Area.TabIndex = 6
+        Me.lbl_Time_Hour_Area.Text = "12"
+        Me.lbl_Time_Hour_Area.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Label_Area
+        '
+        Me.lbl_Time_Label_Area.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Label_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Label_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Label_Area.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Label_Area.Location = New System.Drawing.Point(3, 4)
+        Me.lbl_Time_Label_Area.Name = "lbl_Time_Label_Area"
+        Me.lbl_Time_Label_Area.Size = New System.Drawing.Size(145, 63)
+        Me.lbl_Time_Label_Area.TabIndex = 7
+        Me.lbl_Time_Label_Area.Text = "Time: "
+        Me.lbl_Time_Label_Area.TextAlignment = System.Drawing.StringAlignment.Far
+        '
         'SideNavPanel1
         '
         Me.SideNavPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
@@ -864,362 +1220,6 @@ Partial Class frm_Main
         Me.LabelX5.TabIndex = 0
         Me.LabelX5.Text = "Search Term:"
         Me.LabelX5.TextAlignment = System.Drawing.StringAlignment.Far
-        '
-        'sidenavpan_LiveTotalReg
-        '
-        Me.sidenavpan_LiveTotalReg.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Time_AMPM)
-        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Time_Minute)
-        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Time_Colon)
-        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Total_reg_Label)
-        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Total_Regs)
-        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Time_Hour)
-        Me.sidenavpan_LiveTotalReg.Controls.Add(Me.lbl_Time_Label)
-        Me.sidenavpan_LiveTotalReg.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.sidenavpan_LiveTotalReg.ForeColor = System.Drawing.Color.Black
-        Me.sidenavpan_LiveTotalReg.Location = New System.Drawing.Point(212, 31)
-        Me.sidenavpan_LiveTotalReg.Name = "sidenavpan_LiveTotalReg"
-        Me.sidenavpan_LiveTotalReg.Size = New System.Drawing.Size(767, 529)
-        Me.sidenavpan_LiveTotalReg.TabIndex = 14
-        Me.sidenavpan_LiveTotalReg.Visible = False
-        '
-        'lbl_Time_AMPM
-        '
-        Me.lbl_Time_AMPM.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_AMPM.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_AMPM.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_AMPM.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_AMPM.Location = New System.Drawing.Point(340, 7)
-        Me.lbl_Time_AMPM.Name = "lbl_Time_AMPM"
-        Me.lbl_Time_AMPM.Size = New System.Drawing.Size(78, 57)
-        Me.lbl_Time_AMPM.TabIndex = 5
-        Me.lbl_Time_AMPM.Text = "PM"
-        Me.lbl_Time_AMPM.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Minute
-        '
-        Me.lbl_Time_Minute.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Minute.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Minute.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Minute.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Minute.Location = New System.Drawing.Point(274, 7)
-        Me.lbl_Time_Minute.Name = "lbl_Time_Minute"
-        Me.lbl_Time_Minute.Size = New System.Drawing.Size(60, 57)
-        Me.lbl_Time_Minute.TabIndex = 4
-        Me.lbl_Time_Minute.Text = "69"
-        Me.lbl_Time_Minute.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Colon
-        '
-        Me.lbl_Time_Colon.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Colon.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Colon.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Colon.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Colon.Location = New System.Drawing.Point(245, 7)
-        Me.lbl_Time_Colon.Name = "lbl_Time_Colon"
-        Me.lbl_Time_Colon.Size = New System.Drawing.Size(23, 57)
-        Me.lbl_Time_Colon.TabIndex = 3
-        Me.lbl_Time_Colon.Text = ":"
-        Me.lbl_Time_Colon.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Total_reg_Label
-        '
-        Me.lbl_Total_reg_Label.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Total_reg_Label.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Total_reg_Label.Font = New System.Drawing.Font("Bahnschrift Condensed", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Total_reg_Label.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Total_reg_Label.Location = New System.Drawing.Point(181, 346)
-        Me.lbl_Total_reg_Label.Name = "lbl_Total_reg_Label"
-        Me.lbl_Total_reg_Label.Size = New System.Drawing.Size(460, 113)
-        Me.lbl_Total_reg_Label.TabIndex = 2
-        Me.lbl_Total_reg_Label.Text = "Total Registered"
-        Me.lbl_Total_reg_Label.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Total_Regs
-        '
-        Me.lbl_Total_Regs.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Total_Regs.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Total_Regs.Font = New System.Drawing.Font("Bahnschrift Condensed", 80.0!, System.Drawing.FontStyle.Bold)
-        Me.lbl_Total_Regs.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Total_Regs.Location = New System.Drawing.Point(0, 170)
-        Me.lbl_Total_Regs.Name = "lbl_Total_Regs"
-        Me.lbl_Total_Regs.Size = New System.Drawing.Size(768, 168)
-        Me.lbl_Total_Regs.TabIndex = 1
-        Me.lbl_Total_Regs.Text = "10,000"
-        Me.lbl_Total_Regs.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Hour
-        '
-        Me.lbl_Time_Hour.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Hour.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Hour.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Hour.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Hour.Location = New System.Drawing.Point(181, 7)
-        Me.lbl_Time_Hour.Name = "lbl_Time_Hour"
-        Me.lbl_Time_Hour.Size = New System.Drawing.Size(58, 57)
-        Me.lbl_Time_Hour.TabIndex = 0
-        Me.lbl_Time_Hour.Text = "12"
-        Me.lbl_Time_Hour.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Label
-        '
-        Me.lbl_Time_Label.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Label.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Label.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Label.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Label.Location = New System.Drawing.Point(3, 4)
-        Me.lbl_Time_Label.Name = "lbl_Time_Label"
-        Me.lbl_Time_Label.Size = New System.Drawing.Size(145, 63)
-        Me.lbl_Time_Label.TabIndex = 0
-        Me.lbl_Time_Label.Text = "Time: "
-        Me.lbl_Time_Label.TextAlignment = System.Drawing.StringAlignment.Far
-        '
-        'sidenavpan_livetotals_per_district
-        '
-        Me.sidenavpan_livetotals_per_district.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_AMPM_Area)
-        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Minute_Area)
-        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Colon_Area)
-        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Total_Regs_Area)
-        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Hour_Area)
-        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Label_Area)
-        Me.sidenavpan_livetotals_per_district.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.sidenavpan_livetotals_per_district.ForeColor = System.Drawing.Color.Black
-        Me.sidenavpan_livetotals_per_district.Location = New System.Drawing.Point(212, 31)
-        Me.sidenavpan_livetotals_per_district.Name = "sidenavpan_livetotals_per_district"
-        Me.sidenavpan_livetotals_per_district.Size = New System.Drawing.Size(767, 529)
-        Me.sidenavpan_livetotals_per_district.TabIndex = 25
-        Me.sidenavpan_livetotals_per_district.Visible = False
-        '
-        'lbl_Time_AMPM_Area
-        '
-        Me.lbl_Time_AMPM_Area.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_AMPM_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_AMPM_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_AMPM_Area.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_AMPM_Area.Location = New System.Drawing.Point(340, 7)
-        Me.lbl_Time_AMPM_Area.Name = "lbl_Time_AMPM_Area"
-        Me.lbl_Time_AMPM_Area.Size = New System.Drawing.Size(78, 57)
-        Me.lbl_Time_AMPM_Area.TabIndex = 12
-        Me.lbl_Time_AMPM_Area.Text = "PM"
-        Me.lbl_Time_AMPM_Area.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Minute_Area
-        '
-        Me.lbl_Time_Minute_Area.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Minute_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Minute_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Minute_Area.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Minute_Area.Location = New System.Drawing.Point(274, 7)
-        Me.lbl_Time_Minute_Area.Name = "lbl_Time_Minute_Area"
-        Me.lbl_Time_Minute_Area.Size = New System.Drawing.Size(60, 57)
-        Me.lbl_Time_Minute_Area.TabIndex = 11
-        Me.lbl_Time_Minute_Area.Text = "69"
-        Me.lbl_Time_Minute_Area.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Colon_Area
-        '
-        Me.lbl_Time_Colon_Area.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Colon_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Colon_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Colon_Area.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Colon_Area.Location = New System.Drawing.Point(245, 7)
-        Me.lbl_Time_Colon_Area.Name = "lbl_Time_Colon_Area"
-        Me.lbl_Time_Colon_Area.Size = New System.Drawing.Size(23, 57)
-        Me.lbl_Time_Colon_Area.TabIndex = 10
-        Me.lbl_Time_Colon_Area.Text = ":"
-        Me.lbl_Time_Colon_Area.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Total_Regs_Area
-        '
-        Me.lbl_Total_Regs_Area.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Total_Regs_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Total_Regs_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 80.0!, System.Drawing.FontStyle.Bold)
-        Me.lbl_Total_Regs_Area.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Total_Regs_Area.Location = New System.Drawing.Point(-1, 87)
-        Me.lbl_Total_Regs_Area.Name = "lbl_Total_Regs_Area"
-        Me.lbl_Total_Regs_Area.Size = New System.Drawing.Size(768, 396)
-        Me.lbl_Total_Regs_Area.TabIndex = 8
-        Me.lbl_Total_Regs_Area.Text = "10,000"
-        Me.lbl_Total_Regs_Area.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Hour_Area
-        '
-        Me.lbl_Time_Hour_Area.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Hour_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Hour_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Hour_Area.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Hour_Area.Location = New System.Drawing.Point(181, 7)
-        Me.lbl_Time_Hour_Area.Name = "lbl_Time_Hour_Area"
-        Me.lbl_Time_Hour_Area.Size = New System.Drawing.Size(58, 57)
-        Me.lbl_Time_Hour_Area.TabIndex = 6
-        Me.lbl_Time_Hour_Area.Text = "12"
-        Me.lbl_Time_Hour_Area.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Label_Area
-        '
-        Me.lbl_Time_Label_Area.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Label_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Label_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Label_Area.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Label_Area.Location = New System.Drawing.Point(3, 4)
-        Me.lbl_Time_Label_Area.Name = "lbl_Time_Label_Area"
-        Me.lbl_Time_Label_Area.Size = New System.Drawing.Size(145, 63)
-        Me.lbl_Time_Label_Area.TabIndex = 7
-        Me.lbl_Time_Label_Area.Text = "Time: "
-        Me.lbl_Time_Label_Area.TextAlignment = System.Drawing.StringAlignment.Far
-        '
-        'sidenavpan_livetotals_onsite
-        '
-        Me.sidenavpan_livetotals_onsite.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Total_Regs_Onsite)
-        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_AMPM_Onsite)
-        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Minute_Onsite)
-        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Colon_Onsite)
-        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Hour_Onsite)
-        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Label_Onsite)
-        Me.sidenavpan_livetotals_onsite.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.sidenavpan_livetotals_onsite.ForeColor = System.Drawing.Color.Black
-        Me.sidenavpan_livetotals_onsite.Location = New System.Drawing.Point(212, 31)
-        Me.sidenavpan_livetotals_onsite.Name = "sidenavpan_livetotals_onsite"
-        Me.sidenavpan_livetotals_onsite.Size = New System.Drawing.Size(767, 529)
-        Me.sidenavpan_livetotals_onsite.TabIndex = 61
-        Me.sidenavpan_livetotals_onsite.Visible = False
-        '
-        'lbl_Total_Regs_Onsite
-        '
-        Me.lbl_Total_Regs_Onsite.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Total_Regs_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Total_Regs_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 80.0!, System.Drawing.FontStyle.Bold)
-        Me.lbl_Total_Regs_Onsite.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Total_Regs_Onsite.Location = New System.Drawing.Point(4, 87)
-        Me.lbl_Total_Regs_Onsite.Name = "lbl_Total_Regs_Onsite"
-        Me.lbl_Total_Regs_Onsite.Size = New System.Drawing.Size(768, 396)
-        Me.lbl_Total_Regs_Onsite.TabIndex = 18
-        Me.lbl_Total_Regs_Onsite.Text = "10,000"
-        Me.lbl_Total_Regs_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_AMPM_Onsite
-        '
-        Me.lbl_Time_AMPM_Onsite.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_AMPM_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_AMPM_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_AMPM_Onsite.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_AMPM_Onsite.Location = New System.Drawing.Point(340, 6)
-        Me.lbl_Time_AMPM_Onsite.Name = "lbl_Time_AMPM_Onsite"
-        Me.lbl_Time_AMPM_Onsite.Size = New System.Drawing.Size(78, 57)
-        Me.lbl_Time_AMPM_Onsite.TabIndex = 17
-        Me.lbl_Time_AMPM_Onsite.Text = "PM"
-        Me.lbl_Time_AMPM_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Minute_Onsite
-        '
-        Me.lbl_Time_Minute_Onsite.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Minute_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Minute_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Minute_Onsite.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Minute_Onsite.Location = New System.Drawing.Point(274, 6)
-        Me.lbl_Time_Minute_Onsite.Name = "lbl_Time_Minute_Onsite"
-        Me.lbl_Time_Minute_Onsite.Size = New System.Drawing.Size(60, 57)
-        Me.lbl_Time_Minute_Onsite.TabIndex = 16
-        Me.lbl_Time_Minute_Onsite.Text = "69"
-        Me.lbl_Time_Minute_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Colon_Onsite
-        '
-        Me.lbl_Time_Colon_Onsite.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Colon_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Colon_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Colon_Onsite.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Colon_Onsite.Location = New System.Drawing.Point(245, 6)
-        Me.lbl_Time_Colon_Onsite.Name = "lbl_Time_Colon_Onsite"
-        Me.lbl_Time_Colon_Onsite.Size = New System.Drawing.Size(23, 57)
-        Me.lbl_Time_Colon_Onsite.TabIndex = 15
-        Me.lbl_Time_Colon_Onsite.Text = ":"
-        Me.lbl_Time_Colon_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Hour_Onsite
-        '
-        Me.lbl_Time_Hour_Onsite.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Hour_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Hour_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Hour_Onsite.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Hour_Onsite.Location = New System.Drawing.Point(181, 6)
-        Me.lbl_Time_Hour_Onsite.Name = "lbl_Time_Hour_Onsite"
-        Me.lbl_Time_Hour_Onsite.Size = New System.Drawing.Size(58, 57)
-        Me.lbl_Time_Hour_Onsite.TabIndex = 13
-        Me.lbl_Time_Hour_Onsite.Text = "12"
-        Me.lbl_Time_Hour_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Label_Onsite
-        '
-        Me.lbl_Time_Label_Onsite.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Label_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Label_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Label_Onsite.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Label_Onsite.Location = New System.Drawing.Point(3, 3)
-        Me.lbl_Time_Label_Onsite.Name = "lbl_Time_Label_Onsite"
-        Me.lbl_Time_Label_Onsite.Size = New System.Drawing.Size(145, 63)
-        Me.lbl_Time_Label_Onsite.TabIndex = 14
-        Me.lbl_Time_Label_Onsite.Text = "Time: "
-        Me.lbl_Time_Label_Onsite.TextAlignment = System.Drawing.StringAlignment.Far
         '
         'sidenavpan_QR_Attendance
         '
@@ -1708,6 +1708,7 @@ Partial Class frm_Main
         '
         'SideNavItem9
         '
+        Me.SideNavItem9.Checked = True
         Me.SideNavItem9.Name = "SideNavItem9"
         Me.SideNavItem9.Panel = Me.sidenavpan_livetotals_onsite
         Me.SideNavItem9.Symbol = ""
@@ -1715,7 +1716,6 @@ Partial Class frm_Main
         '
         'SideNavItem2
         '
-        Me.SideNavItem2.Checked = True
         Me.SideNavItem2.Name = "SideNavItem2"
         Me.SideNavItem2.Panel = Me.sidenavpan_masterlist
         Me.SideNavItem2.Symbol = ""
@@ -2014,16 +2014,16 @@ Partial Class frm_Main
         Me.Text = "AGMA 2024 Report Generator"
         Me.SideNav1.ResumeLayout(False)
         Me.SideNav1.PerformLayout()
+        Me.sidenavpan_LiveTotalReg.ResumeLayout(False)
         Me.sidenavpan_masterlist.ResumeLayout(False)
         CType(Me.ContextMenuBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pan_masterlist_controls.ResumeLayout(False)
         Me.pan_masterlist_controls.PerformLayout()
+        Me.sidenavpan_livetotals_onsite.ResumeLayout(False)
+        Me.sidenavpan_livetotals_per_district.ResumeLayout(False)
         Me.SideNavPanel1.ResumeLayout(False)
         Me.pan_del_logs_control.ResumeLayout(False)
         Me.pan_del_logs_control.PerformLayout()
-        Me.sidenavpan_LiveTotalReg.ResumeLayout(False)
-        Me.sidenavpan_livetotals_per_district.ResumeLayout(False)
-        Me.sidenavpan_livetotals_onsite.ResumeLayout(False)
         Me.sidenavpan_QR_Attendance.ResumeLayout(False)
         Me.pan_QR_control.ResumeLayout(False)
         Me.pan_QR_control.PerformLayout()
