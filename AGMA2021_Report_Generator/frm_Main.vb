@@ -85,6 +85,12 @@ Public Class frm_Main
     Dim ItemNumber_Onsite_Dist_PDF As Integer = 1
 
 
+    Dim finalPath_Onsite_User_PDF As String
+    Dim fileName_Onsite_User_PDF As String
+    Dim filepath_Onsite_User_PDF As String
+    Dim ItemNumber_Onsite_User_PDF As Integer = 1
+
+
 
 
     Dim fileName_Excel_Mstr_Dist As String
@@ -163,6 +169,15 @@ Public Class frm_Main
     Dim fileName_Self_PDF As String
     Dim filepath_Self_PDF As String
     Dim ItemNumber_Self_PDF As Integer = 1
+
+
+
+    Dim finalPath_Self_Non_Att_PDF As String
+    Dim fileName_Self_Non_Att_PDF As String
+    Dim filepath_Self_Non_Att_PDF As String
+    Dim ItemNumber_Self_Non_Att_PDF As Integer = 1
+
+
 
     Dim fileName_Excel_Self As String
     Dim finalPath_Excel_Self As String
@@ -1506,7 +1521,7 @@ Public Class frm_Main
 
 
     Private Sub btn_Mstr_View_Details_Click(sender As Object, e As EventArgs) Handles btn_Mstr_View_Details.Click
-        If BW_Mstr_Load_Reg_Flag = False Then
+        If BW_Mstr_Load_Reg_Flag = False And lst_Masterlist.FocusedItem IsNot Nothing Then
             BW_Mstr_Load_Reg_Flag = True
 
             Masterlist_Sel_ID = lst_Masterlist.Items(lst_Masterlist.FocusedItem.Index).SubItems(2).Text
@@ -3526,7 +3541,7 @@ Public Class frm_Main
 
 
     Private Sub btn_Self_View_Details_Click(sender As Object, e As EventArgs) Handles btn_Self_View_Details.Click
-        If BW_Self_Load_Reg_Flag = False Then
+        If BW_Self_Load_Reg_Flag = False And lst_Self_Reg.FocusedItem IsNot Nothing Then
             BW_Self_Load_Reg_Flag = True
 
             Self_Sel_ID = lst_Self_Reg.Items(lst_Self_Reg.FocusedItem.Index).SubItems(2).Text
@@ -4073,7 +4088,7 @@ Public Class frm_Main
 
 
     Private Sub btn_Prof_View_Details_Click(sender As Object, e As EventArgs) Handles btn_Prof_View_Details.Click
-        If BW_Prof_View_Loader = False Then
+        If BW_Prof_View_Loader = False And lst_users.FocusedItem IsNot Nothing Then
             BW_Prof_View_Loader = True
 
             Prof_Sel_Username = lst_users.Items(lst_users.FocusedItem.Index).SubItems(4).Text
@@ -6033,7 +6048,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_QR_View_Profile_Click(sender As Object, e As EventArgs) Handles btn_QR_View_Profile.Click
-        If BW_QR_Load_Reg_Flag = False Then
+        If BW_QR_Load_Reg_Flag = False And lst_QR_Attendees.FocusedItem IsNot Nothing Then
             BW_QR_Load_Reg_Flag = True
 
             QR_Sel_ID = lst_QR_Attendees.Items(lst_QR_Attendees.FocusedItem.Index).SubItems(0).Text
@@ -6248,6 +6263,7 @@ Public Class frm_Main
         Dim MysqlConn As MySqlConnection
         Dim sql As String
         Dim cmd As New MySqlCommand
+        Dim Total_reg As Integer = 0
 
         Dim drSQL As MySqlDataReader
         MysqlConn = New MySqlConnection
@@ -6268,11 +6284,15 @@ Public Class frm_Main
 
                 Area_Totals.Add(drSQL("Town").ToString + "   |   " + drSQL("TotalRegs").ToString)
 
+                Total_reg = Total_reg + CInt(drSQL("TotalRegs").ToString)
+
             Loop
+
+            Area_Totals.Add("Total Reg: " + "   |   " + Total_reg.ToString)
         Catch ex As Exception
             ' MessageBox.Show(ex.Message)
 
-            DevComponents.DotNetBar.MessageBoxEx.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            ' DevComponents.DotNetBar.MessageBoxEx.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             MysqlConn.Close()
 
@@ -7210,7 +7230,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_View_Del_Prof_Click(sender As Object, e As EventArgs) Handles btn_View_Del_Prof.Click
-        If BW_Del_Load_Reg_Flag = False Then
+        If BW_Del_Load_Reg_Flag = False And lst_del_logs.FocusedItem IsNot Nothing Then
             BW_Del_Load_Reg_Flag = True
 
             Del_Sel_ID = lst_del_logs.Items(lst_del_logs.FocusedItem.Index).SubItems(0).Text
@@ -7950,6 +7970,11 @@ Public Class frm_Main
                                              " with Stub " & stub & ". Reason: INVALID Signature & ID. Please try again. TY."
 
                             SMSEngine.Add_Queue(db_id + 89123, cell_num, account_num + " : " + account_name, Notif_Message)
+
+                            Notif_Message = "Please ensure to have a white background for the signature. If not, please clear the signature pad first until a white background appears. Thank you."
+
+
+                            SMSEngine.Add_Queue(db_id + 189123, cell_num, account_num + " : " + account_name, Notif_Message)
 
 
                         ElseIf resss = "Invalid photo of ID Provided" Then
@@ -8860,7 +8885,12 @@ Public Class frm_Main
             Do While drSQL.Read = True
 
 
-                e.Result = e.Result + drSQL("G_Town").ToString + "   |   " + drSQL("TotalRegs").ToString + vbNewLine
+
+                If drSQL("G_Town").ToString = "" Then
+                    e.Result = e.Result + "-- " + "   |   " + drSQL("TotalRegs").ToString + vbNewLine
+                Else
+                    e.Result = e.Result + drSQL("G_Town").ToString + "   |   " + drSQL("TotalRegs").ToString + vbNewLine
+                End If
                 Total_Onsite_Reg = Total_Onsite_Reg + CInt(drSQL("TotalRegs").ToString)
             Loop
 
@@ -8909,7 +8939,7 @@ Public Class frm_Main
 
 
             MysqlConn.Open()
-            sql = "SELECT Bil_Account_Number, (SELECT overall_reg.Town FROM overall_reg WHERE overall_reg.Bil_Account_Number = onsite_attendance.Bil_Account_Number) as Town, " _
+            sql = "SELECT Bil_Account_Number, (SELECT accounts_list.Town FROM accounts_list WHERE accounts_list.Account_Number = onsite_attendance.Bil_Account_Number) as Town, " _
                     & "COUNT(*) as Town_Count FROM onsite_attendance GROUP BY Town ORDER BY Town_Count ASC"
 
 
@@ -8936,6 +8966,8 @@ Public Class frm_Main
 
 
         If Loaded_District.Count > 0 Then
+            frm_District_Selection.Text = "Select District"
+            frm_District_Selection.LabelX1.Text = "District:"
             frm_District_Selection.ShowDialog()
 
             If Selected_District <> "" Then
@@ -9563,7 +9595,1302 @@ Public Class frm_Main
         tmr_Circ_QR_anim.Enabled = False
     End Sub
 
+    Private Sub lbl_Total_Regs_Click(sender As Object, e As EventArgs) Handles lbl_Total_Regs.Click
 
+    End Sub
+
+    Private Sub lbl_Total_Regs_Onsite_Click(sender As Object, e As EventArgs) Handles lbl_Total_Regs_Onsite.Click
+
+    End Sub
+
+    Private Sub lbl_Total_Regs_Onsite_MouseClick(sender As Object, e As MouseEventArgs) Handles lbl_Total_Regs_Onsite.MouseClick
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            lbl_Total_Regs_Onsite.Font = New Font(lbl_Total_Regs_Onsite.Font.FontFamily, lbl_Total_Regs_Onsite.Font.Size + 5, lbl_Total_Regs_Onsite.Font.Style)
+
+        ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
+
+            If lbl_Total_Regs_Onsite.Font.Size > 5 Then
+                lbl_Total_Regs_Onsite.Font = New Font(lbl_Total_Regs_Onsite.Font.FontFamily, lbl_Total_Regs_Onsite.Font.Size - 5, lbl_Total_Regs_Onsite.Font.Style)
+
+            End If
+
+
+
+        End If
+    End Sub
+
+    Private Sub btn_Export_PDF_per_User_Click(sender As Object, e As EventArgs) Handles btn_Export_PDF_per_User.Click
+        Selected_District = ""
+
+        Loaded_District.Clear()
+
+        Dim MysqlConn As MySqlConnection
+        Dim sql As String
+        Dim cmd As New MySqlCommand
+        Dim drSQL As MySqlDataReader
+
+
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString = "server=" + Server_IP + "; userid=jingG_15;password=haPPymeals;database=agma_2024;Convert Zero Datetime=True"
+
+
+
+        Try
+
+
+            MysqlConn.Open()
+            sql = "SELECT Bil_Account_Number, User_Logged, " _
+                    & "CONCAT((Select user_accounts.First_Name FROM user_accounts WHERE user_accounts.Username = onsite_attendance.User_Logged), ' ', " _
+                    & "(Select user_accounts.Middle_Initial FROM user_accounts WHERE user_accounts.Username = onsite_attendance.User_Logged), '. ', " _
+                    & "(Select user_accounts.Last_Name FROM user_accounts WHERE user_accounts.Username = onsite_attendance.User_Logged)) as Username_Full_Name, " _
+                    & "COUNT(*) as User_Count FROM onsite_attendance GROUP BY User_Logged ORDER BY Username_Full_Name ASC"
+
+
+            cmd = New MySqlCommand(sql, MysqlConn)
+            drSQL = cmd.ExecuteReader()
+
+
+            Do While drSQL.Read = True
+
+
+                Loaded_District.Add(drSQL("Username_Full_Name").ToString)
+
+            Loop
+        Catch ex As Exception
+            ' MessageBox.Show(ex.Message)
+
+            DevComponents.DotNetBar.MessageBoxEx.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            MysqlConn.Close()
+
+        End Try 'Give the thread a very..very short break...
+
+
+
+        If Loaded_District.Count > 0 Then
+            frm_District_Selection.Text = "Select User"
+            frm_District_Selection.LabelX1.Text = "Name:"
+            frm_District_Selection.ShowDialog()
+
+            If Selected_District <> "" Then
+                Dim f As FolderBrowserDialog = New FolderBrowserDialog
+
+                Try
+
+                    If f.ShowDialog() = DialogResult.OK Then
+                        fileName_Onsite_User_PDF = "\AGMA2024_Onsite_" + Selected_District + "_Only"
+                        filepath_Onsite_User_PDF = f.SelectedPath
+                        finalPath_Onsite_User_PDF = f.SelectedPath + fileName_Onsite_User_PDF
+
+
+
+                        lst_QR_Attendees.Visible = False
+                        pan_QR_control.Enabled = False
+                        circ_prog_QR.Value = 0
+                        circ_prog_QR.Visible = True
+                        tmr_Circ_QR_anim.Enabled = True
+
+
+
+                        ItemNumber_Onsite_User_PDF = 1
+                        BW_PDF_Exporter_User_Dist.RunWorkerAsync()
+
+                    Else
+
+
+
+                    End If
+
+
+                Catch ex As Exception
+
+                    DevComponents.DotNetBar.MessageBoxEx.Show("Exception line: 0xF1055", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+
+
+
+            End If
+
+        Else
+            DevComponents.DotNetBar.MessageBoxEx.Show("No Entries Found", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End If
+
+
+
+    End Sub
+
+    Private Sub BW_PDF_Exporter_User_Dist_DoWork(sender As Object, e As DoWorkEventArgs) Handles BW_PDF_Exporter_User_Dist.DoWork
+        Dim MysqlConn As MySqlConnection
+        Dim sql As String = ""
+        Dim cmd As New MySqlCommand
+        Dim drSQL As MySqlDataReader
+        Dim MaxPage_PDF As Double
+        Dim PageNum As Integer = 0
+
+        Dim maxItems As Integer
+        Dim currItem As Integer
+
+        Dim Saver_Counter As Integer = 0
+        Dim File_Counter As Integer = 0
+
+        Dim Current_Username As String = ""
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString = "server=" + Server_IP + "; userid=jingG_15; password=haPPymeals; database=agma_2024;Convert Zero Datetime=True"
+
+        Try
+
+            MysqlConn.Open()
+
+
+            sql = "SELECT Bil_Account_Number, User_Logged, " _
+                    & "CONCAT((Select user_accounts.First_Name FROM user_accounts WHERE user_accounts.Username = onsite_attendance.User_Logged), ' ', " _
+                    & "(Select user_accounts.Middle_Initial FROM user_accounts WHERE user_accounts.Username = onsite_attendance.User_Logged), '. ', " _
+                    & "(Select user_accounts.Last_Name FROM user_accounts WHERE user_accounts.Username = onsite_attendance.User_Logged)) as Username_Full_Name, " _
+                    & "COUNT(*) as User_Count FROM onsite_attendance GROUP BY User_Logged ORDER BY Username_Full_Name ASC"
+
+
+            cmd = New MySqlCommand(sql, MysqlConn)
+            drSQL = cmd.ExecuteReader()
+
+
+            Do While drSQL.Read = True
+
+
+                If Selected_District = drSQL("Username_Full_Name").ToString Then
+                    Dim count As Int32 = Convert.ToInt32(drSQL("User_Count"))
+                    maxItems = count
+                    MaxPage_PDF = count / 15
+
+                    Current_Username = drSQL("User_Logged").ToString
+
+                End If
+
+
+            Loop
+
+
+            Dim TempVal As Integer = MaxPage_PDF
+            If MaxPage_PDF > TempVal Then
+                MaxPage_PDF += 1
+                TempVal = MaxPage_PDF
+                MaxPage_PDF = TempVal
+            Else
+                TempVal = MaxPage_PDF
+                MaxPage_PDF = TempVal
+            End If
+
+
+
+        Catch ex As Exception
+            'MysqlConn.Close()
+
+            DevComponents.DotNetBar.MessageBoxEx.Show("Exception line: 0xF1053", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        Finally
+            MysqlConn.Close()
+
+
+
+        End Try
+
+        'Dim currentDate As DateTime = DateTime.Now
+
+        Dim xPos As Integer = 0
+        Dim yPos As Integer = 0
+        Dim CurrenPageItems As Integer = 0
+        Dim TempStr As String = ""
+        Dim TempLen As Integer = 0
+        Dim WidthPic As Single = 100 / 1.745
+        Dim HeigthPic As Single = 100
+
+
+
+        Dim pdf As pdf3.PdfDocument = New pdf3.PdfDocument
+        pdf.Info.Title = fileName_Onsite_User_PDF
+        Dim pdfPage As pdf3.PdfPage = pdf.AddPage
+        pdfPage.Size = PdfSharp.PageSize.Folio
+        Dim Logo_TopLeft As pdf2.XImage
+        Logo_TopLeft = Logo_PNG
+
+
+
+        pdfPage.Width = 850
+        pdfPage.Height = 1300
+        pdfPage.TrimMargins.Top = 15
+        pdfPage.TrimMargins.Right = 15
+        pdfPage.TrimMargins.Bottom = 15
+        pdfPage.TrimMargins.Left = 15
+
+
+        Dim graph As pdf2.XGraphics = pdf2.XGraphics.FromPdfPage(pdfPage)
+        ' Dim font As pdf2.XFont = New pdf2.XFont("Verdana", 20, pdf2.XFontStyle.Bold)
+        'graph.DrawString("Sample output", font, pdf2.XBrushes.Black, New pdf2.XRect(0, 0, pdfPage.Width.Point, pdfPage.Height.Point), pdf2.XStringFormats.Center)
+
+        graph.DrawImage(Logo_TopLeft, 30, 40, 80, 80)
+
+        graph.DrawString("BILIRAN ELECTRIC COOPERATIVE, INC.",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 130, 50)
+
+        graph.DrawString("BILECO",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 130, 70)
+
+        graph.DrawString("Brgy. Caraycaray, Naval, Biliran 6560",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 130, 90)
+
+        graph.DrawString("www.bileco.net",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 130, 110)
+
+        graph.DrawString("36th Annual General Membership Assembly | " + Selected_District + " | Per-User Registration / Scanned List",
+           New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 30, 150)
+
+        graph.DrawString("Venue: BIPSU Gym, Brgy. P.I. Garcia, Naval, Biliran",
+           New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, 170)
+
+        graph.DrawString("Date:   August 24, 2024",
+           New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, 190)
+
+
+
+        'graph.DrawString("Station #: " + Logged_User_Group.ToString, _
+        '   New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 550, 50)
+
+        'graph.DrawString("Lead Person : " + Lead_Person_Printing, _
+        '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 550, 70)
+
+        'graph.DrawString("Members : " + Member_1, _
+        '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 568, 90)
+
+        'graph.DrawString(Member_2, _
+        '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 620, 110)
+
+
+        graph.DrawString("Date generated: " + FormatDateTime(Now, DateFormat.LongDate),
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 580, 50)
+
+        graph.DrawString("Time generated: " + Now.Hour.ToString + ":" + Now.Minute.ToString + ":" + Now.Second.ToString + "." + Now.Millisecond.ToString,
+           New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 580, 70)
+
+        'graph.DrawString("User logged in: " + Logged_Username, _
+        '   New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 580, 90)
+
+        xPos += 30
+
+        graph.DrawString("#",
+           New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+        xPos += 40
+
+        graph.DrawString("Account #",
+           New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+        xPos += 100
+
+        graph.DrawString("Account Name",
+          New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+        xPos += 180
+
+        graph.DrawString("Address",
+          New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+        xPos += 200
+
+        graph.DrawString("Membership Number",
+          New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+        xPos += 150
+
+        graph.DrawString("Signature",
+          New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+        xPos = 0
+
+        yPos += 290
+
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString = "server=" + Server_IP + "; userid=jingG_15; password=haPPymeals; database=agma_2024;Convert Zero Datetime=True"
+
+
+        sql = "SELECT Bil_Account_Number, Bil_Account_Name, Bil_Address, " _
+                & "(SELECT overall_reg.Signature FROM overall_reg WHERE overall_reg.Bil_Account_Number = onsite_attendance.Bil_Account_Number) AS Signature, " _
+                & "(SELECT accounts_list.Membership_Number FROM accounts_list WHERE accounts_list.Account_Number = onsite_attendance.Bil_Account_Number) AS Membership_Number, " _
+                & "User_Logged FROM onsite_attendance HAVING User_Logged = '" & Current_Username & "' ORDER BY onsite_attendance.Bil_Account_Name ASC"
+
+        Try
+            MysqlConn.Open()
+            cmd = New MySqlCommand(sql, MysqlConn)
+            drSQL = cmd.ExecuteReader()
+            Do While drSQL.Read = True
+                ' If (Val(drSQL("r_id").ToString) > Last_ID_PDF_OVR) And (currItem < 75) Then
+                'Last_ID_PDF_OVR = Val(drSQL("r_id").ToString)
+
+                currItem += 1
+                BW_PDF_Exporter_User_Dist.ReportProgress((currItem / (maxItems + 5)) * 100)
+                xPos = 0
+                'xIndex = 1
+
+
+                xPos += 30
+
+                graph.DrawString(ItemNumber_Onsite_User_PDF.ToString,
+                     New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+
+                xPos += 40
+
+                graph.DrawString(drSQL("Bil_Account_Number").ToString,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                xPos += 100
+                TempStr = drSQL("Bil_Account_Name")
+                TempLen = TempStr.Length
+                If TempLen > 25 Then
+                    TempStr = Mid(drSQL("Bil_Account_Name"), 1, 25)
+
+                    graph.DrawString(TempStr,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                    TempStr = Mid(drSQL("Bil_Account_Name"), 26, TempLen)
+
+                    graph.DrawString(TempStr,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos + 11)
+                Else
+                    TempStr = drSQL("Bil_Account_Name")
+
+                    graph.DrawString(TempStr,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                End If
+
+
+
+                xPos += 180
+                TempStr = drSQL("Bil_Address")
+                TempLen = TempStr.Length
+                If TempLen > 27 Then
+                    TempStr = Mid(drSQL("Bil_Address"), 1, 27)
+
+                    graph.DrawString(TempStr,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                    TempStr = Mid(drSQL("Bil_Address"), 28, TempLen)
+
+                    graph.DrawString(TempStr,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos + 11)
+                Else
+                    TempStr = drSQL("Bil_Address")
+
+                    graph.DrawString(TempStr,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                End If
+
+                'xPos += 230
+                xPos += 200
+
+                graph.DrawString(drSQL("Membership_Number").ToString,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                xPos += 150
+
+                'If Val(drSQL("Pre_reg").ToString) = 1 Then
+
+                '    graph.DrawString("Pre-Registered", _
+                '    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                'ElseIf Val(drSQL("Pre_Reg").ToString) = 0 Then
+                Using myMS As New IO.MemoryStream
+                    Dim arrImage As Byte()
+                    'Dim myMS As New IO.MemoryStream
+                    arrImage = drSQL("Signature")
+
+                    For Each ar As Byte In arrImage
+                        myMS.WriteByte(ar)
+                    Next
+
+                    If CurrenPageItems Mod 2 = 1 Then
+
+                        Dim Temp_Sign As pdf2.XImage = System.Drawing.Image.FromStream(myMS)
+                        graph.DrawImage(Temp_Sign, xPos - 20, yPos - 50, WidthPic, HeigthPic)
+                        Temp_Sign.Dispose()
+
+                    Else
+
+                        Dim Temp_Sign As pdf2.XImage = System.Drawing.Image.FromStream(myMS)
+                        graph.DrawImage(Temp_Sign, xPos + 60, yPos - 50, WidthPic, HeigthPic)
+                        Temp_Sign.Dispose()
+
+                    End If
+
+                    'Dim Temp_Sign As pdf2.XImage = System.Drawing.Image.FromStream(myMS)
+                    'graph.DrawImage(Temp_Sign, xPos - 20, yPos - 60, WidthPic, HeigthPic)
+                    'Temp_Sign.Dispose()
+
+
+                End Using
+                ' End If
+
+
+
+                xPos = 0
+                yPos += 60
+                ItemNumber_Onsite_User_PDF += 1
+                CurrenPageItems += 1
+
+                If CurrenPageItems > 14 Then
+
+                    CurrenPageItems = 0
+                    PageNum += 1
+
+                    graph.DrawString("Page " + PageNum.ToString + " out of " + MaxPage_PDF.ToString,
+                       New pdf2.XFont("Arial", 7, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 720, 1250)
+
+                    graph.DrawString("*This is an electronic-generated report. ",
+                       New pdf2.XFont("Arial", 7, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, 1250)
+
+                    Saver_Counter += 1
+
+                    If Saver_Counter >= 10 Then
+                        Saver_Counter = 0
+                        File_Counter += 1
+
+                        pdf.Save(finalPath_Onsite_User_PDF + "(Items " + (ItemNumber_Onsite_User_PDF - 150).ToString + " to " + (ItemNumber_Onsite_User_PDF - 1).ToString + ").pdf")
+                        pdf.Dispose()
+                        graph.Graphics.Dispose()
+                        graph.Internals.Graphics.Dispose()
+                        graph.Dispose()
+
+
+                        pdf = New pdf3.PdfDocument
+                        pdf.Info.Title = fileName_Onsite_User_PDF
+
+
+                        pdfPage = pdf.AddPage
+                        pdfPage.Size = PdfSharp.PageSize.Folio
+                        pdfPage.Width = 850
+                        pdfPage.Height = 1300
+                        pdfPage.TrimMargins.Top = 15
+                        pdfPage.TrimMargins.Right = 15
+                        pdfPage.TrimMargins.Bottom = 15
+                        pdfPage.TrimMargins.Left = 15
+                        graph = pdf2.XGraphics.FromPdfPage(pdfPage)
+
+                    Else
+                        pdfPage = pdf.AddPage
+                        pdfPage.Size = PdfSharp.PageSize.Folio
+                        pdfPage.Width = 850
+                        pdfPage.Height = 1300
+                        pdfPage.TrimMargins.Top = 15
+                        pdfPage.TrimMargins.Right = 15
+                        pdfPage.TrimMargins.Bottom = 15
+                        pdfPage.TrimMargins.Left = 15
+
+                        graph = pdf2.XGraphics.FromPdfPage(pdfPage)
+
+
+                    End If
+
+
+
+
+                    '---------------------------
+                    yPos = 0
+
+                    graph.DrawImage(Logo_TopLeft, 30, 40, 80, 80)
+
+                    graph.DrawString("BILIRAN ELECTRIC COOPERATIVE, INC.",
+                        New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 130, 50)
+
+                    graph.DrawString("BILECO",
+                        New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 130, 70)
+
+                    graph.DrawString("Brgy. Caraycaray, Naval, Biliran 6560",
+                        New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 130, 90)
+
+                    graph.DrawString("www.bileco.net",
+                        New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 130, 110)
+
+                    graph.DrawString("36th Annual General Membership Assembly | " + Selected_District + " | Per-User Registration / Scanned List",
+                       New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 30, 150)
+
+                    graph.DrawString("Venue: BIPSU Gym, Brgy. P.I. Garcia, Naval, Biliran",
+                       New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, 170)
+
+                    graph.DrawString("Date:   August 24, 2024",
+                       New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, 190)
+
+
+
+
+
+
+                    'graph.DrawString("Station #: " + Logged_User_Group.ToString, _
+                    '   New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 550, 50)
+
+                    'graph.DrawString("Lead Person : " + Lead_Person_Printing, _
+                    '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 550, 70)
+
+                    'graph.DrawString("Members : " + Member_1, _
+                    '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 568, 90)
+
+                    'graph.DrawString(Member_2, _
+                    '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 620, 110)
+
+                    graph.DrawString("Date generated: " + FormatDateTime(Now, DateFormat.LongDate),
+                        New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 580, 50)
+
+                    graph.DrawString("Time generated: " + Now.Hour.ToString + ":" + Now.Minute.ToString + ":" + Now.Second.ToString + "." + Now.Millisecond.ToString,
+                       New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 580, 70)
+
+                    'graph.DrawString("User logged in: " + Logged_Username, _
+                    '   New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 580, 90)
+
+                    xPos += 30
+
+                    graph.DrawString("#",
+                       New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+                    xPos += 40
+
+                    graph.DrawString("Account #",
+                       New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+                    xPos += 100
+
+                    graph.DrawString("Account Name",
+                      New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+                    xPos += 180
+
+                    graph.DrawString("Address",
+                      New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+                    xPos += 200
+
+                    graph.DrawString("Membership Number",
+                      New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+                    xPos += 150
+
+                    graph.DrawString("Signature",
+                      New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+                    xPos = 0
+
+                    yPos += 290
+
+
+                End If
+
+
+            Loop
+
+        Catch ex As Exception
+
+            DevComponents.DotNetBar.MessageBoxEx.Show("Exception line: 0xF1054", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+
+        PageNum += 1
+        graph.DrawString("Page " + PageNum.ToString + " out of " + MaxPage_PDF.ToString,
+            New pdf2.XFont("Arial", 7, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 720, 1250)
+
+        graph.DrawString("*This is an electronic-generated report. ",
+            New pdf2.XFont("Arial", 7, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, 1250)
+
+        If yPos < 1100 Then
+            yPos += 30
+        Else
+            yPos -= 10
+        End If
+
+
+
+        graph.DrawString("Prepared by:",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 30, yPos)
+
+        graph.DrawString("Reviewed by:",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 210, yPos)
+
+        graph.DrawString("Checked by:",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 400, yPos)
+
+        graph.DrawString("Noted by:",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 590, yPos)
+
+
+        yPos += 40
+
+        graph.DrawString(User_Curr_Full_Name,
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Underline), pdf2.XBrushes.Black, 30, yPos)
+
+        'graph.DrawString("______________________",
+        '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Underline), pdf2.XBrushes.Black, 30, yPos)
+
+        graph.DrawString("Ma. Leizyl Q. Garcia",
+          New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Underline), pdf2.XBrushes.Black, 210, yPos)
+
+        graph.DrawString("Maureen D. Nierra",
+          New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Underline), pdf2.XBrushes.Black, 400, yPos)
+
+        graph.DrawString("Gerardo N. Oledan, REE",
+          New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Underline), pdf2.XBrushes.Black, 590, yPos)
+
+        yPos += 15
+
+        'If Lead_Person_Printing = (Logged_FirstName + " " + Logged_MiddleName + ". " + Logged_Lastname) Then
+
+        '    graph.DrawString("Station " + Logged_User_Group.ToString + " Lead person", _
+        '        New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, yPos)
+
+
+        'ElseIf (Member_1 = (Logged_FirstName + " " + Logged_MiddleName + ". " + Logged_Lastname)) Or (Member_2 = (Logged_FirstName + " " + Logged_MiddleName + ". " + Logged_Lastname)) Then
+
+        '    graph.DrawString("Station " + Logged_User_Group.ToString + " Member", _
+        '        New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, yPos)
+
+
+        'End If
+
+        'graph.DrawString(Logged_User_Position, _
+        '    New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, yPos)
+
+        graph.DrawString(User_Curr_Logged_Position.Replace("BILECO ", ""),
+            New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, yPos)
+
+        graph.DrawString("FSDM",
+               New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 210, yPos)
+
+        graph.DrawString("Internal Auditor",
+               New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 400, yPos)
+
+
+        graph.DrawString("General Manager",
+               New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 590, yPos)
+
+        Dim Temp_Subtractor As Integer = ItemNumber_Onsite_User_PDF - (File_Counter * 150)
+        Try
+            pdf.Save(finalPath_Onsite_User_PDF + "(Items " + (ItemNumber_Onsite_User_PDF - Temp_Subtractor + 1).ToString + " to " + (ItemNumber_Onsite_User_PDF - 1).ToString + ").pdf")
+            pdf.Dispose()
+            graph.Dispose()
+            currItem += 5
+            BW_PDF_Exporter_User_Dist.ReportProgress((currItem / (maxItems + 5)) * 100)
+
+            DevComponents.DotNetBar.MessageBoxEx.Show("PDF Export done.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Process.Start(filepath_Onsite_User_PDF)
+        Catch ex As Exception
+            DevComponents.DotNetBar.MessageBoxEx.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+
+    End Sub
+
+    Private Sub BW_PDF_Exporter_User_Dist_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles BW_PDF_Exporter_User_Dist.ProgressChanged
+        circ_prog_QR.ProgressText = e.ProgressPercentage.ToString + " %"
+
+
+    End Sub
+
+    Private Sub BW_PDF_Exporter_User_Dist_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BW_PDF_Exporter_User_Dist.RunWorkerCompleted
+        lst_QR_Attendees.Visible = True
+        pan_QR_control.Enabled = True
+        circ_prog_QR.Value = 0
+        circ_prog_QR.Visible = False
+        tmr_Circ_QR_anim.Enabled = False
+    End Sub
+
+    Private Sub btn_Self_Export_Reg_Non_Site_PDF_Click(sender As Object, e As EventArgs) Handles btn_Self_Export_Reg_Non_Site_PDF.Click
+        Dim f As FolderBrowserDialog = New FolderBrowserDialog
+
+        Try
+            If f.ShowDialog() = DialogResult.OK Then
+                fileName_Self_Non_Att_PDF = "\AGMA2024_Pre-Reg(Non-Attendees)"
+                filepath_Self_Non_Att_PDF = f.SelectedPath
+                finalPath_Self_Non_Att_PDF = f.SelectedPath + fileName_Self_Non_Att_PDF
+
+
+                lst_Self_Reg.Visible = False
+                pan_self_controls.Enabled = False
+                circ_self_reg.Value = 0
+                circ_self_reg.Visible = True
+                tmr_Circ_self_anim.Enabled = True
+
+
+
+                ItemNumber_Self_Non_Att_PDF = 1
+                BW_Export_Pre_Reg_Non_Attendees.RunWorkerAsync()
+
+
+
+
+            End If
+        Catch ex As Exception
+
+            DevComponents.DotNetBar.MessageBoxEx.Show("Exception line: 0xF1055", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+
+
+
+
+
+
+    End Sub
+
+    Private Sub BW_Export_Pre_Reg_Non_Attendees_DoWork(sender As Object, e As DoWorkEventArgs) Handles BW_Export_Pre_Reg_Non_Attendees.DoWork
+
+        Dim MysqlConn As MySqlConnection
+        Dim sql As String = ""
+        Dim cmd As New MySqlCommand
+        Dim drSQL As MySqlDataReader
+        Dim MaxPage_PDF As Double
+        Dim PageNum As Integer = 0
+
+        Dim maxItems As Integer
+        Dim currItem As Integer
+
+        Dim Saver_Counter As Integer = 0
+        Dim File_Counter As Integer = 0
+
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString = "server=" + Server_IP + "; userid=jingG_15; password=haPPymeals; database=agma_2024;Convert Zero Datetime=True"
+
+        Try
+
+            MysqlConn.Open()
+            sql = "SELECT COUNT(pre_reg.ID) AS rollcount FROM pre_reg WHERE pre_reg.Bil_Account_Number NOT IN (SELECT onsite_Attendance.Bil_Account_Number FROM onsite_Attendance)"
+            cmd = New MySqlCommand(sql, MysqlConn)
+            Dim count As Int32 = Convert.ToInt32(cmd.ExecuteScalar())
+            maxItems = count
+            MaxPage_PDF = count / 15
+
+
+            Dim TempVal As Integer = MaxPage_PDF
+            If MaxPage_PDF > TempVal Then
+                MaxPage_PDF += 1
+                TempVal = MaxPage_PDF
+                MaxPage_PDF = TempVal
+            Else
+                TempVal = MaxPage_PDF
+                MaxPage_PDF = TempVal
+            End If
+
+
+
+        Catch ex As Exception
+            'MysqlConn.Close()
+
+            DevComponents.DotNetBar.MessageBoxEx.Show("Exception line: 0xF1053", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        Finally
+            MysqlConn.Close()
+
+
+
+        End Try
+
+        'Dim currentDate As DateTime = DateTime.Now
+
+        Dim xPos As Integer = 0
+        Dim yPos As Integer = 0
+        Dim CurrenPageItems As Integer = 0
+        Dim TempStr As String = ""
+        Dim TempLen As Integer = 0
+        Dim WidthPic As Single = 100 / 1.745
+        Dim HeigthPic As Single = 100
+
+
+
+        Dim pdf As pdf3.PdfDocument = New pdf3.PdfDocument
+        pdf.Info.Title = fileName_Self_Non_Att_PDF
+        Dim pdfPage As pdf3.PdfPage = pdf.AddPage
+        pdfPage.Size = PdfSharp.PageSize.Folio
+        Dim Logo_TopLeft As pdf2.XImage
+        Logo_TopLeft = Logo_PNG
+
+
+
+        pdfPage.Width = 850
+        pdfPage.Height = 1300
+        pdfPage.TrimMargins.Top = 15
+        pdfPage.TrimMargins.Right = 15
+        pdfPage.TrimMargins.Bottom = 15
+        pdfPage.TrimMargins.Left = 15
+
+
+        Dim graph As pdf2.XGraphics = pdf2.XGraphics.FromPdfPage(pdfPage)
+        ' Dim font As pdf2.XFont = New pdf2.XFont("Verdana", 20, pdf2.XFontStyle.Bold)
+        'graph.DrawString("Sample output", font, pdf2.XBrushes.Black, New pdf2.XRect(0, 0, pdfPage.Width.Point, pdfPage.Height.Point), pdf2.XStringFormats.Center)
+
+        graph.DrawImage(Logo_TopLeft, 30, 40, 80, 80)
+
+        graph.DrawString("BILIRAN ELECTRIC COOPERATIVE, INC.",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 130, 50)
+
+        graph.DrawString("BILECO",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 130, 70)
+
+        graph.DrawString("Brgy. Caraycaray, Naval, Biliran 6560",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 130, 90)
+
+        graph.DrawString("www.bileco.net",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 130, 110)
+
+        graph.DrawString("36th Annual General Membership Assembly | Pre-Registration List (Non-Onsite Attendees)",
+           New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 30, 150)
+
+        graph.DrawString("Venue: BIPSU Gym, Brgy. P.I. Garcia, Naval, Biliran",
+           New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, 170)
+
+        graph.DrawString("Date:   August 24, 2024",
+           New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, 190)
+
+
+
+        'graph.DrawString("Station #: " + Logged_User_Group.ToString, _
+        '   New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 550, 50)
+
+        'graph.DrawString("Lead Person : " + Lead_Person_Printing, _
+        '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 550, 70)
+
+        'graph.DrawString("Members : " + Member_1, _
+        '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 568, 90)
+
+        'graph.DrawString(Member_2, _
+        '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 620, 110)
+
+
+        graph.DrawString("Date generated: " + FormatDateTime(Now, DateFormat.LongDate),
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 580, 50)
+
+        graph.DrawString("Time generated: " + Now.Hour.ToString + ":" + Now.Minute.ToString + ":" + Now.Second.ToString + "." + Now.Millisecond.ToString,
+           New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 580, 70)
+
+        'graph.DrawString("User logged in: " + Logged_Username, _
+        '   New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 580, 90)
+
+        xPos += 30
+
+        graph.DrawString("#",
+           New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+        xPos += 40
+
+        graph.DrawString("Account #",
+           New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+        xPos += 100
+
+        graph.DrawString("Account Name",
+          New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+        xPos += 200
+
+        graph.DrawString("Address",
+          New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+        xPos += 180
+
+        graph.DrawString("Stub #",
+          New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+        xPos += 110
+
+        graph.DrawString("Signature",
+          New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+        xPos = 0
+
+        yPos += 290
+
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString = "server=" + Server_IP + "; userid=jingG_15; password=haPPymeals; database=agma_2024;Convert Zero Datetime=True"
+
+        sql = "SELECT Bil_Account_Number, Bil_Account_Name, Bil_Address, Stub_number, Signature FROM pre_reg " _
+                & "WHERE pre_reg.Bil_Account_Number NOT IN (SELECT onsite_Attendance.Bil_Account_Number FROM onsite_Attendance) ORDER BY Bil_Account_Name ASC"
+
+        Try
+            MysqlConn.Open()
+            cmd = New MySqlCommand(sql, MysqlConn)
+            drSQL = cmd.ExecuteReader()
+            Do While drSQL.Read = True
+                ' If (Val(drSQL("r_id").ToString) > Last_ID_PDF_OVR) And (currItem < 75) Then
+                'Last_ID_PDF_OVR = Val(drSQL("r_id").ToString)
+
+                currItem += 1
+                BW_PDF_Exporter_Self.ReportProgress((currItem / (maxItems + 5)) * 100)
+                xPos = 0
+                'xIndex = 1
+
+
+                xPos += 30
+
+                graph.DrawString(ItemNumber_Self_Non_Att_PDF.ToString,
+                     New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+
+                xPos += 40
+
+                graph.DrawString(drSQL("Bil_Account_Number").ToString,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                xPos += 100
+                TempStr = drSQL("Bil_Account_Name")
+                TempLen = TempStr.Length
+                If TempLen > 25 Then
+                    TempStr = Mid(drSQL("Bil_Account_Name"), 1, 25)
+
+                    graph.DrawString(TempStr,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                    TempStr = Mid(drSQL("Bil_Account_Name"), 26, TempLen)
+
+                    graph.DrawString(TempStr,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos + 11)
+                Else
+                    TempStr = drSQL("Bil_Account_Name")
+
+                    graph.DrawString(TempStr,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                End If
+
+
+
+                xPos += 200
+                TempStr = drSQL("Bil_Address")
+                TempLen = TempStr.Length
+                If TempLen > 27 Then
+                    TempStr = Mid(drSQL("Bil_Address"), 1, 27)
+
+                    graph.DrawString(TempStr,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                    TempStr = Mid(drSQL("Bil_Address"), 28, TempLen)
+
+                    graph.DrawString(TempStr,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos + 11)
+                Else
+                    TempStr = drSQL("Bil_Address")
+
+                    graph.DrawString(TempStr,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                End If
+
+                'xPos += 230
+                xPos += 180
+
+                graph.DrawString(drSQL("Stub_Number").ToString,
+                    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                xPos += 90
+
+                'If Val(drSQL("Pre_reg").ToString) = 1 Then
+
+                '    graph.DrawString("Pre-Registered", _
+                '    New pdf2.XFont("Arial", 11, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, xPos, yPos)
+
+                'ElseIf Val(drSQL("Pre_Reg").ToString) = 0 Then
+                Using myMS As New IO.MemoryStream
+                    Dim arrImage As Byte()
+                    'Dim myMS As New IO.MemoryStream
+                    arrImage = drSQL("Signature")
+
+                    For Each ar As Byte In arrImage
+                        myMS.WriteByte(ar)
+                    Next
+
+                    If CurrenPageItems Mod 2 = 1 Then
+                        Dim Temp_Sign As pdf2.XImage = System.Drawing.Image.FromStream(myMS)
+                        graph.DrawImage(Temp_Sign, xPos - 20, yPos - 50, WidthPic, HeigthPic)
+                        Temp_Sign.Dispose()
+
+                    Else
+                        Dim Temp_Sign As pdf2.XImage = System.Drawing.Image.FromStream(myMS)
+                        graph.DrawImage(Temp_Sign, xPos + 60, yPos - 50, WidthPic, HeigthPic)
+                        Temp_Sign.Dispose()
+
+                    End If
+
+                    'Dim Temp_Sign As pdf2.XImage = System.Drawing.Image.FromStream(myMS)
+                    'graph.DrawImage(Temp_Sign, xPos - 20, yPos - 60, WidthPic, HeigthPic)
+                    'Temp_Sign.Dispose()
+
+
+                End Using
+                ' End If
+
+
+
+                xPos = 0
+                yPos += 60
+                ItemNumber_Self_Non_Att_PDF += 1
+                CurrenPageItems += 1
+
+                If CurrenPageItems > 14 Then
+
+                    CurrenPageItems = 0
+                    PageNum += 1
+
+                    graph.DrawString("Page " + PageNum.ToString + " out of " + MaxPage_PDF.ToString,
+                       New pdf2.XFont("Arial", 7, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 720, 1250)
+
+                    graph.DrawString("*This Is an electronic-generated report. ",
+                       New pdf2.XFont("Arial", 7, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, 1250)
+
+                    Saver_Counter += 1
+
+                    If Saver_Counter >= 10 Then
+                        Saver_Counter = 0
+                        File_Counter += 1
+
+                        pdf.Save(finalPath_Self_Non_Att_PDF + "(Items " + (ItemNumber_Self_Non_Att_PDF - 150).ToString + " to " + (ItemNumber_Self_Non_Att_PDF - 1).ToString + ").pdf")
+                        pdf.Dispose()
+                        graph.Graphics.Dispose()
+                        graph.Internals.Graphics.Dispose()
+                        graph.Dispose()
+
+
+                        pdf = New pdf3.PdfDocument
+                        pdf.Info.Title = fileName_Self_Non_Att_PDF
+
+
+                        pdfPage = pdf.AddPage
+                        pdfPage.Size = PdfSharp.PageSize.Folio
+                        pdfPage.Width = 850
+                        pdfPage.Height = 1300
+                        pdfPage.TrimMargins.Top = 15
+                        pdfPage.TrimMargins.Right = 15
+                        pdfPage.TrimMargins.Bottom = 15
+                        pdfPage.TrimMargins.Left = 15
+                        graph = pdf2.XGraphics.FromPdfPage(pdfPage)
+
+                    Else
+                        pdfPage = pdf.AddPage
+                        pdfPage.Size = PdfSharp.PageSize.Folio
+                        pdfPage.Width = 850
+                        pdfPage.Height = 1300
+                        pdfPage.TrimMargins.Top = 15
+                        pdfPage.TrimMargins.Right = 15
+                        pdfPage.TrimMargins.Bottom = 15
+                        pdfPage.TrimMargins.Left = 15
+
+                        graph = pdf2.XGraphics.FromPdfPage(pdfPage)
+
+
+                    End If
+
+
+
+
+                    '---------------------------
+                    yPos = 0
+
+                    graph.DrawImage(Logo_TopLeft, 30, 40, 80, 80)
+
+                    graph.DrawString("BILIRAN ELECTRIC COOPERATIVE, INC.",
+                        New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 130, 50)
+
+                    graph.DrawString("BILECO",
+                        New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 130, 70)
+
+                    graph.DrawString("Brgy. Caraycaray, Naval, Biliran 6560",
+                        New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 130, 90)
+
+                    graph.DrawString("www.bileco.net",
+                        New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 130, 110)
+
+                    graph.DrawString("36th Annual General Membership Assembly | Pre-Registration List (Non-Onsite Attendees)",
+                       New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 30, 150)
+
+                    graph.DrawString("Venue: BIPSU Gym, Brgy. P.I. Garcia, Naval, Biliran",
+                       New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, 170)
+
+                    graph.DrawString("Date:   August 24, 2024",
+                       New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, 190)
+
+
+
+
+
+
+                    'graph.DrawString("Station #: " + Logged_User_Group.ToString, _
+                    '   New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 550, 50)
+
+                    'graph.DrawString("Lead Person : " + Lead_Person_Printing, _
+                    '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 550, 70)
+
+                    'graph.DrawString("Members : " + Member_1, _
+                    '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 568, 90)
+
+                    'graph.DrawString(Member_2, _
+                    '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 620, 110)
+
+                    graph.DrawString("Date generated: " + FormatDateTime(Now, DateFormat.LongDate),
+                        New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 580, 50)
+
+                    graph.DrawString("Time generated: " + Now.Hour.ToString + ":" + Now.Minute.ToString + ":" + Now.Second.ToString + "." + Now.Millisecond.ToString,
+                       New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 580, 70)
+
+                    'graph.DrawString("User logged in: " + Logged_Username, _
+                    '   New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 580, 90)
+
+                    xPos += 30
+
+                    graph.DrawString("#",
+                       New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+                    xPos += 40
+
+                    graph.DrawString("Account #",
+                       New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+                    xPos += 100
+
+                    graph.DrawString("Account Name",
+                      New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+                    xPos += 200
+
+                    graph.DrawString("Address",
+                      New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+                    xPos += 180
+
+                    graph.DrawString("Stub #",
+                      New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+                    xPos += 110
+
+                    graph.DrawString("Signature",
+                      New pdf2.XFont("Arial", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, xPos, 230)
+
+                    xPos = 0
+
+                    yPos += 290
+
+
+                End If
+
+
+            Loop
+
+        Catch ex As Exception
+
+            DevComponents.DotNetBar.MessageBoxEx.Show("Exception line: 0xF1054", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+
+        PageNum += 1
+        graph.DrawString("Page " + PageNum.ToString + " out of " + MaxPage_PDF.ToString,
+            New pdf2.XFont("Arial", 7, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 720, 1250)
+
+        graph.DrawString("*This is an electronic-generated report. ",
+            New pdf2.XFont("Arial", 7, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, 1250)
+
+        If yPos < 1100 Then
+            yPos += 30
+        Else
+            yPos -= 10
+        End If
+
+
+
+        graph.DrawString("Prepared by:",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 30, yPos)
+
+        graph.DrawString("Reviewed by:",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 210, yPos)
+
+        graph.DrawString("Checked by:",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 400, yPos)
+
+        graph.DrawString("Noted by:",
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Bold), pdf2.XBrushes.Black, 590, yPos)
+
+
+        yPos += 40
+
+        graph.DrawString(User_Curr_Full_Name,
+            New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Underline), pdf2.XBrushes.Black, 30, yPos)
+
+        'graph.DrawString("______________________",
+        '    New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Underline), pdf2.XBrushes.Black, 30, yPos)
+
+        graph.DrawString("Allan Joseph S. Borrinaga",
+          New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Underline), pdf2.XBrushes.Black, 210, yPos)
+
+        graph.DrawString("Maureen D. Nierra",
+          New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Underline), pdf2.XBrushes.Black, 400, yPos)
+
+        graph.DrawString("Gerardo N. Oledan, REE",
+          New pdf2.XFont("Tahoma", 12, PdfSharp.Drawing.XFontStyle.Underline), pdf2.XBrushes.Black, 590, yPos)
+
+        yPos += 15
+
+        'If Lead_Person_Printing = (Logged_FirstName + " " + Logged_MiddleName + ". " + Logged_Lastname) Then
+
+        '    graph.DrawString("Station " + Logged_User_Group.ToString + " Lead person", _
+        '        New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, yPos)
+
+
+        'ElseIf (Member_1 = (Logged_FirstName + " " + Logged_MiddleName + ". " + Logged_Lastname)) Or (Member_2 = (Logged_FirstName + " " + Logged_MiddleName + ". " + Logged_Lastname)) Then
+
+        '    graph.DrawString("Station " + Logged_User_Group.ToString + " Member", _
+        '        New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, yPos)
+
+
+        'End If
+
+        'graph.DrawString(Logged_User_Position, _
+        '    New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, yPos)
+
+        graph.DrawString(User_Curr_Logged_Position.Replace("BILECO ", ""),
+            New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 30, yPos)
+
+        graph.DrawString("ISDM",
+               New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 210, yPos)
+
+        graph.DrawString("Internal Auditor",
+               New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 400, yPos)
+
+
+        graph.DrawString("General Manager",
+               New pdf2.XFont("Tahoma", 8, PdfSharp.Drawing.XFontStyle.Regular), pdf2.XBrushes.Black, 590, yPos)
+
+        Dim Temp_Subtractor As Integer = ItemNumber_Self_Non_Att_PDF - (File_Counter * 150)
+        Try
+            pdf.Save(finalPath_Self_Non_Att_PDF + "(Items " + (ItemNumber_Self_Non_Att_PDF - Temp_Subtractor + 1).ToString + " to " + (ItemNumber_Self_Non_Att_PDF - 1).ToString + ").pdf")
+            pdf.Dispose()
+            graph.Dispose()
+            currItem += 5
+            BW_PDF_Exporter_Self.ReportProgress((currItem / (maxItems + 5)) * 100)
+
+            DevComponents.DotNetBar.MessageBoxEx.Show("PDF Export done.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Process.Start(filepath_Self_Non_Att_PDF)
+        Catch ex As Exception
+            DevComponents.DotNetBar.MessageBoxEx.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+
+
+
+
+
+
+    End Sub
+
+    Private Sub BW_Export_Pre_Reg_Non_Attendees_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles BW_Export_Pre_Reg_Non_Attendees.ProgressChanged
+        circ_self_reg.ProgressText = e.ProgressPercentage.ToString + " %"
+    End Sub
+
+    Private Sub BW_Export_Pre_Reg_Non_Attendees_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BW_Export_Pre_Reg_Non_Attendees.RunWorkerCompleted
+
+
+        lst_Self_Reg.Visible = True
+        pan_self_controls.Enabled = True
+        circ_self_reg.Value = 0
+        circ_self_reg.Visible = False
+        tmr_Circ_self_anim.Enabled = False
+    End Sub
 End Class
 
 

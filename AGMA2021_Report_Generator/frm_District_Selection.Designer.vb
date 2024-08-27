@@ -41,7 +41,6 @@ Partial Class frm_District_Selection
         Me.LabelX1.Size = New System.Drawing.Size(76, 20)
         Me.LabelX1.TabIndex = 0
         Me.LabelX1.Text = "Select District:"
-        Me.LabelX1.TextAlignment = System.Drawing.StringAlignment.Far
         '
         'cmb_Districts
         '
