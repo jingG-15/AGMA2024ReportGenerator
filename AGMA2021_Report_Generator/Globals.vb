@@ -16,6 +16,8 @@ Module Globals
 
     Public Loaded_District As New ArrayList()
 
+    Public Loaded_Username_for_Excel As New ArrayList()
+
     Public Update_SMS_Marker As New ArrayList()
 
     Public Update_SMS_Marker_Overall_tb As New ArrayList()

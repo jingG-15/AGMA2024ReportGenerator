@@ -55,6 +55,7 @@ Partial Class frm_Main
         Me.btn_QR_Export_to_Excel = New DevComponents.DotNetBar.ButtonItem()
         Me.btn_QR_Export_to_PDF = New DevComponents.DotNetBar.ButtonItem()
         Me.btn_Export_PDF_per_User = New DevComponents.DotNetBar.ButtonItem()
+        Me.btn_Export_Excel_per_User = New DevComponents.DotNetBar.ButtonItem()
         Me.Del_Logs = New DevComponents.DotNetBar.ButtonItem()
         Me.btn_View_Del_Prof = New DevComponents.DotNetBar.ButtonItem()
         Me.btn_Export_Del_Logs = New DevComponents.DotNetBar.ButtonItem()
@@ -75,29 +76,6 @@ Partial Class frm_Main
         Me.btn_Masterlist_Search = New DevComponents.DotNetBar.ButtonX()
         Me.txt_Mstr_Search_Term = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.lbl_Main = New DevComponents.DotNetBar.LabelX()
-        Me.sidenavpan_QR_Attendance = New DevComponents.DotNetBar.Controls.SideNavPanel()
-        Me.circ_prog_QR = New DevComponents.DotNetBar.Controls.CircularProgress()
-        Me.pan_QR_control = New DevComponents.DotNetBar.PanelEx()
-        Me.rdo_QR_Search_by_Account_Number = New System.Windows.Forms.RadioButton()
-        Me.rdo_QR_Search_by_Account_Name = New System.Windows.Forms.RadioButton()
-        Me.btn_QR_Refresh_List = New DevComponents.DotNetBar.ButtonX()
-        Me.btn_QR_Search = New DevComponents.DotNetBar.ButtonX()
-        Me.txt_QR_Search_Term = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
-        Me.sidenavpan_livetotals_onsite = New DevComponents.DotNetBar.Controls.SideNavPanel()
-        Me.lbl_Total_Regs_Onsite = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_AMPM_Onsite = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Minute_Onsite = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Colon_Onsite = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Hour_Onsite = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Label_Onsite = New DevComponents.DotNetBar.LabelX()
-        Me.sidenavpan_livetotals_per_district = New DevComponents.DotNetBar.Controls.SideNavPanel()
-        Me.lbl_Time_AMPM_Area = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Minute_Area = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Colon_Area = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Total_Regs_Area = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Hour_Area = New DevComponents.DotNetBar.LabelX()
-        Me.lbl_Time_Label_Area = New DevComponents.DotNetBar.LabelX()
         Me.sidenavpan_LiveTotalReg = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.lbl_Time_AMPM = New DevComponents.DotNetBar.LabelX()
         Me.lbl_Time_Minute = New DevComponents.DotNetBar.LabelX()
@@ -106,28 +84,20 @@ Partial Class frm_Main
         Me.lbl_Total_Regs = New DevComponents.DotNetBar.LabelX()
         Me.lbl_Time_Hour = New DevComponents.DotNetBar.LabelX()
         Me.lbl_Time_Label = New DevComponents.DotNetBar.LabelX()
-        Me.SideNavPanel1 = New DevComponents.DotNetBar.Controls.SideNavPanel()
-        Me.circ_del_prog = New DevComponents.DotNetBar.Controls.CircularProgress()
-        Me.pan_del_logs_control = New DevComponents.DotNetBar.PanelEx()
-        Me.rdo_del_Search_by_Account_Name = New System.Windows.Forms.RadioButton()
-        Me.rdo_del_Search_by_Del_Username = New System.Windows.Forms.RadioButton()
-        Me.rdo_del_Search_by_Reg_Username = New System.Windows.Forms.RadioButton()
-        Me.rdo_del_Search_by_Account_Num = New System.Windows.Forms.RadioButton()
-        Me.btn_del_Refresh = New DevComponents.DotNetBar.ButtonX()
-        Me.btn_del_Search = New DevComponents.DotNetBar.ButtonX()
-        Me.txt_del_Search_Term = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
-        Me.sidenavpan_Officer_List = New DevComponents.DotNetBar.Controls.SideNavPanel()
-        Me.circ_users_prog = New DevComponents.DotNetBar.Controls.CircularProgress()
-        Me.pan_users_control = New DevComponents.DotNetBar.PanelEx()
-        Me.rdo_user_search_by_Username = New System.Windows.Forms.RadioButton()
-        Me.rdo_user_search_by_Designation = New System.Windows.Forms.RadioButton()
-        Me.rdo_user_search_by_Address = New System.Windows.Forms.RadioButton()
-        Me.rdo_user_search_by_Real_Name = New System.Windows.Forms.RadioButton()
-        Me.btn_user_refresh_list = New DevComponents.DotNetBar.ButtonX()
-        Me.btn_user_Search = New DevComponents.DotNetBar.ButtonX()
-        Me.txt_user_Search_Term = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
+        Me.sidenavpan_livetotals_per_district = New DevComponents.DotNetBar.Controls.SideNavPanel()
+        Me.lbl_Time_AMPM_Area = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Minute_Area = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Colon_Area = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Total_Regs_Area = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Hour_Area = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Label_Area = New DevComponents.DotNetBar.LabelX()
+        Me.sidenavpan_livetotals_onsite = New DevComponents.DotNetBar.Controls.SideNavPanel()
+        Me.lbl_Total_Regs_Onsite = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_AMPM_Onsite = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Minute_Onsite = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Colon_Onsite = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Hour_Onsite = New DevComponents.DotNetBar.LabelX()
+        Me.lbl_Time_Label_Onsite = New DevComponents.DotNetBar.LabelX()
         Me.sidenavpan_self_reg = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.circ_self_reg = New DevComponents.DotNetBar.Controls.CircularProgress()
         Me.pan_self_controls = New DevComponents.DotNetBar.PanelEx()
@@ -139,6 +109,37 @@ Partial Class frm_Main
         Me.btn_self_search = New DevComponents.DotNetBar.ButtonX()
         Me.txt_Self_Search_Term = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
+        Me.sidenavpan_Officer_List = New DevComponents.DotNetBar.Controls.SideNavPanel()
+        Me.circ_users_prog = New DevComponents.DotNetBar.Controls.CircularProgress()
+        Me.pan_users_control = New DevComponents.DotNetBar.PanelEx()
+        Me.rdo_user_search_by_Username = New System.Windows.Forms.RadioButton()
+        Me.rdo_user_search_by_Designation = New System.Windows.Forms.RadioButton()
+        Me.rdo_user_search_by_Address = New System.Windows.Forms.RadioButton()
+        Me.rdo_user_search_by_Real_Name = New System.Windows.Forms.RadioButton()
+        Me.btn_user_refresh_list = New DevComponents.DotNetBar.ButtonX()
+        Me.btn_user_Search = New DevComponents.DotNetBar.ButtonX()
+        Me.txt_user_Search_Term = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
+        Me.sidenavpan_QR_Attendance = New DevComponents.DotNetBar.Controls.SideNavPanel()
+        Me.circ_prog_QR = New DevComponents.DotNetBar.Controls.CircularProgress()
+        Me.pan_QR_control = New DevComponents.DotNetBar.PanelEx()
+        Me.rdo_QR_Search_by_Account_Number = New System.Windows.Forms.RadioButton()
+        Me.rdo_QR_Search_by_Account_Name = New System.Windows.Forms.RadioButton()
+        Me.btn_QR_Refresh_List = New DevComponents.DotNetBar.ButtonX()
+        Me.btn_QR_Search = New DevComponents.DotNetBar.ButtonX()
+        Me.txt_QR_Search_Term = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
+        Me.SideNavPanel1 = New DevComponents.DotNetBar.Controls.SideNavPanel()
+        Me.circ_del_prog = New DevComponents.DotNetBar.Controls.CircularProgress()
+        Me.pan_del_logs_control = New DevComponents.DotNetBar.PanelEx()
+        Me.rdo_del_Search_by_Account_Name = New System.Windows.Forms.RadioButton()
+        Me.rdo_del_Search_by_Del_Username = New System.Windows.Forms.RadioButton()
+        Me.rdo_del_Search_by_Reg_Username = New System.Windows.Forms.RadioButton()
+        Me.rdo_del_Search_by_Account_Num = New System.Windows.Forms.RadioButton()
+        Me.btn_del_Refresh = New DevComponents.DotNetBar.ButtonX()
+        Me.btn_del_Search = New DevComponents.DotNetBar.ButtonX()
+        Me.txt_del_Search_Term = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
         Me.SideNavItem1 = New DevComponents.DotNetBar.Controls.SideNavItem()
         Me.SideNavItem5 = New DevComponents.DotNetBar.Controls.SideNavItem()
         Me.Separator1 = New DevComponents.DotNetBar.Separator()
@@ -201,21 +202,22 @@ Partial Class frm_Main
         Me.BW_SMS_Updater_Overall = New System.ComponentModel.BackgroundWorker()
         Me.BW_PDF_Exporter_User_Dist = New System.ComponentModel.BackgroundWorker()
         Me.BW_Export_Pre_Reg_Non_Attendees = New System.ComponentModel.BackgroundWorker()
+        Me.BW_Excel_Exporter_User_Dist = New System.ComponentModel.BackgroundWorker()
         Me.SideNav1.SuspendLayout()
         Me.sidenavpan_masterlist.SuspendLayout()
         CType(Me.ContextMenuBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pan_masterlist_controls.SuspendLayout()
-        Me.sidenavpan_QR_Attendance.SuspendLayout()
-        Me.pan_QR_control.SuspendLayout()
-        Me.sidenavpan_livetotals_onsite.SuspendLayout()
-        Me.sidenavpan_livetotals_per_district.SuspendLayout()
         Me.sidenavpan_LiveTotalReg.SuspendLayout()
-        Me.SideNavPanel1.SuspendLayout()
-        Me.pan_del_logs_control.SuspendLayout()
-        Me.sidenavpan_Officer_List.SuspendLayout()
-        Me.pan_users_control.SuspendLayout()
+        Me.sidenavpan_livetotals_per_district.SuspendLayout()
+        Me.sidenavpan_livetotals_onsite.SuspendLayout()
         Me.sidenavpan_self_reg.SuspendLayout()
         Me.pan_self_controls.SuspendLayout()
+        Me.sidenavpan_Officer_List.SuspendLayout()
+        Me.pan_users_control.SuspendLayout()
+        Me.sidenavpan_QR_Attendance.SuspendLayout()
+        Me.pan_QR_control.SuspendLayout()
+        Me.SideNavPanel1.SuspendLayout()
+        Me.pan_del_logs_control.SuspendLayout()
         Me.SuspendLayout()
         '
         'StyleManager1
@@ -226,13 +228,13 @@ Partial Class frm_Main
         'SideNav1
         '
         Me.SideNav1.Controls.Add(Me.sidenavpan_masterlist)
-        Me.SideNav1.Controls.Add(Me.sidenavpan_QR_Attendance)
-        Me.SideNav1.Controls.Add(Me.sidenavpan_livetotals_onsite)
-        Me.SideNav1.Controls.Add(Me.sidenavpan_livetotals_per_district)
         Me.SideNav1.Controls.Add(Me.sidenavpan_LiveTotalReg)
-        Me.SideNav1.Controls.Add(Me.SideNavPanel1)
-        Me.SideNav1.Controls.Add(Me.sidenavpan_Officer_List)
+        Me.SideNav1.Controls.Add(Me.sidenavpan_livetotals_per_district)
+        Me.SideNav1.Controls.Add(Me.sidenavpan_livetotals_onsite)
         Me.SideNav1.Controls.Add(Me.sidenavpan_self_reg)
+        Me.SideNav1.Controls.Add(Me.sidenavpan_Officer_List)
+        Me.SideNav1.Controls.Add(Me.sidenavpan_QR_Attendance)
+        Me.SideNav1.Controls.Add(Me.SideNavPanel1)
         Me.SideNav1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SideNav1.EnableClose = False
         Me.SideNav1.EnableMaximize = False
@@ -396,7 +398,7 @@ Partial Class frm_Main
         '
         Me.QR_Attendance.AutoExpandOnClick = True
         Me.QR_Attendance.Name = "QR_Attendance"
-        Me.QR_Attendance.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_QR_View_Profile, Me.btn_QR_Export_to_Excel, Me.btn_QR_Export_to_PDF, Me.btn_Export_PDF_per_User})
+        Me.QR_Attendance.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btn_QR_View_Profile, Me.btn_QR_Export_to_Excel, Me.btn_QR_Export_to_PDF, Me.btn_Export_PDF_per_User, Me.btn_Export_Excel_per_User})
         Me.QR_Attendance.Text = "QR_Attendance"
         '
         'btn_QR_View_Profile
@@ -418,6 +420,11 @@ Partial Class frm_Main
         '
         Me.btn_Export_PDF_per_User.Name = "btn_Export_PDF_per_User"
         Me.btn_Export_PDF_per_User.Text = "Export Attendance to PDF Per User"
+        '
+        'btn_Export_Excel_per_User
+        '
+        Me.btn_Export_Excel_per_User.Name = "btn_Export_Excel_per_User"
+        Me.btn_Export_Excel_per_User.Text = "Export Attendance to Excel Per User"
         '
         'Del_Logs
         '
@@ -721,366 +728,6 @@ Partial Class frm_Main
         Me.lbl_Main.Text = "Search Term:"
         Me.lbl_Main.TextAlignment = System.Drawing.StringAlignment.Far
         '
-        'sidenavpan_QR_Attendance
-        '
-        Me.sidenavpan_QR_Attendance.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.sidenavpan_QR_Attendance.Controls.Add(Me.circ_prog_QR)
-        Me.sidenavpan_QR_Attendance.Controls.Add(Me.lst_QR_Attendees)
-        Me.sidenavpan_QR_Attendance.Controls.Add(Me.pan_QR_control)
-        Me.sidenavpan_QR_Attendance.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.sidenavpan_QR_Attendance.ForeColor = System.Drawing.Color.Black
-        Me.sidenavpan_QR_Attendance.Location = New System.Drawing.Point(212, 31)
-        Me.sidenavpan_QR_Attendance.Name = "sidenavpan_QR_Attendance"
-        Me.sidenavpan_QR_Attendance.Size = New System.Drawing.Size(767, 529)
-        Me.sidenavpan_QR_Attendance.TabIndex = 32
-        Me.sidenavpan_QR_Attendance.Visible = False
-        '
-        'circ_prog_QR
-        '
-        Me.circ_prog_QR.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        '
-        '
-        '
-        Me.circ_prog_QR.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.circ_prog_QR.Location = New System.Drawing.Point(326, 210)
-        Me.circ_prog_QR.Name = "circ_prog_QR"
-        Me.circ_prog_QR.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot
-        Me.circ_prog_QR.ProgressColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(92, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.circ_prog_QR.ProgressTextFormat = ""
-        Me.circ_prog_QR.ProgressTextVisible = True
-        Me.circ_prog_QR.Size = New System.Drawing.Size(100, 100)
-        Me.circ_prog_QR.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP
-        Me.circ_prog_QR.TabIndex = 42
-        Me.circ_prog_QR.Visible = False
-        '
-        'pan_QR_control
-        '
-        Me.pan_QR_control.CanvasColor = System.Drawing.SystemColors.Control
-        Me.pan_QR_control.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.pan_QR_control.Controls.Add(Me.rdo_QR_Search_by_Account_Number)
-        Me.pan_QR_control.Controls.Add(Me.rdo_QR_Search_by_Account_Name)
-        Me.pan_QR_control.Controls.Add(Me.btn_QR_Refresh_List)
-        Me.pan_QR_control.Controls.Add(Me.btn_QR_Search)
-        Me.pan_QR_control.Controls.Add(Me.txt_QR_Search_Term)
-        Me.pan_QR_control.Controls.Add(Me.LabelX4)
-        Me.pan_QR_control.DisabledBackColor = System.Drawing.Color.Empty
-        Me.pan_QR_control.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pan_QR_control.Location = New System.Drawing.Point(0, 0)
-        Me.pan_QR_control.Name = "pan_QR_control"
-        Me.pan_QR_control.Size = New System.Drawing.Size(767, 109)
-        Me.pan_QR_control.Style.Alignment = System.Drawing.StringAlignment.Center
-        Me.pan_QR_control.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
-        Me.pan_QR_control.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
-        Me.pan_QR_control.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
-        Me.pan_QR_control.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
-        Me.pan_QR_control.Style.GradientAngle = 90
-        Me.pan_QR_control.TabIndex = 41
-        '
-        'rdo_QR_Search_by_Account_Number
-        '
-        Me.rdo_QR_Search_by_Account_Number.AutoSize = True
-        Me.rdo_QR_Search_by_Account_Number.ForeColor = System.Drawing.Color.Black
-        Me.rdo_QR_Search_by_Account_Number.Location = New System.Drawing.Point(263, 56)
-        Me.rdo_QR_Search_by_Account_Number.Name = "rdo_QR_Search_by_Account_Number"
-        Me.rdo_QR_Search_by_Account_Number.Size = New System.Drawing.Size(163, 17)
-        Me.rdo_QR_Search_by_Account_Number.TabIndex = 4
-        Me.rdo_QR_Search_by_Account_Number.Text = "Search by Account Number"
-        Me.rdo_QR_Search_by_Account_Number.UseVisualStyleBackColor = True
-        '
-        'rdo_QR_Search_by_Account_Name
-        '
-        Me.rdo_QR_Search_by_Account_Name.AutoSize = True
-        Me.rdo_QR_Search_by_Account_Name.Checked = True
-        Me.rdo_QR_Search_by_Account_Name.ForeColor = System.Drawing.Color.Black
-        Me.rdo_QR_Search_by_Account_Name.Location = New System.Drawing.Point(84, 56)
-        Me.rdo_QR_Search_by_Account_Name.Name = "rdo_QR_Search_by_Account_Name"
-        Me.rdo_QR_Search_by_Account_Name.Size = New System.Drawing.Size(151, 17)
-        Me.rdo_QR_Search_by_Account_Name.TabIndex = 3
-        Me.rdo_QR_Search_by_Account_Name.TabStop = True
-        Me.rdo_QR_Search_by_Account_Name.Text = "Search by Account Name"
-        Me.rdo_QR_Search_by_Account_Name.UseVisualStyleBackColor = True
-        '
-        'btn_QR_Refresh_List
-        '
-        Me.btn_QR_Refresh_List.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btn_QR_Refresh_List.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
-        Me.btn_QR_Refresh_List.Location = New System.Drawing.Point(524, 56)
-        Me.btn_QR_Refresh_List.Name = "btn_QR_Refresh_List"
-        Me.btn_QR_Refresh_List.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
-        Me.btn_QR_Refresh_List.Size = New System.Drawing.Size(134, 35)
-        Me.btn_QR_Refresh_List.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btn_QR_Refresh_List.TabIndex = 2
-        Me.btn_QR_Refresh_List.Text = "Refresh List"
-        '
-        'btn_QR_Search
-        '
-        Me.btn_QR_Search.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btn_QR_Search.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
-        Me.btn_QR_Search.Location = New System.Drawing.Point(524, 15)
-        Me.btn_QR_Search.Name = "btn_QR_Search"
-        Me.btn_QR_Search.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
-        Me.btn_QR_Search.Size = New System.Drawing.Size(134, 35)
-        Me.btn_QR_Search.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btn_QR_Search.TabIndex = 1
-        Me.btn_QR_Search.Text = "Search"
-        '
-        'txt_QR_Search_Term
-        '
-        Me.txt_QR_Search_Term.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.txt_QR_Search_Term.Border.Class = "TextBoxBorder"
-        Me.txt_QR_Search_Term.Border.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
-        Me.txt_QR_Search_Term.DisabledBackColor = System.Drawing.Color.White
-        Me.txt_QR_Search_Term.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txt_QR_Search_Term.ForeColor = System.Drawing.Color.Black
-        Me.txt_QR_Search_Term.Location = New System.Drawing.Point(84, 17)
-        Me.txt_QR_Search_Term.Name = "txt_QR_Search_Term"
-        Me.txt_QR_Search_Term.PreventEnterBeep = True
-        Me.txt_QR_Search_Term.Size = New System.Drawing.Size(434, 33)
-        Me.txt_QR_Search_Term.TabIndex = 0
-        '
-        'LabelX4
-        '
-        '
-        '
-        '
-        Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX4.ForeColor = System.Drawing.Color.Black
-        Me.LabelX4.Location = New System.Drawing.Point(3, 15)
-        Me.LabelX4.Name = "LabelX4"
-        Me.LabelX4.Size = New System.Drawing.Size(75, 23)
-        Me.LabelX4.TabIndex = 0
-        Me.LabelX4.Text = "Search Term:"
-        Me.LabelX4.TextAlignment = System.Drawing.StringAlignment.Far
-        '
-        'sidenavpan_livetotals_onsite
-        '
-        Me.sidenavpan_livetotals_onsite.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Total_Regs_Onsite)
-        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_AMPM_Onsite)
-        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Minute_Onsite)
-        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Colon_Onsite)
-        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Hour_Onsite)
-        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Label_Onsite)
-        Me.sidenavpan_livetotals_onsite.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.sidenavpan_livetotals_onsite.ForeColor = System.Drawing.Color.Black
-        Me.sidenavpan_livetotals_onsite.Location = New System.Drawing.Point(212, 31)
-        Me.sidenavpan_livetotals_onsite.Name = "sidenavpan_livetotals_onsite"
-        Me.sidenavpan_livetotals_onsite.Size = New System.Drawing.Size(767, 529)
-        Me.sidenavpan_livetotals_onsite.TabIndex = 61
-        Me.sidenavpan_livetotals_onsite.Visible = False
-        '
-        'lbl_Total_Regs_Onsite
-        '
-        Me.lbl_Total_Regs_Onsite.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Total_Regs_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Total_Regs_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 80.0!, System.Drawing.FontStyle.Bold)
-        Me.lbl_Total_Regs_Onsite.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Total_Regs_Onsite.Location = New System.Drawing.Point(4, 87)
-        Me.lbl_Total_Regs_Onsite.Name = "lbl_Total_Regs_Onsite"
-        Me.lbl_Total_Regs_Onsite.Size = New System.Drawing.Size(768, 396)
-        Me.lbl_Total_Regs_Onsite.TabIndex = 18
-        Me.lbl_Total_Regs_Onsite.Text = "10,000"
-        Me.lbl_Total_Regs_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_AMPM_Onsite
-        '
-        Me.lbl_Time_AMPM_Onsite.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_AMPM_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_AMPM_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_AMPM_Onsite.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_AMPM_Onsite.Location = New System.Drawing.Point(340, 6)
-        Me.lbl_Time_AMPM_Onsite.Name = "lbl_Time_AMPM_Onsite"
-        Me.lbl_Time_AMPM_Onsite.Size = New System.Drawing.Size(78, 57)
-        Me.lbl_Time_AMPM_Onsite.TabIndex = 17
-        Me.lbl_Time_AMPM_Onsite.Text = "PM"
-        Me.lbl_Time_AMPM_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Minute_Onsite
-        '
-        Me.lbl_Time_Minute_Onsite.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Minute_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Minute_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Minute_Onsite.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Minute_Onsite.Location = New System.Drawing.Point(274, 6)
-        Me.lbl_Time_Minute_Onsite.Name = "lbl_Time_Minute_Onsite"
-        Me.lbl_Time_Minute_Onsite.Size = New System.Drawing.Size(60, 57)
-        Me.lbl_Time_Minute_Onsite.TabIndex = 16
-        Me.lbl_Time_Minute_Onsite.Text = "69"
-        Me.lbl_Time_Minute_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Colon_Onsite
-        '
-        Me.lbl_Time_Colon_Onsite.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Colon_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Colon_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Colon_Onsite.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Colon_Onsite.Location = New System.Drawing.Point(245, 6)
-        Me.lbl_Time_Colon_Onsite.Name = "lbl_Time_Colon_Onsite"
-        Me.lbl_Time_Colon_Onsite.Size = New System.Drawing.Size(23, 57)
-        Me.lbl_Time_Colon_Onsite.TabIndex = 15
-        Me.lbl_Time_Colon_Onsite.Text = ":"
-        Me.lbl_Time_Colon_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Hour_Onsite
-        '
-        Me.lbl_Time_Hour_Onsite.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Hour_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Hour_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Hour_Onsite.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Hour_Onsite.Location = New System.Drawing.Point(181, 6)
-        Me.lbl_Time_Hour_Onsite.Name = "lbl_Time_Hour_Onsite"
-        Me.lbl_Time_Hour_Onsite.Size = New System.Drawing.Size(58, 57)
-        Me.lbl_Time_Hour_Onsite.TabIndex = 13
-        Me.lbl_Time_Hour_Onsite.Text = "12"
-        Me.lbl_Time_Hour_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Label_Onsite
-        '
-        Me.lbl_Time_Label_Onsite.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Label_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Label_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Label_Onsite.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Label_Onsite.Location = New System.Drawing.Point(3, 3)
-        Me.lbl_Time_Label_Onsite.Name = "lbl_Time_Label_Onsite"
-        Me.lbl_Time_Label_Onsite.Size = New System.Drawing.Size(145, 63)
-        Me.lbl_Time_Label_Onsite.TabIndex = 14
-        Me.lbl_Time_Label_Onsite.Text = "Time: "
-        Me.lbl_Time_Label_Onsite.TextAlignment = System.Drawing.StringAlignment.Far
-        '
-        'sidenavpan_livetotals_per_district
-        '
-        Me.sidenavpan_livetotals_per_district.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_AMPM_Area)
-        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Minute_Area)
-        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Colon_Area)
-        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Total_Regs_Area)
-        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Hour_Area)
-        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Label_Area)
-        Me.sidenavpan_livetotals_per_district.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.sidenavpan_livetotals_per_district.ForeColor = System.Drawing.Color.Black
-        Me.sidenavpan_livetotals_per_district.Location = New System.Drawing.Point(212, 31)
-        Me.sidenavpan_livetotals_per_district.Name = "sidenavpan_livetotals_per_district"
-        Me.sidenavpan_livetotals_per_district.Size = New System.Drawing.Size(767, 529)
-        Me.sidenavpan_livetotals_per_district.TabIndex = 25
-        Me.sidenavpan_livetotals_per_district.Visible = False
-        '
-        'lbl_Time_AMPM_Area
-        '
-        Me.lbl_Time_AMPM_Area.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_AMPM_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_AMPM_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_AMPM_Area.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_AMPM_Area.Location = New System.Drawing.Point(340, 7)
-        Me.lbl_Time_AMPM_Area.Name = "lbl_Time_AMPM_Area"
-        Me.lbl_Time_AMPM_Area.Size = New System.Drawing.Size(78, 57)
-        Me.lbl_Time_AMPM_Area.TabIndex = 12
-        Me.lbl_Time_AMPM_Area.Text = "PM"
-        Me.lbl_Time_AMPM_Area.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Minute_Area
-        '
-        Me.lbl_Time_Minute_Area.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Minute_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Minute_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Minute_Area.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Minute_Area.Location = New System.Drawing.Point(274, 7)
-        Me.lbl_Time_Minute_Area.Name = "lbl_Time_Minute_Area"
-        Me.lbl_Time_Minute_Area.Size = New System.Drawing.Size(60, 57)
-        Me.lbl_Time_Minute_Area.TabIndex = 11
-        Me.lbl_Time_Minute_Area.Text = "69"
-        Me.lbl_Time_Minute_Area.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Colon_Area
-        '
-        Me.lbl_Time_Colon_Area.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Colon_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Colon_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Colon_Area.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Colon_Area.Location = New System.Drawing.Point(245, 7)
-        Me.lbl_Time_Colon_Area.Name = "lbl_Time_Colon_Area"
-        Me.lbl_Time_Colon_Area.Size = New System.Drawing.Size(23, 57)
-        Me.lbl_Time_Colon_Area.TabIndex = 10
-        Me.lbl_Time_Colon_Area.Text = ":"
-        Me.lbl_Time_Colon_Area.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Total_Regs_Area
-        '
-        Me.lbl_Total_Regs_Area.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Total_Regs_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Total_Regs_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 80.0!, System.Drawing.FontStyle.Bold)
-        Me.lbl_Total_Regs_Area.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Total_Regs_Area.Location = New System.Drawing.Point(-1, 87)
-        Me.lbl_Total_Regs_Area.Name = "lbl_Total_Regs_Area"
-        Me.lbl_Total_Regs_Area.Size = New System.Drawing.Size(768, 396)
-        Me.lbl_Total_Regs_Area.TabIndex = 8
-        Me.lbl_Total_Regs_Area.Text = "10,000"
-        Me.lbl_Total_Regs_Area.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Hour_Area
-        '
-        Me.lbl_Time_Hour_Area.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Hour_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Hour_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Hour_Area.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Hour_Area.Location = New System.Drawing.Point(181, 7)
-        Me.lbl_Time_Hour_Area.Name = "lbl_Time_Hour_Area"
-        Me.lbl_Time_Hour_Area.Size = New System.Drawing.Size(58, 57)
-        Me.lbl_Time_Hour_Area.TabIndex = 6
-        Me.lbl_Time_Hour_Area.Text = "12"
-        Me.lbl_Time_Hour_Area.TextAlignment = System.Drawing.StringAlignment.Center
-        '
-        'lbl_Time_Label_Area
-        '
-        Me.lbl_Time_Label_Area.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.lbl_Time_Label_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.lbl_Time_Label_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_Time_Label_Area.ForeColor = System.Drawing.Color.Black
-        Me.lbl_Time_Label_Area.Location = New System.Drawing.Point(3, 4)
-        Me.lbl_Time_Label_Area.Name = "lbl_Time_Label_Area"
-        Me.lbl_Time_Label_Area.Size = New System.Drawing.Size(145, 63)
-        Me.lbl_Time_Label_Area.TabIndex = 7
-        Me.lbl_Time_Label_Area.Text = "Time: "
-        Me.lbl_Time_Label_Area.TextAlignment = System.Drawing.StringAlignment.Far
-        '
         'sidenavpan_LiveTotalReg
         '
         Me.sidenavpan_LiveTotalReg.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
@@ -1211,321 +858,231 @@ Partial Class frm_Main
         Me.lbl_Time_Label.Text = "Time: "
         Me.lbl_Time_Label.TextAlignment = System.Drawing.StringAlignment.Far
         '
-        'SideNavPanel1
+        'sidenavpan_livetotals_per_district
         '
-        Me.SideNavPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.SideNavPanel1.Controls.Add(Me.circ_del_prog)
-        Me.SideNavPanel1.Controls.Add(Me.lst_del_logs)
-        Me.SideNavPanel1.Controls.Add(Me.pan_del_logs_control)
-        Me.SideNavPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SideNavPanel1.ForeColor = System.Drawing.Color.Black
-        Me.SideNavPanel1.Location = New System.Drawing.Point(212, 31)
-        Me.SideNavPanel1.Name = "SideNavPanel1"
-        Me.SideNavPanel1.Size = New System.Drawing.Size(767, 529)
-        Me.SideNavPanel1.TabIndex = 48
-        Me.SideNavPanel1.Visible = False
+        Me.sidenavpan_livetotals_per_district.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_AMPM_Area)
+        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Minute_Area)
+        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Colon_Area)
+        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Total_Regs_Area)
+        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Hour_Area)
+        Me.sidenavpan_livetotals_per_district.Controls.Add(Me.lbl_Time_Label_Area)
+        Me.sidenavpan_livetotals_per_district.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.sidenavpan_livetotals_per_district.ForeColor = System.Drawing.Color.Black
+        Me.sidenavpan_livetotals_per_district.Location = New System.Drawing.Point(212, 31)
+        Me.sidenavpan_livetotals_per_district.Name = "sidenavpan_livetotals_per_district"
+        Me.sidenavpan_livetotals_per_district.Size = New System.Drawing.Size(767, 529)
+        Me.sidenavpan_livetotals_per_district.TabIndex = 25
+        Me.sidenavpan_livetotals_per_district.Visible = False
         '
-        'circ_del_prog
+        'lbl_Time_AMPM_Area
         '
-        Me.circ_del_prog.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        '
-        '
-        '
-        Me.circ_del_prog.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.circ_del_prog.Location = New System.Drawing.Point(333, 214)
-        Me.circ_del_prog.Name = "circ_del_prog"
-        Me.circ_del_prog.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot
-        Me.circ_del_prog.ProgressColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(92, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.circ_del_prog.ProgressTextFormat = ""
-        Me.circ_del_prog.ProgressTextVisible = True
-        Me.circ_del_prog.Size = New System.Drawing.Size(100, 100)
-        Me.circ_del_prog.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP
-        Me.circ_del_prog.TabIndex = 41
-        Me.circ_del_prog.Visible = False
-        '
-        'pan_del_logs_control
-        '
-        Me.pan_del_logs_control.CanvasColor = System.Drawing.SystemColors.Control
-        Me.pan_del_logs_control.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.pan_del_logs_control.Controls.Add(Me.rdo_del_Search_by_Account_Name)
-        Me.pan_del_logs_control.Controls.Add(Me.rdo_del_Search_by_Del_Username)
-        Me.pan_del_logs_control.Controls.Add(Me.rdo_del_Search_by_Reg_Username)
-        Me.pan_del_logs_control.Controls.Add(Me.rdo_del_Search_by_Account_Num)
-        Me.pan_del_logs_control.Controls.Add(Me.btn_del_Refresh)
-        Me.pan_del_logs_control.Controls.Add(Me.btn_del_Search)
-        Me.pan_del_logs_control.Controls.Add(Me.txt_del_Search_Term)
-        Me.pan_del_logs_control.Controls.Add(Me.LabelX5)
-        Me.pan_del_logs_control.DisabledBackColor = System.Drawing.Color.Empty
-        Me.pan_del_logs_control.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pan_del_logs_control.Location = New System.Drawing.Point(0, 0)
-        Me.pan_del_logs_control.Name = "pan_del_logs_control"
-        Me.pan_del_logs_control.Size = New System.Drawing.Size(767, 109)
-        Me.pan_del_logs_control.Style.Alignment = System.Drawing.StringAlignment.Center
-        Me.pan_del_logs_control.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
-        Me.pan_del_logs_control.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
-        Me.pan_del_logs_control.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
-        Me.pan_del_logs_control.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
-        Me.pan_del_logs_control.Style.GradientAngle = 90
-        Me.pan_del_logs_control.TabIndex = 40
-        '
-        'rdo_del_Search_by_Account_Name
-        '
-        Me.rdo_del_Search_by_Account_Name.AutoSize = True
-        Me.rdo_del_Search_by_Account_Name.ForeColor = System.Drawing.Color.Black
-        Me.rdo_del_Search_by_Account_Name.Location = New System.Drawing.Point(84, 79)
-        Me.rdo_del_Search_by_Account_Name.Name = "rdo_del_Search_by_Account_Name"
-        Me.rdo_del_Search_by_Account_Name.Size = New System.Drawing.Size(151, 17)
-        Me.rdo_del_Search_by_Account_Name.TabIndex = 4
-        Me.rdo_del_Search_by_Account_Name.Text = "Search by Account Name"
-        Me.rdo_del_Search_by_Account_Name.UseVisualStyleBackColor = True
-        '
-        'rdo_del_Search_by_Del_Username
-        '
-        Me.rdo_del_Search_by_Del_Username.AutoSize = True
-        Me.rdo_del_Search_by_Del_Username.ForeColor = System.Drawing.Color.Black
-        Me.rdo_del_Search_by_Del_Username.Location = New System.Drawing.Point(258, 79)
-        Me.rdo_del_Search_by_Del_Username.Name = "rdo_del_Search_by_Del_Username"
-        Me.rdo_del_Search_by_Del_Username.Size = New System.Drawing.Size(168, 17)
-        Me.rdo_del_Search_by_Del_Username.TabIndex = 6
-        Me.rdo_del_Search_by_Del_Username.Text = "Search by Deleter Username"
-        Me.rdo_del_Search_by_Del_Username.UseVisualStyleBackColor = True
-        '
-        'rdo_del_Search_by_Reg_Username
-        '
-        Me.rdo_del_Search_by_Reg_Username.AutoSize = True
-        Me.rdo_del_Search_by_Reg_Username.ForeColor = System.Drawing.Color.Black
-        Me.rdo_del_Search_by_Reg_Username.Location = New System.Drawing.Point(258, 56)
-        Me.rdo_del_Search_by_Reg_Username.Name = "rdo_del_Search_by_Reg_Username"
-        Me.rdo_del_Search_by_Reg_Username.Size = New System.Drawing.Size(184, 17)
-        Me.rdo_del_Search_by_Reg_Username.TabIndex = 6
-        Me.rdo_del_Search_by_Reg_Username.Text = "Search by Registrant Username"
-        Me.rdo_del_Search_by_Reg_Username.UseVisualStyleBackColor = True
-        '
-        'rdo_del_Search_by_Account_Num
-        '
-        Me.rdo_del_Search_by_Account_Num.AutoSize = True
-        Me.rdo_del_Search_by_Account_Num.Checked = True
-        Me.rdo_del_Search_by_Account_Num.ForeColor = System.Drawing.Color.Black
-        Me.rdo_del_Search_by_Account_Num.Location = New System.Drawing.Point(84, 56)
-        Me.rdo_del_Search_by_Account_Num.Name = "rdo_del_Search_by_Account_Num"
-        Me.rdo_del_Search_by_Account_Num.Size = New System.Drawing.Size(163, 17)
-        Me.rdo_del_Search_by_Account_Num.TabIndex = 3
-        Me.rdo_del_Search_by_Account_Num.TabStop = True
-        Me.rdo_del_Search_by_Account_Num.Text = "Search by Account Number"
-        Me.rdo_del_Search_by_Account_Num.UseVisualStyleBackColor = True
-        '
-        'btn_del_Refresh
-        '
-        Me.btn_del_Refresh.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btn_del_Refresh.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
-        Me.btn_del_Refresh.Location = New System.Drawing.Point(524, 56)
-        Me.btn_del_Refresh.Name = "btn_del_Refresh"
-        Me.btn_del_Refresh.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
-        Me.btn_del_Refresh.Size = New System.Drawing.Size(134, 35)
-        Me.btn_del_Refresh.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btn_del_Refresh.TabIndex = 2
-        Me.btn_del_Refresh.Text = "Refresh List"
-        '
-        'btn_del_Search
-        '
-        Me.btn_del_Search.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btn_del_Search.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
-        Me.btn_del_Search.Location = New System.Drawing.Point(524, 15)
-        Me.btn_del_Search.Name = "btn_del_Search"
-        Me.btn_del_Search.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
-        Me.btn_del_Search.Size = New System.Drawing.Size(134, 35)
-        Me.btn_del_Search.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btn_del_Search.TabIndex = 1
-        Me.btn_del_Search.Text = "Search"
-        '
-        'txt_del_Search_Term
-        '
-        Me.txt_del_Search_Term.BackColor = System.Drawing.Color.White
+        Me.lbl_Time_AMPM_Area.BackColor = System.Drawing.Color.Transparent
         '
         '
         '
-        Me.txt_del_Search_Term.Border.Class = "TextBoxBorder"
-        Me.txt_del_Search_Term.Border.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
-        Me.txt_del_Search_Term.DisabledBackColor = System.Drawing.Color.White
-        Me.txt_del_Search_Term.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txt_del_Search_Term.ForeColor = System.Drawing.Color.Black
-        Me.txt_del_Search_Term.Location = New System.Drawing.Point(84, 17)
-        Me.txt_del_Search_Term.Name = "txt_del_Search_Term"
-        Me.txt_del_Search_Term.PreventEnterBeep = True
-        Me.txt_del_Search_Term.Size = New System.Drawing.Size(434, 33)
-        Me.txt_del_Search_Term.TabIndex = 0
+        Me.lbl_Time_AMPM_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_AMPM_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_AMPM_Area.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_AMPM_Area.Location = New System.Drawing.Point(340, 7)
+        Me.lbl_Time_AMPM_Area.Name = "lbl_Time_AMPM_Area"
+        Me.lbl_Time_AMPM_Area.Size = New System.Drawing.Size(78, 57)
+        Me.lbl_Time_AMPM_Area.TabIndex = 12
+        Me.lbl_Time_AMPM_Area.Text = "PM"
+        Me.lbl_Time_AMPM_Area.TextAlignment = System.Drawing.StringAlignment.Center
         '
-        'LabelX5
+        'lbl_Time_Minute_Area
         '
-        '
-        '
-        '
-        Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX5.ForeColor = System.Drawing.Color.Black
-        Me.LabelX5.Location = New System.Drawing.Point(3, 15)
-        Me.LabelX5.Name = "LabelX5"
-        Me.LabelX5.Size = New System.Drawing.Size(75, 23)
-        Me.LabelX5.TabIndex = 0
-        Me.LabelX5.Text = "Search Term:"
-        Me.LabelX5.TextAlignment = System.Drawing.StringAlignment.Far
-        '
-        'sidenavpan_Officer_List
-        '
-        Me.sidenavpan_Officer_List.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.sidenavpan_Officer_List.Controls.Add(Me.circ_users_prog)
-        Me.sidenavpan_Officer_List.Controls.Add(Me.lst_users)
-        Me.sidenavpan_Officer_List.Controls.Add(Me.pan_users_control)
-        Me.sidenavpan_Officer_List.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.sidenavpan_Officer_List.ForeColor = System.Drawing.Color.Black
-        Me.sidenavpan_Officer_List.Location = New System.Drawing.Point(212, 31)
-        Me.sidenavpan_Officer_List.Name = "sidenavpan_Officer_List"
-        Me.sidenavpan_Officer_List.Size = New System.Drawing.Size(767, 529)
-        Me.sidenavpan_Officer_List.TabIndex = 10
-        Me.sidenavpan_Officer_List.Visible = False
-        '
-        'circ_users_prog
-        '
-        Me.circ_users_prog.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.lbl_Time_Minute_Area.BackColor = System.Drawing.Color.Transparent
         '
         '
         '
-        Me.circ_users_prog.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.circ_users_prog.Location = New System.Drawing.Point(326, 210)
-        Me.circ_users_prog.Name = "circ_users_prog"
-        Me.circ_users_prog.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot
-        Me.circ_users_prog.ProgressColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(92, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.circ_users_prog.ProgressTextFormat = ""
-        Me.circ_users_prog.ProgressTextVisible = True
-        Me.circ_users_prog.Size = New System.Drawing.Size(100, 100)
-        Me.circ_users_prog.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP
-        Me.circ_users_prog.TabIndex = 36
-        Me.circ_users_prog.Visible = False
+        Me.lbl_Time_Minute_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Minute_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Minute_Area.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Minute_Area.Location = New System.Drawing.Point(274, 7)
+        Me.lbl_Time_Minute_Area.Name = "lbl_Time_Minute_Area"
+        Me.lbl_Time_Minute_Area.Size = New System.Drawing.Size(60, 57)
+        Me.lbl_Time_Minute_Area.TabIndex = 11
+        Me.lbl_Time_Minute_Area.Text = "69"
+        Me.lbl_Time_Minute_Area.TextAlignment = System.Drawing.StringAlignment.Center
         '
-        'pan_users_control
+        'lbl_Time_Colon_Area
         '
-        Me.pan_users_control.CanvasColor = System.Drawing.SystemColors.Control
-        Me.pan_users_control.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.pan_users_control.Controls.Add(Me.rdo_user_search_by_Username)
-        Me.pan_users_control.Controls.Add(Me.rdo_user_search_by_Designation)
-        Me.pan_users_control.Controls.Add(Me.rdo_user_search_by_Address)
-        Me.pan_users_control.Controls.Add(Me.rdo_user_search_by_Real_Name)
-        Me.pan_users_control.Controls.Add(Me.btn_user_refresh_list)
-        Me.pan_users_control.Controls.Add(Me.btn_user_Search)
-        Me.pan_users_control.Controls.Add(Me.txt_user_Search_Term)
-        Me.pan_users_control.Controls.Add(Me.LabelX3)
-        Me.pan_users_control.DisabledBackColor = System.Drawing.Color.Empty
-        Me.pan_users_control.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pan_users_control.Location = New System.Drawing.Point(0, 0)
-        Me.pan_users_control.Name = "pan_users_control"
-        Me.pan_users_control.Size = New System.Drawing.Size(767, 109)
-        Me.pan_users_control.Style.Alignment = System.Drawing.StringAlignment.Center
-        Me.pan_users_control.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
-        Me.pan_users_control.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
-        Me.pan_users_control.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
-        Me.pan_users_control.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
-        Me.pan_users_control.Style.GradientAngle = 90
-        Me.pan_users_control.TabIndex = 35
-        '
-        'rdo_user_search_by_Username
-        '
-        Me.rdo_user_search_by_Username.AutoSize = True
-        Me.rdo_user_search_by_Username.ForeColor = System.Drawing.Color.Black
-        Me.rdo_user_search_by_Username.Location = New System.Drawing.Point(84, 79)
-        Me.rdo_user_search_by_Username.Name = "rdo_user_search_by_Username"
-        Me.rdo_user_search_by_Username.Size = New System.Drawing.Size(128, 17)
-        Me.rdo_user_search_by_Username.TabIndex = 4
-        Me.rdo_user_search_by_Username.Text = "Search by Username"
-        Me.rdo_user_search_by_Username.UseVisualStyleBackColor = True
-        '
-        'rdo_user_search_by_Designation
-        '
-        Me.rdo_user_search_by_Designation.AutoSize = True
-        Me.rdo_user_search_by_Designation.ForeColor = System.Drawing.Color.Black
-        Me.rdo_user_search_by_Designation.Location = New System.Drawing.Point(258, 79)
-        Me.rdo_user_search_by_Designation.Name = "rdo_user_search_by_Designation"
-        Me.rdo_user_search_by_Designation.Size = New System.Drawing.Size(140, 17)
-        Me.rdo_user_search_by_Designation.TabIndex = 6
-        Me.rdo_user_search_by_Designation.Text = "Search by Designation"
-        Me.rdo_user_search_by_Designation.UseVisualStyleBackColor = True
-        '
-        'rdo_user_search_by_Address
-        '
-        Me.rdo_user_search_by_Address.AutoSize = True
-        Me.rdo_user_search_by_Address.ForeColor = System.Drawing.Color.Black
-        Me.rdo_user_search_by_Address.Location = New System.Drawing.Point(258, 56)
-        Me.rdo_user_search_by_Address.Name = "rdo_user_search_by_Address"
-        Me.rdo_user_search_by_Address.Size = New System.Drawing.Size(118, 17)
-        Me.rdo_user_search_by_Address.TabIndex = 6
-        Me.rdo_user_search_by_Address.Text = "Search by Address"
-        Me.rdo_user_search_by_Address.UseVisualStyleBackColor = True
-        '
-        'rdo_user_search_by_Real_Name
-        '
-        Me.rdo_user_search_by_Real_Name.AutoSize = True
-        Me.rdo_user_search_by_Real_Name.Checked = True
-        Me.rdo_user_search_by_Real_Name.ForeColor = System.Drawing.Color.Black
-        Me.rdo_user_search_by_Real_Name.Location = New System.Drawing.Point(84, 56)
-        Me.rdo_user_search_by_Real_Name.Name = "rdo_user_search_by_Real_Name"
-        Me.rdo_user_search_by_Real_Name.Size = New System.Drawing.Size(131, 17)
-        Me.rdo_user_search_by_Real_Name.TabIndex = 3
-        Me.rdo_user_search_by_Real_Name.TabStop = True
-        Me.rdo_user_search_by_Real_Name.Text = "Search by Real Name"
-        Me.rdo_user_search_by_Real_Name.UseVisualStyleBackColor = True
-        '
-        'btn_user_refresh_list
-        '
-        Me.btn_user_refresh_list.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btn_user_refresh_list.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
-        Me.btn_user_refresh_list.Location = New System.Drawing.Point(524, 56)
-        Me.btn_user_refresh_list.Name = "btn_user_refresh_list"
-        Me.btn_user_refresh_list.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
-        Me.btn_user_refresh_list.Size = New System.Drawing.Size(134, 35)
-        Me.btn_user_refresh_list.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btn_user_refresh_list.TabIndex = 2
-        Me.btn_user_refresh_list.Text = "Refresh List"
-        '
-        'btn_user_Search
-        '
-        Me.btn_user_Search.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btn_user_Search.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
-        Me.btn_user_Search.Location = New System.Drawing.Point(524, 15)
-        Me.btn_user_Search.Name = "btn_user_Search"
-        Me.btn_user_Search.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
-        Me.btn_user_Search.Size = New System.Drawing.Size(134, 35)
-        Me.btn_user_Search.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btn_user_Search.TabIndex = 1
-        Me.btn_user_Search.Text = "Search"
-        '
-        'txt_user_Search_Term
-        '
-        Me.txt_user_Search_Term.BackColor = System.Drawing.Color.White
+        Me.lbl_Time_Colon_Area.BackColor = System.Drawing.Color.Transparent
         '
         '
         '
-        Me.txt_user_Search_Term.Border.Class = "TextBoxBorder"
-        Me.txt_user_Search_Term.Border.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
-        Me.txt_user_Search_Term.DisabledBackColor = System.Drawing.Color.White
-        Me.txt_user_Search_Term.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txt_user_Search_Term.ForeColor = System.Drawing.Color.Black
-        Me.txt_user_Search_Term.Location = New System.Drawing.Point(84, 17)
-        Me.txt_user_Search_Term.Name = "txt_user_Search_Term"
-        Me.txt_user_Search_Term.PreventEnterBeep = True
-        Me.txt_user_Search_Term.Size = New System.Drawing.Size(434, 33)
-        Me.txt_user_Search_Term.TabIndex = 0
+        Me.lbl_Time_Colon_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Colon_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Colon_Area.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Colon_Area.Location = New System.Drawing.Point(245, 7)
+        Me.lbl_Time_Colon_Area.Name = "lbl_Time_Colon_Area"
+        Me.lbl_Time_Colon_Area.Size = New System.Drawing.Size(23, 57)
+        Me.lbl_Time_Colon_Area.TabIndex = 10
+        Me.lbl_Time_Colon_Area.Text = ":"
+        Me.lbl_Time_Colon_Area.TextAlignment = System.Drawing.StringAlignment.Center
         '
-        'LabelX3
+        'lbl_Total_Regs_Area
+        '
+        Me.lbl_Total_Regs_Area.BackColor = System.Drawing.Color.Transparent
         '
         '
         '
+        Me.lbl_Total_Regs_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Total_Regs_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 80.0!, System.Drawing.FontStyle.Bold)
+        Me.lbl_Total_Regs_Area.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Total_Regs_Area.Location = New System.Drawing.Point(-1, 87)
+        Me.lbl_Total_Regs_Area.Name = "lbl_Total_Regs_Area"
+        Me.lbl_Total_Regs_Area.Size = New System.Drawing.Size(768, 396)
+        Me.lbl_Total_Regs_Area.TabIndex = 8
+        Me.lbl_Total_Regs_Area.Text = "10,000"
+        Me.lbl_Total_Regs_Area.TextAlignment = System.Drawing.StringAlignment.Center
         '
-        Me.LabelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX3.ForeColor = System.Drawing.Color.Black
-        Me.LabelX3.Location = New System.Drawing.Point(3, 15)
-        Me.LabelX3.Name = "LabelX3"
-        Me.LabelX3.Size = New System.Drawing.Size(75, 23)
-        Me.LabelX3.TabIndex = 0
-        Me.LabelX3.Text = "Search Term:"
-        Me.LabelX3.TextAlignment = System.Drawing.StringAlignment.Far
+        'lbl_Time_Hour_Area
+        '
+        Me.lbl_Time_Hour_Area.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Hour_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Hour_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Hour_Area.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Hour_Area.Location = New System.Drawing.Point(181, 7)
+        Me.lbl_Time_Hour_Area.Name = "lbl_Time_Hour_Area"
+        Me.lbl_Time_Hour_Area.Size = New System.Drawing.Size(58, 57)
+        Me.lbl_Time_Hour_Area.TabIndex = 6
+        Me.lbl_Time_Hour_Area.Text = "12"
+        Me.lbl_Time_Hour_Area.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Label_Area
+        '
+        Me.lbl_Time_Label_Area.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Label_Area.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Label_Area.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Label_Area.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Label_Area.Location = New System.Drawing.Point(3, 4)
+        Me.lbl_Time_Label_Area.Name = "lbl_Time_Label_Area"
+        Me.lbl_Time_Label_Area.Size = New System.Drawing.Size(145, 63)
+        Me.lbl_Time_Label_Area.TabIndex = 7
+        Me.lbl_Time_Label_Area.Text = "Time: "
+        Me.lbl_Time_Label_Area.TextAlignment = System.Drawing.StringAlignment.Far
+        '
+        'sidenavpan_livetotals_onsite
+        '
+        Me.sidenavpan_livetotals_onsite.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Total_Regs_Onsite)
+        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_AMPM_Onsite)
+        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Minute_Onsite)
+        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Colon_Onsite)
+        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Hour_Onsite)
+        Me.sidenavpan_livetotals_onsite.Controls.Add(Me.lbl_Time_Label_Onsite)
+        Me.sidenavpan_livetotals_onsite.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.sidenavpan_livetotals_onsite.ForeColor = System.Drawing.Color.Black
+        Me.sidenavpan_livetotals_onsite.Location = New System.Drawing.Point(212, 31)
+        Me.sidenavpan_livetotals_onsite.Name = "sidenavpan_livetotals_onsite"
+        Me.sidenavpan_livetotals_onsite.Size = New System.Drawing.Size(767, 529)
+        Me.sidenavpan_livetotals_onsite.TabIndex = 61
+        Me.sidenavpan_livetotals_onsite.Visible = False
+        '
+        'lbl_Total_Regs_Onsite
+        '
+        Me.lbl_Total_Regs_Onsite.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Total_Regs_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Total_Regs_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 80.0!, System.Drawing.FontStyle.Bold)
+        Me.lbl_Total_Regs_Onsite.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Total_Regs_Onsite.Location = New System.Drawing.Point(4, 87)
+        Me.lbl_Total_Regs_Onsite.Name = "lbl_Total_Regs_Onsite"
+        Me.lbl_Total_Regs_Onsite.Size = New System.Drawing.Size(768, 396)
+        Me.lbl_Total_Regs_Onsite.TabIndex = 18
+        Me.lbl_Total_Regs_Onsite.Text = "10,000"
+        Me.lbl_Total_Regs_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_AMPM_Onsite
+        '
+        Me.lbl_Time_AMPM_Onsite.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_AMPM_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_AMPM_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_AMPM_Onsite.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_AMPM_Onsite.Location = New System.Drawing.Point(340, 6)
+        Me.lbl_Time_AMPM_Onsite.Name = "lbl_Time_AMPM_Onsite"
+        Me.lbl_Time_AMPM_Onsite.Size = New System.Drawing.Size(78, 57)
+        Me.lbl_Time_AMPM_Onsite.TabIndex = 17
+        Me.lbl_Time_AMPM_Onsite.Text = "PM"
+        Me.lbl_Time_AMPM_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Minute_Onsite
+        '
+        Me.lbl_Time_Minute_Onsite.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Minute_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Minute_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Minute_Onsite.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Minute_Onsite.Location = New System.Drawing.Point(274, 6)
+        Me.lbl_Time_Minute_Onsite.Name = "lbl_Time_Minute_Onsite"
+        Me.lbl_Time_Minute_Onsite.Size = New System.Drawing.Size(60, 57)
+        Me.lbl_Time_Minute_Onsite.TabIndex = 16
+        Me.lbl_Time_Minute_Onsite.Text = "69"
+        Me.lbl_Time_Minute_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Colon_Onsite
+        '
+        Me.lbl_Time_Colon_Onsite.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Colon_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Colon_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Colon_Onsite.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Colon_Onsite.Location = New System.Drawing.Point(245, 6)
+        Me.lbl_Time_Colon_Onsite.Name = "lbl_Time_Colon_Onsite"
+        Me.lbl_Time_Colon_Onsite.Size = New System.Drawing.Size(23, 57)
+        Me.lbl_Time_Colon_Onsite.TabIndex = 15
+        Me.lbl_Time_Colon_Onsite.Text = ":"
+        Me.lbl_Time_Colon_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Hour_Onsite
+        '
+        Me.lbl_Time_Hour_Onsite.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Hour_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Hour_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Hour_Onsite.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Hour_Onsite.Location = New System.Drawing.Point(181, 6)
+        Me.lbl_Time_Hour_Onsite.Name = "lbl_Time_Hour_Onsite"
+        Me.lbl_Time_Hour_Onsite.Size = New System.Drawing.Size(58, 57)
+        Me.lbl_Time_Hour_Onsite.TabIndex = 13
+        Me.lbl_Time_Hour_Onsite.Text = "12"
+        Me.lbl_Time_Hour_Onsite.TextAlignment = System.Drawing.StringAlignment.Center
+        '
+        'lbl_Time_Label_Onsite
+        '
+        Me.lbl_Time_Label_Onsite.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.lbl_Time_Label_Onsite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbl_Time_Label_Onsite.Font = New System.Drawing.Font("Bahnschrift Condensed", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_Time_Label_Onsite.ForeColor = System.Drawing.Color.Black
+        Me.lbl_Time_Label_Onsite.Location = New System.Drawing.Point(3, 3)
+        Me.lbl_Time_Label_Onsite.Name = "lbl_Time_Label_Onsite"
+        Me.lbl_Time_Label_Onsite.Size = New System.Drawing.Size(145, 63)
+        Me.lbl_Time_Label_Onsite.TabIndex = 14
+        Me.lbl_Time_Label_Onsite.Text = "Time: "
+        Me.lbl_Time_Label_Onsite.TextAlignment = System.Drawing.StringAlignment.Far
         '
         'sidenavpan_self_reg
         '
@@ -1688,6 +1245,456 @@ Partial Class frm_Main
         Me.LabelX2.TabIndex = 0
         Me.LabelX2.Text = "Search Term:"
         Me.LabelX2.TextAlignment = System.Drawing.StringAlignment.Far
+        '
+        'sidenavpan_Officer_List
+        '
+        Me.sidenavpan_Officer_List.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.sidenavpan_Officer_List.Controls.Add(Me.circ_users_prog)
+        Me.sidenavpan_Officer_List.Controls.Add(Me.lst_users)
+        Me.sidenavpan_Officer_List.Controls.Add(Me.pan_users_control)
+        Me.sidenavpan_Officer_List.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.sidenavpan_Officer_List.ForeColor = System.Drawing.Color.Black
+        Me.sidenavpan_Officer_List.Location = New System.Drawing.Point(212, 31)
+        Me.sidenavpan_Officer_List.Name = "sidenavpan_Officer_List"
+        Me.sidenavpan_Officer_List.Size = New System.Drawing.Size(767, 529)
+        Me.sidenavpan_Officer_List.TabIndex = 10
+        Me.sidenavpan_Officer_List.Visible = False
+        '
+        'circ_users_prog
+        '
+        Me.circ_users_prog.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        '
+        '
+        '
+        Me.circ_users_prog.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.circ_users_prog.Location = New System.Drawing.Point(326, 210)
+        Me.circ_users_prog.Name = "circ_users_prog"
+        Me.circ_users_prog.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot
+        Me.circ_users_prog.ProgressColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(92, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.circ_users_prog.ProgressTextFormat = ""
+        Me.circ_users_prog.ProgressTextVisible = True
+        Me.circ_users_prog.Size = New System.Drawing.Size(100, 100)
+        Me.circ_users_prog.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP
+        Me.circ_users_prog.TabIndex = 36
+        Me.circ_users_prog.Visible = False
+        '
+        'pan_users_control
+        '
+        Me.pan_users_control.CanvasColor = System.Drawing.SystemColors.Control
+        Me.pan_users_control.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.pan_users_control.Controls.Add(Me.rdo_user_search_by_Username)
+        Me.pan_users_control.Controls.Add(Me.rdo_user_search_by_Designation)
+        Me.pan_users_control.Controls.Add(Me.rdo_user_search_by_Address)
+        Me.pan_users_control.Controls.Add(Me.rdo_user_search_by_Real_Name)
+        Me.pan_users_control.Controls.Add(Me.btn_user_refresh_list)
+        Me.pan_users_control.Controls.Add(Me.btn_user_Search)
+        Me.pan_users_control.Controls.Add(Me.txt_user_Search_Term)
+        Me.pan_users_control.Controls.Add(Me.LabelX3)
+        Me.pan_users_control.DisabledBackColor = System.Drawing.Color.Empty
+        Me.pan_users_control.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pan_users_control.Location = New System.Drawing.Point(0, 0)
+        Me.pan_users_control.Name = "pan_users_control"
+        Me.pan_users_control.Size = New System.Drawing.Size(767, 109)
+        Me.pan_users_control.Style.Alignment = System.Drawing.StringAlignment.Center
+        Me.pan_users_control.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.pan_users_control.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
+        Me.pan_users_control.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
+        Me.pan_users_control.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.pan_users_control.Style.GradientAngle = 90
+        Me.pan_users_control.TabIndex = 35
+        '
+        'rdo_user_search_by_Username
+        '
+        Me.rdo_user_search_by_Username.AutoSize = True
+        Me.rdo_user_search_by_Username.ForeColor = System.Drawing.Color.Black
+        Me.rdo_user_search_by_Username.Location = New System.Drawing.Point(84, 79)
+        Me.rdo_user_search_by_Username.Name = "rdo_user_search_by_Username"
+        Me.rdo_user_search_by_Username.Size = New System.Drawing.Size(128, 17)
+        Me.rdo_user_search_by_Username.TabIndex = 4
+        Me.rdo_user_search_by_Username.Text = "Search by Username"
+        Me.rdo_user_search_by_Username.UseVisualStyleBackColor = True
+        '
+        'rdo_user_search_by_Designation
+        '
+        Me.rdo_user_search_by_Designation.AutoSize = True
+        Me.rdo_user_search_by_Designation.ForeColor = System.Drawing.Color.Black
+        Me.rdo_user_search_by_Designation.Location = New System.Drawing.Point(258, 79)
+        Me.rdo_user_search_by_Designation.Name = "rdo_user_search_by_Designation"
+        Me.rdo_user_search_by_Designation.Size = New System.Drawing.Size(140, 17)
+        Me.rdo_user_search_by_Designation.TabIndex = 6
+        Me.rdo_user_search_by_Designation.Text = "Search by Designation"
+        Me.rdo_user_search_by_Designation.UseVisualStyleBackColor = True
+        '
+        'rdo_user_search_by_Address
+        '
+        Me.rdo_user_search_by_Address.AutoSize = True
+        Me.rdo_user_search_by_Address.ForeColor = System.Drawing.Color.Black
+        Me.rdo_user_search_by_Address.Location = New System.Drawing.Point(258, 56)
+        Me.rdo_user_search_by_Address.Name = "rdo_user_search_by_Address"
+        Me.rdo_user_search_by_Address.Size = New System.Drawing.Size(118, 17)
+        Me.rdo_user_search_by_Address.TabIndex = 6
+        Me.rdo_user_search_by_Address.Text = "Search by Address"
+        Me.rdo_user_search_by_Address.UseVisualStyleBackColor = True
+        '
+        'rdo_user_search_by_Real_Name
+        '
+        Me.rdo_user_search_by_Real_Name.AutoSize = True
+        Me.rdo_user_search_by_Real_Name.Checked = True
+        Me.rdo_user_search_by_Real_Name.ForeColor = System.Drawing.Color.Black
+        Me.rdo_user_search_by_Real_Name.Location = New System.Drawing.Point(84, 56)
+        Me.rdo_user_search_by_Real_Name.Name = "rdo_user_search_by_Real_Name"
+        Me.rdo_user_search_by_Real_Name.Size = New System.Drawing.Size(131, 17)
+        Me.rdo_user_search_by_Real_Name.TabIndex = 3
+        Me.rdo_user_search_by_Real_Name.TabStop = True
+        Me.rdo_user_search_by_Real_Name.Text = "Search by Real Name"
+        Me.rdo_user_search_by_Real_Name.UseVisualStyleBackColor = True
+        '
+        'btn_user_refresh_list
+        '
+        Me.btn_user_refresh_list.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn_user_refresh_list.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
+        Me.btn_user_refresh_list.Location = New System.Drawing.Point(524, 56)
+        Me.btn_user_refresh_list.Name = "btn_user_refresh_list"
+        Me.btn_user_refresh_list.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
+        Me.btn_user_refresh_list.Size = New System.Drawing.Size(134, 35)
+        Me.btn_user_refresh_list.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btn_user_refresh_list.TabIndex = 2
+        Me.btn_user_refresh_list.Text = "Refresh List"
+        '
+        'btn_user_Search
+        '
+        Me.btn_user_Search.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn_user_Search.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
+        Me.btn_user_Search.Location = New System.Drawing.Point(524, 15)
+        Me.btn_user_Search.Name = "btn_user_Search"
+        Me.btn_user_Search.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
+        Me.btn_user_Search.Size = New System.Drawing.Size(134, 35)
+        Me.btn_user_Search.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btn_user_Search.TabIndex = 1
+        Me.btn_user_Search.Text = "Search"
+        '
+        'txt_user_Search_Term
+        '
+        Me.txt_user_Search_Term.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.txt_user_Search_Term.Border.Class = "TextBoxBorder"
+        Me.txt_user_Search_Term.Border.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
+        Me.txt_user_Search_Term.DisabledBackColor = System.Drawing.Color.White
+        Me.txt_user_Search_Term.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.txt_user_Search_Term.ForeColor = System.Drawing.Color.Black
+        Me.txt_user_Search_Term.Location = New System.Drawing.Point(84, 17)
+        Me.txt_user_Search_Term.Name = "txt_user_Search_Term"
+        Me.txt_user_Search_Term.PreventEnterBeep = True
+        Me.txt_user_Search_Term.Size = New System.Drawing.Size(434, 33)
+        Me.txt_user_Search_Term.TabIndex = 0
+        '
+        'LabelX3
+        '
+        '
+        '
+        '
+        Me.LabelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX3.ForeColor = System.Drawing.Color.Black
+        Me.LabelX3.Location = New System.Drawing.Point(3, 15)
+        Me.LabelX3.Name = "LabelX3"
+        Me.LabelX3.Size = New System.Drawing.Size(75, 23)
+        Me.LabelX3.TabIndex = 0
+        Me.LabelX3.Text = "Search Term:"
+        Me.LabelX3.TextAlignment = System.Drawing.StringAlignment.Far
+        '
+        'sidenavpan_QR_Attendance
+        '
+        Me.sidenavpan_QR_Attendance.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.sidenavpan_QR_Attendance.Controls.Add(Me.circ_prog_QR)
+        Me.sidenavpan_QR_Attendance.Controls.Add(Me.lst_QR_Attendees)
+        Me.sidenavpan_QR_Attendance.Controls.Add(Me.pan_QR_control)
+        Me.sidenavpan_QR_Attendance.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.sidenavpan_QR_Attendance.ForeColor = System.Drawing.Color.Black
+        Me.sidenavpan_QR_Attendance.Location = New System.Drawing.Point(212, 31)
+        Me.sidenavpan_QR_Attendance.Name = "sidenavpan_QR_Attendance"
+        Me.sidenavpan_QR_Attendance.Size = New System.Drawing.Size(767, 529)
+        Me.sidenavpan_QR_Attendance.TabIndex = 32
+        Me.sidenavpan_QR_Attendance.Visible = False
+        '
+        'circ_prog_QR
+        '
+        Me.circ_prog_QR.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        '
+        '
+        '
+        Me.circ_prog_QR.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.circ_prog_QR.Location = New System.Drawing.Point(326, 210)
+        Me.circ_prog_QR.Name = "circ_prog_QR"
+        Me.circ_prog_QR.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot
+        Me.circ_prog_QR.ProgressColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(92, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.circ_prog_QR.ProgressTextFormat = ""
+        Me.circ_prog_QR.ProgressTextVisible = True
+        Me.circ_prog_QR.Size = New System.Drawing.Size(100, 100)
+        Me.circ_prog_QR.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP
+        Me.circ_prog_QR.TabIndex = 42
+        Me.circ_prog_QR.Visible = False
+        '
+        'pan_QR_control
+        '
+        Me.pan_QR_control.CanvasColor = System.Drawing.SystemColors.Control
+        Me.pan_QR_control.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.pan_QR_control.Controls.Add(Me.rdo_QR_Search_by_Account_Number)
+        Me.pan_QR_control.Controls.Add(Me.rdo_QR_Search_by_Account_Name)
+        Me.pan_QR_control.Controls.Add(Me.btn_QR_Refresh_List)
+        Me.pan_QR_control.Controls.Add(Me.btn_QR_Search)
+        Me.pan_QR_control.Controls.Add(Me.txt_QR_Search_Term)
+        Me.pan_QR_control.Controls.Add(Me.LabelX4)
+        Me.pan_QR_control.DisabledBackColor = System.Drawing.Color.Empty
+        Me.pan_QR_control.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pan_QR_control.Location = New System.Drawing.Point(0, 0)
+        Me.pan_QR_control.Name = "pan_QR_control"
+        Me.pan_QR_control.Size = New System.Drawing.Size(767, 109)
+        Me.pan_QR_control.Style.Alignment = System.Drawing.StringAlignment.Center
+        Me.pan_QR_control.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.pan_QR_control.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
+        Me.pan_QR_control.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
+        Me.pan_QR_control.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.pan_QR_control.Style.GradientAngle = 90
+        Me.pan_QR_control.TabIndex = 41
+        '
+        'rdo_QR_Search_by_Account_Number
+        '
+        Me.rdo_QR_Search_by_Account_Number.AutoSize = True
+        Me.rdo_QR_Search_by_Account_Number.ForeColor = System.Drawing.Color.Black
+        Me.rdo_QR_Search_by_Account_Number.Location = New System.Drawing.Point(263, 56)
+        Me.rdo_QR_Search_by_Account_Number.Name = "rdo_QR_Search_by_Account_Number"
+        Me.rdo_QR_Search_by_Account_Number.Size = New System.Drawing.Size(163, 17)
+        Me.rdo_QR_Search_by_Account_Number.TabIndex = 4
+        Me.rdo_QR_Search_by_Account_Number.Text = "Search by Account Number"
+        Me.rdo_QR_Search_by_Account_Number.UseVisualStyleBackColor = True
+        '
+        'rdo_QR_Search_by_Account_Name
+        '
+        Me.rdo_QR_Search_by_Account_Name.AutoSize = True
+        Me.rdo_QR_Search_by_Account_Name.Checked = True
+        Me.rdo_QR_Search_by_Account_Name.ForeColor = System.Drawing.Color.Black
+        Me.rdo_QR_Search_by_Account_Name.Location = New System.Drawing.Point(84, 56)
+        Me.rdo_QR_Search_by_Account_Name.Name = "rdo_QR_Search_by_Account_Name"
+        Me.rdo_QR_Search_by_Account_Name.Size = New System.Drawing.Size(151, 17)
+        Me.rdo_QR_Search_by_Account_Name.TabIndex = 3
+        Me.rdo_QR_Search_by_Account_Name.TabStop = True
+        Me.rdo_QR_Search_by_Account_Name.Text = "Search by Account Name"
+        Me.rdo_QR_Search_by_Account_Name.UseVisualStyleBackColor = True
+        '
+        'btn_QR_Refresh_List
+        '
+        Me.btn_QR_Refresh_List.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn_QR_Refresh_List.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
+        Me.btn_QR_Refresh_List.Location = New System.Drawing.Point(524, 56)
+        Me.btn_QR_Refresh_List.Name = "btn_QR_Refresh_List"
+        Me.btn_QR_Refresh_List.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
+        Me.btn_QR_Refresh_List.Size = New System.Drawing.Size(134, 35)
+        Me.btn_QR_Refresh_List.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btn_QR_Refresh_List.TabIndex = 2
+        Me.btn_QR_Refresh_List.Text = "Refresh List"
+        '
+        'btn_QR_Search
+        '
+        Me.btn_QR_Search.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn_QR_Search.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
+        Me.btn_QR_Search.Location = New System.Drawing.Point(524, 15)
+        Me.btn_QR_Search.Name = "btn_QR_Search"
+        Me.btn_QR_Search.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
+        Me.btn_QR_Search.Size = New System.Drawing.Size(134, 35)
+        Me.btn_QR_Search.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btn_QR_Search.TabIndex = 1
+        Me.btn_QR_Search.Text = "Search"
+        '
+        'txt_QR_Search_Term
+        '
+        Me.txt_QR_Search_Term.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.txt_QR_Search_Term.Border.Class = "TextBoxBorder"
+        Me.txt_QR_Search_Term.Border.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
+        Me.txt_QR_Search_Term.DisabledBackColor = System.Drawing.Color.White
+        Me.txt_QR_Search_Term.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.txt_QR_Search_Term.ForeColor = System.Drawing.Color.Black
+        Me.txt_QR_Search_Term.Location = New System.Drawing.Point(84, 17)
+        Me.txt_QR_Search_Term.Name = "txt_QR_Search_Term"
+        Me.txt_QR_Search_Term.PreventEnterBeep = True
+        Me.txt_QR_Search_Term.Size = New System.Drawing.Size(434, 33)
+        Me.txt_QR_Search_Term.TabIndex = 0
+        '
+        'LabelX4
+        '
+        '
+        '
+        '
+        Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX4.ForeColor = System.Drawing.Color.Black
+        Me.LabelX4.Location = New System.Drawing.Point(3, 15)
+        Me.LabelX4.Name = "LabelX4"
+        Me.LabelX4.Size = New System.Drawing.Size(75, 23)
+        Me.LabelX4.TabIndex = 0
+        Me.LabelX4.Text = "Search Term:"
+        Me.LabelX4.TextAlignment = System.Drawing.StringAlignment.Far
+        '
+        'SideNavPanel1
+        '
+        Me.SideNavPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.SideNavPanel1.Controls.Add(Me.circ_del_prog)
+        Me.SideNavPanel1.Controls.Add(Me.lst_del_logs)
+        Me.SideNavPanel1.Controls.Add(Me.pan_del_logs_control)
+        Me.SideNavPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SideNavPanel1.ForeColor = System.Drawing.Color.Black
+        Me.SideNavPanel1.Location = New System.Drawing.Point(212, 31)
+        Me.SideNavPanel1.Name = "SideNavPanel1"
+        Me.SideNavPanel1.Size = New System.Drawing.Size(767, 529)
+        Me.SideNavPanel1.TabIndex = 48
+        Me.SideNavPanel1.Visible = False
+        '
+        'circ_del_prog
+        '
+        Me.circ_del_prog.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        '
+        '
+        '
+        Me.circ_del_prog.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.circ_del_prog.Location = New System.Drawing.Point(333, 214)
+        Me.circ_del_prog.Name = "circ_del_prog"
+        Me.circ_del_prog.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Dot
+        Me.circ_del_prog.ProgressColor = System.Drawing.Color.FromArgb(CType(CType(21, Byte), Integer), CType(CType(92, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.circ_del_prog.ProgressTextFormat = ""
+        Me.circ_del_prog.ProgressTextVisible = True
+        Me.circ_del_prog.Size = New System.Drawing.Size(100, 100)
+        Me.circ_del_prog.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP
+        Me.circ_del_prog.TabIndex = 41
+        Me.circ_del_prog.Visible = False
+        '
+        'pan_del_logs_control
+        '
+        Me.pan_del_logs_control.CanvasColor = System.Drawing.SystemColors.Control
+        Me.pan_del_logs_control.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.pan_del_logs_control.Controls.Add(Me.rdo_del_Search_by_Account_Name)
+        Me.pan_del_logs_control.Controls.Add(Me.rdo_del_Search_by_Del_Username)
+        Me.pan_del_logs_control.Controls.Add(Me.rdo_del_Search_by_Reg_Username)
+        Me.pan_del_logs_control.Controls.Add(Me.rdo_del_Search_by_Account_Num)
+        Me.pan_del_logs_control.Controls.Add(Me.btn_del_Refresh)
+        Me.pan_del_logs_control.Controls.Add(Me.btn_del_Search)
+        Me.pan_del_logs_control.Controls.Add(Me.txt_del_Search_Term)
+        Me.pan_del_logs_control.Controls.Add(Me.LabelX5)
+        Me.pan_del_logs_control.DisabledBackColor = System.Drawing.Color.Empty
+        Me.pan_del_logs_control.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pan_del_logs_control.Location = New System.Drawing.Point(0, 0)
+        Me.pan_del_logs_control.Name = "pan_del_logs_control"
+        Me.pan_del_logs_control.Size = New System.Drawing.Size(767, 109)
+        Me.pan_del_logs_control.Style.Alignment = System.Drawing.StringAlignment.Center
+        Me.pan_del_logs_control.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.pan_del_logs_control.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine
+        Me.pan_del_logs_control.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
+        Me.pan_del_logs_control.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.pan_del_logs_control.Style.GradientAngle = 90
+        Me.pan_del_logs_control.TabIndex = 40
+        '
+        'rdo_del_Search_by_Account_Name
+        '
+        Me.rdo_del_Search_by_Account_Name.AutoSize = True
+        Me.rdo_del_Search_by_Account_Name.ForeColor = System.Drawing.Color.Black
+        Me.rdo_del_Search_by_Account_Name.Location = New System.Drawing.Point(84, 79)
+        Me.rdo_del_Search_by_Account_Name.Name = "rdo_del_Search_by_Account_Name"
+        Me.rdo_del_Search_by_Account_Name.Size = New System.Drawing.Size(151, 17)
+        Me.rdo_del_Search_by_Account_Name.TabIndex = 4
+        Me.rdo_del_Search_by_Account_Name.Text = "Search by Account Name"
+        Me.rdo_del_Search_by_Account_Name.UseVisualStyleBackColor = True
+        '
+        'rdo_del_Search_by_Del_Username
+        '
+        Me.rdo_del_Search_by_Del_Username.AutoSize = True
+        Me.rdo_del_Search_by_Del_Username.ForeColor = System.Drawing.Color.Black
+        Me.rdo_del_Search_by_Del_Username.Location = New System.Drawing.Point(258, 79)
+        Me.rdo_del_Search_by_Del_Username.Name = "rdo_del_Search_by_Del_Username"
+        Me.rdo_del_Search_by_Del_Username.Size = New System.Drawing.Size(168, 17)
+        Me.rdo_del_Search_by_Del_Username.TabIndex = 6
+        Me.rdo_del_Search_by_Del_Username.Text = "Search by Deleter Username"
+        Me.rdo_del_Search_by_Del_Username.UseVisualStyleBackColor = True
+        '
+        'rdo_del_Search_by_Reg_Username
+        '
+        Me.rdo_del_Search_by_Reg_Username.AutoSize = True
+        Me.rdo_del_Search_by_Reg_Username.ForeColor = System.Drawing.Color.Black
+        Me.rdo_del_Search_by_Reg_Username.Location = New System.Drawing.Point(258, 56)
+        Me.rdo_del_Search_by_Reg_Username.Name = "rdo_del_Search_by_Reg_Username"
+        Me.rdo_del_Search_by_Reg_Username.Size = New System.Drawing.Size(184, 17)
+        Me.rdo_del_Search_by_Reg_Username.TabIndex = 6
+        Me.rdo_del_Search_by_Reg_Username.Text = "Search by Registrant Username"
+        Me.rdo_del_Search_by_Reg_Username.UseVisualStyleBackColor = True
+        '
+        'rdo_del_Search_by_Account_Num
+        '
+        Me.rdo_del_Search_by_Account_Num.AutoSize = True
+        Me.rdo_del_Search_by_Account_Num.Checked = True
+        Me.rdo_del_Search_by_Account_Num.ForeColor = System.Drawing.Color.Black
+        Me.rdo_del_Search_by_Account_Num.Location = New System.Drawing.Point(84, 56)
+        Me.rdo_del_Search_by_Account_Num.Name = "rdo_del_Search_by_Account_Num"
+        Me.rdo_del_Search_by_Account_Num.Size = New System.Drawing.Size(163, 17)
+        Me.rdo_del_Search_by_Account_Num.TabIndex = 3
+        Me.rdo_del_Search_by_Account_Num.TabStop = True
+        Me.rdo_del_Search_by_Account_Num.Text = "Search by Account Number"
+        Me.rdo_del_Search_by_Account_Num.UseVisualStyleBackColor = True
+        '
+        'btn_del_Refresh
+        '
+        Me.btn_del_Refresh.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn_del_Refresh.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
+        Me.btn_del_Refresh.Location = New System.Drawing.Point(524, 56)
+        Me.btn_del_Refresh.Name = "btn_del_Refresh"
+        Me.btn_del_Refresh.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
+        Me.btn_del_Refresh.Size = New System.Drawing.Size(134, 35)
+        Me.btn_del_Refresh.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btn_del_Refresh.TabIndex = 2
+        Me.btn_del_Refresh.Text = "Refresh List"
+        '
+        'btn_del_Search
+        '
+        Me.btn_del_Search.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn_del_Search.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground
+        Me.btn_del_Search.Location = New System.Drawing.Point(524, 15)
+        Me.btn_del_Search.Name = "btn_del_Search"
+        Me.btn_del_Search.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(5)
+        Me.btn_del_Search.Size = New System.Drawing.Size(134, 35)
+        Me.btn_del_Search.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btn_del_Search.TabIndex = 1
+        Me.btn_del_Search.Text = "Search"
+        '
+        'txt_del_Search_Term
+        '
+        Me.txt_del_Search_Term.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.txt_del_Search_Term.Border.Class = "TextBoxBorder"
+        Me.txt_del_Search_Term.Border.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
+        Me.txt_del_Search_Term.DisabledBackColor = System.Drawing.Color.White
+        Me.txt_del_Search_Term.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.txt_del_Search_Term.ForeColor = System.Drawing.Color.Black
+        Me.txt_del_Search_Term.Location = New System.Drawing.Point(84, 17)
+        Me.txt_del_Search_Term.Name = "txt_del_Search_Term"
+        Me.txt_del_Search_Term.PreventEnterBeep = True
+        Me.txt_del_Search_Term.Size = New System.Drawing.Size(434, 33)
+        Me.txt_del_Search_Term.TabIndex = 0
+        '
+        'LabelX5
+        '
+        '
+        '
+        '
+        Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX5.ForeColor = System.Drawing.Color.Black
+        Me.LabelX5.Location = New System.Drawing.Point(3, 15)
+        Me.LabelX5.Name = "LabelX5"
+        Me.LabelX5.Size = New System.Drawing.Size(75, 23)
+        Me.LabelX5.TabIndex = 0
+        Me.LabelX5.Text = "Search Term:"
+        Me.LabelX5.TextAlignment = System.Drawing.StringAlignment.Far
         '
         'SideNavItem1
         '
@@ -2020,6 +2027,11 @@ Partial Class frm_Main
         Me.BW_Export_Pre_Reg_Non_Attendees.WorkerReportsProgress = True
         Me.BW_Export_Pre_Reg_Non_Attendees.WorkerSupportsCancellation = True
         '
+        'BW_Excel_Exporter_User_Dist
+        '
+        Me.BW_Excel_Exporter_User_Dist.WorkerReportsProgress = True
+        Me.BW_Excel_Exporter_User_Dist.WorkerSupportsCancellation = True
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2042,21 +2054,21 @@ Partial Class frm_Main
         CType(Me.ContextMenuBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pan_masterlist_controls.ResumeLayout(False)
         Me.pan_masterlist_controls.PerformLayout()
-        Me.sidenavpan_QR_Attendance.ResumeLayout(False)
-        Me.pan_QR_control.ResumeLayout(False)
-        Me.pan_QR_control.PerformLayout()
-        Me.sidenavpan_livetotals_onsite.ResumeLayout(False)
-        Me.sidenavpan_livetotals_per_district.ResumeLayout(False)
         Me.sidenavpan_LiveTotalReg.ResumeLayout(False)
-        Me.SideNavPanel1.ResumeLayout(False)
-        Me.pan_del_logs_control.ResumeLayout(False)
-        Me.pan_del_logs_control.PerformLayout()
-        Me.sidenavpan_Officer_List.ResumeLayout(False)
-        Me.pan_users_control.ResumeLayout(False)
-        Me.pan_users_control.PerformLayout()
+        Me.sidenavpan_livetotals_per_district.ResumeLayout(False)
+        Me.sidenavpan_livetotals_onsite.ResumeLayout(False)
         Me.sidenavpan_self_reg.ResumeLayout(False)
         Me.pan_self_controls.ResumeLayout(False)
         Me.pan_self_controls.PerformLayout()
+        Me.sidenavpan_Officer_List.ResumeLayout(False)
+        Me.pan_users_control.ResumeLayout(False)
+        Me.pan_users_control.PerformLayout()
+        Me.sidenavpan_QR_Attendance.ResumeLayout(False)
+        Me.pan_QR_control.ResumeLayout(False)
+        Me.pan_QR_control.PerformLayout()
+        Me.SideNavPanel1.ResumeLayout(False)
+        Me.pan_del_logs_control.ResumeLayout(False)
+        Me.pan_del_logs_control.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2238,4 +2250,6 @@ Partial Class frm_Main
     Friend WithEvents BW_PDF_Exporter_User_Dist As System.ComponentModel.BackgroundWorker
     Friend WithEvents btn_Self_Export_Reg_Non_Site_PDF As ButtonItem
     Friend WithEvents BW_Export_Pre_Reg_Non_Attendees As System.ComponentModel.BackgroundWorker
+    Friend WithEvents btn_Export_Excel_per_User As ButtonItem
+    Friend WithEvents BW_Excel_Exporter_User_Dist As System.ComponentModel.BackgroundWorker
 End Class

@@ -177,6 +177,9 @@ Public Class frm_Main
     Dim filepath_Self_Non_Att_PDF As String
     Dim ItemNumber_Self_Non_Att_PDF As Integer = 1
 
+    Dim fileName_Onsite_User_Excel As String
+    Dim filepath_Onsite_User_Excel As String
+
 
 
     Dim fileName_Excel_Self As String
@@ -10890,6 +10893,240 @@ Public Class frm_Main
         circ_self_reg.Value = 0
         circ_self_reg.Visible = False
         tmr_Circ_self_anim.Enabled = False
+    End Sub
+
+    Private Sub btn_Export_Excel_per_User_Click(sender As Object, e As EventArgs) Handles btn_Export_Excel_per_User.Click
+        Selected_District = ""
+
+        Loaded_District.Clear()
+        Loaded_Username_for_Excel.Clear()
+
+        Dim MysqlConn As MySqlConnection
+        Dim sql As String
+        Dim cmd As New MySqlCommand
+        Dim drSQL As MySqlDataReader
+
+
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString = "server=" + Server_IP + "; userid=jingG_15;password=haPPymeals;database=agma_2024;Convert Zero Datetime=True"
+
+
+
+        Try
+
+
+            MysqlConn.Open()
+            sql = "SELECT Bil_Account_Number, User_Logged, " _
+                    & "CONCAT((Select user_accounts.First_Name FROM user_accounts WHERE user_accounts.Username = onsite_attendance.User_Logged), ' ', " _
+                    & "(Select user_accounts.Middle_Initial FROM user_accounts WHERE user_accounts.Username = onsite_attendance.User_Logged), '. ', " _
+                    & "(Select user_accounts.Last_Name FROM user_accounts WHERE user_accounts.Username = onsite_attendance.User_Logged)) as Username_Full_Name, " _
+                    & "COUNT(*) as User_Count FROM onsite_attendance GROUP BY User_Logged ORDER BY Username_Full_Name ASC"
+
+
+            cmd = New MySqlCommand(sql, MysqlConn)
+            drSQL = cmd.ExecuteReader()
+
+
+            Do While drSQL.Read = True
+
+
+                Loaded_District.Add(drSQL("Username_Full_Name").ToString)
+                Loaded_Username_for_Excel.Add(drSQL("User_Logged").ToString)
+
+            Loop
+        Catch ex As Exception
+            ' MessageBox.Show(ex.Message)
+
+            DevComponents.DotNetBar.MessageBoxEx.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            MysqlConn.Close()
+
+        End Try 'Give the thread a very..very short break...
+
+
+
+        If Loaded_District.Count > 0 Then
+            frm_District_Selection.Text = "Select User"
+            frm_District_Selection.LabelX1.Text = "Name:"
+            frm_District_Selection.ShowDialog()
+
+            If Selected_District <> "" Then
+                Dim f As FolderBrowserDialog = New FolderBrowserDialog
+
+
+                Try
+
+                    If f.ShowDialog() = DialogResult.OK Then
+                        fileName_Onsite_User_Excel = "\AGMA2024_Onsite_" + Selected_District + "_Only.xls"
+                        filepath_Onsite_User_Excel = f.SelectedPath + fileName_Onsite_User_Excel
+
+
+                        lst_QR_Attendees.Visible = False
+                        pan_QR_control.Enabled = False
+                        circ_prog_QR.Value = 0
+                        circ_prog_QR.Visible = True
+                        tmr_Circ_QR_anim.Enabled = True
+
+
+                        BW_Excel_Exporter_User_Dist.RunWorkerAsync()
+
+
+
+
+
+                    End If
+
+
+                Catch ex As Exception
+
+                    DevComponents.DotNetBar.MessageBoxEx.Show("Exception line: 0xF1055", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+
+
+
+            End If
+
+        Else
+            DevComponents.DotNetBar.MessageBoxEx.Show("No Entries Found", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End If
+
+
+
+
+    End Sub
+
+    Private Sub BW_Excel_Exporter_User_Dist_DoWork(sender As Object, e As DoWorkEventArgs) Handles BW_Excel_Exporter_User_Dist.DoWork
+
+
+        Dim rprtr As Integer = 0
+        Dim dataSet As New DataSet
+        ' Dim command As New SqlClient.SqlCommand
+        Dim datatableMain As New System.Data.DataTable()
+        'Dim connection As New SqlClient.SqlConnection
+
+        Dim MysqlConn1 As MySqlConnection
+        Dim sql1 As String
+        Dim cmd1 As MySqlCommand
+        'Dim drSQL1 As MySqlDataReader
+        Dim da1 As New MySqlDataAdapter
+
+        MysqlConn1 = New MySqlConnection
+        MysqlConn1.ConnectionString = "server=" + Server_IP + "; userid=jingG_15; password=haPPymeals; database=agma_2024"
+
+        'sql1 = "SELECT Bil_Account_Number As 'Account Number', Bil_Account_Name As 'Account Name', Bil_Class as 'Account Class', " +
+        '    "Bil_Address As 'Address', Date_Registered As 'Date Registered', Stub_Number As 'Stub #', " +
+        '    "Contact_Number As 'Contact #', Username_Reg as 'Registered by', CONCAT((Select First_Name FROM user_accounts WHERE Username = Username_Reg), ' ', " +
+        '    "(Select Middle_Initial FROM user_accounts WHERE Username = Username_Reg), '. ', " +
+        '    "(Select Last_Name FROM user_accounts WHERE Username = Username_Reg)) as 'Full Name', " +
+        '    "(Select Position FROM user_accounts WHERE Username = Username_Reg) as 'Position' " +
+        '    "From overall_reg Order By Bil_Account_Name ASC"
+
+
+        sql1 = "SELECT Bil_Account_Number AS 'Account Number', Bil_Account_Name AS 'Account Name', Bil_Address AS 'Address', Stub_Number AS 'Stub Number', " _
+                & "(SELECT accounts_list.Membership_Number FROM accounts_list WHERE accounts_list.Account_Number = onsite_attendance.Bil_Account_Number) AS 'Membership Number', " _
+                & "Date_Recorded AS 'Registration Timestamp', " _
+                & "User_Logged FROM onsite_attendance HAVING User_Logged = '" & Loaded_Username_for_Excel(Loaded_District.IndexOf(Selected_District)).ToString() & "' ORDER BY onsite_attendance.Date_Recorded ASC"
+
+        cmd1 = New MySqlCommand(sql1, MysqlConn1)
+
+        da1.SelectCommand = cmd1
+
+        Try
+
+            BW_Excel_Exporter_User_Dist.ReportProgress(2)
+            Dim oExcel As Excel.Application
+            Dim oBook As Excel.Workbook
+            Dim oSheet As Excel.Worksheet
+            oExcel = CreateObject("Excel.Application")
+            oBook = oExcel.Workbooks.Add(Type.Missing)
+            oSheet = oBook.Worksheets(1)
+
+            Dim dc As System.Data.DataColumn
+            Dim dr As System.Data.DataRow
+            Dim colIndex As Integer = 0
+            Dim rowIndex As Integer = 0
+
+            'Fill data to datatable
+
+            'connection.Open()
+            MysqlConn1.Open()
+            da1.Fill(datatableMain)
+            MysqlConn1.Close()
+            rprtr = 5
+            BW_Excel_Exporter_User_Dist.ReportProgress(5)
+            'Export the Columns to excel file
+            For Each dc In datatableMain.Columns
+
+                colIndex = colIndex + 1
+                oSheet.Cells(1, colIndex) = dc.ColumnName
+                rprtr = colIndex + 5
+                BW_Excel_Exporter_User_Dist.ReportProgress((rprtr / (datatableMain.Columns.Count + datatableMain.Rows.Count + 10)) * 100)
+
+            Next
+            oSheet.Range(oSheet.Cells(1, 1), oSheet.Cells(1, colIndex)).Font.Bold = True
+            rowIndex = rowIndex + 1
+            'Export the rows to excel file
+            For Each dr In datatableMain.Rows
+                rowIndex = rowIndex + 1
+                colIndex = 0
+                For Each dc In datatableMain.Columns
+                    colIndex = colIndex + 1
+                    oSheet.Cells(rowIndex + 1, colIndex) = dr(dc.ColumnName)
+                Next
+                rprtr = rowIndex + colIndex + 5
+                BW_Excel_Exporter_User_Dist.ReportProgress((rprtr / (datatableMain.Columns.Count + datatableMain.Rows.Count + 10)) * 100)
+            Next
+
+            'Set final path
+
+            'txtPath.Text = finalPath
+            oSheet.Columns.AutoFit()
+            'Save file in final path
+            oBook.SaveAs(filepath_Onsite_User_Excel, Excel.XlFileFormat.xlWorkbookNormal, Type.Missing,
+            Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlExclusive,
+            Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing)
+
+            'Release the objects
+            ReleaseObject(oSheet)
+            oBook.Close(False, Type.Missing, Type.Missing)
+            ReleaseObject(oBook)
+            oExcel.Quit()
+            ReleaseObject(oExcel)
+            'Some time Office application does not quit after automation: 
+            'so i am calling GC.Collect method.
+            GC.Collect()
+            BW_Excel_Exporter_User_Dist.ReportProgress(100)
+
+            'TabMain.Enabled = True
+            'TabMain.Enabled = False
+            'CircVal = 0
+            'CircProg.Location = New Point((Pan_Excel_Loader.Width / 2) - (Circ_Loader.Width / 2), (Pan_Excel_Loader.Height / 2) - (Circ_Loader.Height / 2))
+            'Pan_Excel_Loader.Location = New Point((TabRafflePanel.Width / 2) - (Pan_Excel_Loader.Width / 2), (TabRafflePanel.Height / 2) - (Pan_Excel_Loader.Height / 2))
+
+            DevComponents.DotNetBar.MessageBoxEx.Show("Export Successfull!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            'MessageBox.Show(ex.Message, "Warning", MessageBoxButtons.OK)
+
+            DevComponents.DotNetBar.MessageBoxEx.Show("Exception line: 0xF1041", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+
+    End Sub
+
+    Private Sub BW_Excel_Exporter_User_Dist_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles BW_Excel_Exporter_User_Dist.ProgressChanged
+        circ_prog_QR.ProgressText = e.ProgressPercentage.ToString + " %"
+
+
+    End Sub
+
+    Private Sub BW_Excel_Exporter_User_Dist_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BW_Excel_Exporter_User_Dist.RunWorkerCompleted
+        lst_QR_Attendees.Visible = True
+        pan_QR_control.Enabled = True
+        circ_prog_QR.Value = 0
+        circ_prog_QR.Visible = False
+        tmr_Circ_QR_anim.Enabled = False
     End Sub
 End Class
 
